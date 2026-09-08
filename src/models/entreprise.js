@@ -33,7 +33,7 @@ module.exports = {
   // Photos (fichiers dans public/images/)
   photos: {
     equipe: {
-      src: '/images/e76f7d20-0cda-4191-8948-ca5c6665f3df.jpeg',
+      src: '/images/equipe.jpeg',
       alt: "L'équipe Forty Services en costume devant un site client à Casablanca"
     }
   },
