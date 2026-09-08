@@ -104,6 +104,7 @@ nav a:hover { color: var(--blanc); }
 .barre .btn { min-height: 44px; padding: 8px 20px; font-size: 0.96rem; }
 
 .bouton-menu { display: none; background: none; border: none; padding: 10px; cursor: pointer; }
+.nav-appel { display: none; }
 @media (max-width: 920px) {
   nav {
     display: none;
@@ -122,6 +123,12 @@ nav a:hover { color: var(--blanc); }
   nav a { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
   .bouton-menu { display: block; }
   .barre .btn-appel-clair { display: none; }
+  .nav-appel {
+    display: block;
+    color: var(--cyan);
+    font-weight: 800;
+    border-bottom: none;
+  }
 }
 
 /* ---------- Héros ---------- */
@@ -487,6 +494,76 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .revele { opacity: 1; transform: none; transition: none; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   Optimisation mobile — écrans jusqu'à 700 px
+   ═══════════════════════════════════════════════════════ */
+@media (max-width: 700px) {
+  .conteneur { padding: 0 18px; }
+  section { padding: 54px 0; }
+
+  /* Héros : plus compact, boutons pleine largeur pour le pouce */
+  .heros-grille { padding: 44px 0 60px; gap: 36px; }
+  .heros-texte p { font-size: 1.05rem; margin: 16px 0 24px; }
+  .heros-actions { margin-bottom: 28px; gap: 11px; }
+  .heros-actions .btn { width: 100%; }
+  .heros-points { font-size: 0.94rem; gap: 9px; }
+
+  /* Carte de visite resserrée */
+  .carte-visite { padding: 22px 20px 0; max-width: none; }
+  .cv-vague { width: calc(100% + 40px); margin: 18px -20px 0; }
+  .cv-tete { flex-wrap: wrap; gap: 10px; }
+  .cv-metiers { margin: 16px 0 2px; font-size: 0.98rem; }
+  .cv-lignes { font-size: 0.92rem; gap: 10px; }
+
+  /* Sections : titres et grilles plus denses */
+  .tete-section p { font-size: 1rem; margin-top: 12px; }
+  .grille-services { margin-top: 32px; gap: 14px; }
+  .carte { padding: 24px 20px 22px; }
+  .carte .icone { width: 48px; height: 48px; margin-bottom: 16px; }
+  .grille-engagements { margin-top: 32px; gap: 14px; }
+  .engagement { padding: 20px 18px; }
+  .grille-etapes { margin-top: 34px; }
+
+  /* Équipe */
+  .equipe-grille { gap: 26px; }
+  .equipe-texte p { font-size: 1rem; }
+  .equipe-points { font-size: 0.94rem; gap: 10px; }
+
+  /* Références */
+  .reference-phare {
+    display: flex;
+    margin-top: 30px;
+    padding: 14px 16px;
+    font-size: 0.95rem;
+    gap: 11px;
+    align-items: flex-start;
+  }
+  .reference-phare svg { flex-shrink: 0; margin-top: 2px; }
+  .grille-references { gap: 8px; margin-top: 18px; }
+  .grille-references li { padding: 8px 14px; font-size: 0.88rem; }
+
+  /* Contact : panneau devis compact */
+  .contact-grille { gap: 36px; }
+  .contact-lignes { margin-top: 26px; gap: 14px; font-size: 0.96rem; }
+  .panneau-devis { padding: 26px 20px; }
+  .panneau-devis h3 { font-size: 1.22rem; }
+
+  /* Pied de page */
+  .pied-haut { padding: 40px 0 28px; gap: 28px; }
+  .pied-bas { padding: 16px 0; }
+
+  /* WhatsApp flottant légèrement réduit */
+  .wa-flottant { width: 54px; height: 54px; right: 14px; bottom: 14px; }
+}
+
+/* Très petits écrans (moins de 380 px) */
+@media (max-width: 380px) {
+  body { font-size: 16px; }
+  .conteneur { padding: 0 14px; }
+  .logo-texte { font-size: 1.08rem; }
+  .badge-247 { font-size: 0.74rem; padding: 5px 9px; }
 }
 
 /* ---------- Page 404 ---------- */
