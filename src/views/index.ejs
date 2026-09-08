@@ -27,7 +27,7 @@
         </li>
         <li>
           <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
-          Depuis <%= site.anneeCreation %> — plus de 10 ans d'expérience
+          Depuis <%= site.anneeCreation %> — <%= site.experienceMetier %> ans de métier
         </li>
         <li>
           <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
@@ -97,10 +97,12 @@
     <div class="grille-services">
       <% site.services.forEach(function (service, i) { %>
       <article class="carte revele"<% if (i > 0) { %> style="--delai:<%= (i * 0.08).toFixed(2) %>s;"<% } %>>
-        <div class="icone">
-          <%- include('partials/icones', { icone: service.icone, taille: 28 }) %>
+        <div class="carte-tete">
+          <div class="icone">
+            <%- include('partials/icones', { icone: service.icone, taille: 28 }) %>
+          </div>
+          <h3><%= service.titre %></h3>
         </div>
-        <h3><%= service.titre %></h3>
         <p><%= service.description %></p>
         <a class="lien-devis" href="#contact">Demander un devis
           <%- include('partials/icones', { icone: 'fleche-droite', taille: 14, stroke: 'currentColor', epais: 2.4 }) %>
@@ -120,7 +122,7 @@
     <div class="equipe-texte">
       <span class="sur-titre">Notre équipe</span>
       <h2>Des hommes de terrain, pas des promesses</h2>
-      <p>Depuis <%= site.anneeCreation %>, nos agents interviennent chez des industriels, des hôtels, des résidences et des institutions du Grand Casablanca. Encadrés, ponctuels, présentables&nbsp;: la même exigence sur chaque site.</p>
+      <p>Dirigée depuis <%= site.anneeCreation %> par <%= site.gerant %> — <%= site.experienceMetier %> ans dans le domaine de la surveillance, dont <%= site.experienceGerant %> à la tête de l'entreprise — notre équipe intervient chez des industriels, des hôtels, des résidences et des institutions du Grand Casablanca. Encadrés, ponctuels, présentables&nbsp;: la même exigence sur chaque site.</p>
       <ul class="equipe-points">
         <li>
           <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
@@ -231,7 +233,7 @@
         <div class="contact-lignes">
           <div>
             <%- include('partials/icones', { icone: 'personne', taille: 19, epais: 2 }) %>
-            <span><span class="etiquette">Votre interlocuteur</span><%= site.gerant %>, gérant</span>
+            <span><span class="etiquette">Votre interlocuteur</span><%= site.gerant %>, gérant — <%= site.experienceMetier %> ans dans la surveillance</span>
           </div>
           <div>
             <%- include('partials/icones', { icone: 'telephone', taille: 19, epais: 2 }) %>

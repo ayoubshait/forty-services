@@ -38,4 +38,16 @@
   <%- include('whatsapp-icone', { taille: 30 }) %>
 </a>
 
+<!-- Barre d'action mobile : appel + WhatsApp toujours sous le pouce -->
+<div class="barre-mobile">
+  <a class="bm-appel" href="tel:<%= site.telephones[0].e164 %>">
+    <%- include('icones', { icone: 'telephone', taille: 19, stroke: 'currentColor', epais: 2 }) %>
+    Appeler
+  </a>
+  <a class="bm-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
+    <%- include('whatsapp-icone', { taille: 19 }) %>
+    WhatsApp
+  </a>
+</div>
+
 <script src="/js/main.js"></script>

@@ -9,6 +9,8 @@ module.exports = {
   adresse: 'Lot. Al Ward, Rue 22, Imm 4 — Sidi Moumen, Casablanca',
   zone: 'tout le Grand Casablanca',
   gerant: 'Mustapha Shait',
+  experienceGerant: 13,   // années à la tête de Forty Services
+  experienceMetier: 26,   // années dans le domaine de la surveillance
   email: 'forty.services@gmail.com',
 
   telephones: [
@@ -86,8 +88,8 @@ module.exports = {
 
   engagements: [
     {
-      titre: 'Plus de 10 ans de terrain',
-      description: 'Depuis 2013 au service des entreprises de Casablanca : usines, hôtels, résidences, institutions.',
+      titre: '26 ans de métier',
+      description: "L'entreprise depuis 2013, un gérant fort de 26 ans dans la surveillance : usines, hôtels, résidences, institutions.",
       icone: 'bouclier-coche'
     },
     {

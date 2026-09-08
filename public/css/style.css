@@ -260,9 +260,11 @@ section { padding: 84px 0; }
   border-radius: var(--radius);
   background: rgba(41, 168, 223, 0.1);
   display: flex; align-items: center; justify-content: center;
-  margin-bottom: 20px;
+  flex-shrink: 0;
 }
-.carte h3 { margin-bottom: 10px; }
+.carte-tete { margin-bottom: 14px; }
+.carte-tete .icone { margin-bottom: 16px; }
+.carte h3 { margin-bottom: 0; }
 .carte p { font-size: 0.97rem; color: var(--gris-doux); }
 .carte .lien-devis {
   display: inline-flex; align-items: center; gap: 7px;
@@ -483,6 +485,9 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
 }
 .wa-flottant:hover { transform: scale(1.06); }
 
+/* ---------- Barre d'action mobile (masquée sur grand écran) ---------- */
+.barre-mobile { display: none; }
+
 /* ---------- Apparition douce ---------- */
 .revele {
   opacity: 0;
@@ -501,30 +506,35 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 700px) {
   .conteneur { padding: 0 18px; }
-  section { padding: 54px 0; }
+  section { padding: 48px 0; }
+  h1 { font-size: 1.75rem; }
+  h2 { font-size: 1.45rem; }
+  .vague { height: 44px; }
 
-  /* Héros : plus compact, boutons pleine largeur pour le pouce */
-  .heros-grille { padding: 44px 0 60px; gap: 36px; }
-  .heros-texte p { font-size: 1.05rem; margin: 16px 0 24px; }
-  .heros-actions { margin-bottom: 28px; gap: 11px; }
+  /* Héros : direct à l'essentiel — la carte de visite est masquée
+     (ses infos sont dans le menu, le contact et la barre du bas) */
+  .carte-visite { display: none; }
+  .heros-grille { padding: 40px 0 52px; gap: 0; }
+  .heros-texte p { font-size: 1.02rem; margin: 14px 0 22px; }
+  .heros-actions { margin-bottom: 24px; gap: 10px; }
   .heros-actions .btn { width: 100%; }
-  .heros-points { font-size: 0.94rem; gap: 9px; }
+  .heros-points { font-size: 0.93rem; gap: 8px; }
 
-  /* Carte de visite resserrée */
-  .carte-visite { padding: 22px 20px 0; max-width: none; }
-  .cv-vague { width: calc(100% + 40px); margin: 18px -20px 0; }
-  .cv-tete { flex-wrap: wrap; gap: 10px; }
-  .cv-metiers { margin: 16px 0 2px; font-size: 0.98rem; }
-  .cv-lignes { font-size: 0.92rem; gap: 10px; }
+  /* Services : icône et titre côte à côte, cartes légères */
+  .tete-section p { font-size: 0.99rem; margin-top: 10px; }
+  .grille-services { margin-top: 28px; gap: 12px; }
+  .carte { padding: 18px 16px; }
+  .carte-tete { display: flex; align-items: center; gap: 13px; margin-bottom: 10px; }
+  .carte-tete .icone { width: 44px; height: 44px; margin-bottom: 0; }
+  .carte p { font-size: 0.93rem; }
+  .carte .lien-devis { display: none; }
 
-  /* Sections : titres et grilles plus denses */
-  .tete-section p { font-size: 1rem; margin-top: 12px; }
-  .grille-services { margin-top: 32px; gap: 14px; }
-  .carte { padding: 24px 20px 22px; }
-  .carte .icone { width: 48px; height: 48px; margin-bottom: 16px; }
-  .grille-engagements { margin-top: 32px; gap: 14px; }
-  .engagement { padding: 20px 18px; }
-  .grille-etapes { margin-top: 34px; }
+  /* Engagements : liste légère au lieu de 6 grosses boîtes */
+  .grille-engagements { margin-top: 26px; gap: 20px; }
+  .engagement { background: transparent; border: none; padding: 0; gap: 14px; }
+  .engagement h3 { margin-bottom: 3px; }
+  .engagement p { font-size: 0.93rem; }
+  .grille-etapes { margin-top: 30px; gap: 26px; }
 
   /* Équipe */
   .equipe-grille { gap: 26px; }
@@ -551,11 +561,33 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
   .panneau-devis h3 { font-size: 1.22rem; }
 
   /* Pied de page */
-  .pied-haut { padding: 40px 0 28px; gap: 28px; }
-  .pied-bas { padding: 16px 0; }
+  .pied-haut { padding: 36px 0 24px; gap: 26px; }
+  .pied-bas { padding: 14px 0 12px; }
+  footer { padding-bottom: 60px; }
 
-  /* WhatsApp flottant légèrement réduit */
-  .wa-flottant { width: 54px; height: 54px; right: 14px; bottom: 14px; }
+  /* Barre d'action fixe en bas : appel + WhatsApp sous le pouce */
+  .wa-flottant { display: none; }
+  .barre-mobile {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 70;
+    height: 58px;
+    box-shadow: 0 -4px 16px rgba(20, 45, 84, 0.18);
+  }
+  .barre-mobile a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    font-weight: 800;
+    font-size: 1.02rem;
+    text-decoration: none;
+    color: var(--blanc);
+  }
+  .bm-appel { background: var(--marine); }
+  .bm-wa { background: var(--vert-wa); }
 }
 
 /* Très petits écrans (moins de 380 px) */
