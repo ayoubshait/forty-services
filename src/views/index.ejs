@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<%- include('partials/tete') %>
+</head>
+<body>
+
+<%- include('partials/entete') %>
+
+<!-- ══════════════ HÉROS ══════════════ -->
+<div class="heros" id="accueil">
+  <div class="conteneur heros-grille">
+    <div class="heros-texte">
+      <h1>Vos locaux méritent d'être <span>surveillés, gardés, impeccables.</span></h1>
+      <p>À <%= site.ville %>, <%= site.nom %> protège et entretient vos sites professionnels&nbsp;: bureaux, commerces, entrepôts et chantiers. Équipes formées, un seul interlocuteur, disponibles jour et nuit.</p>
+      <div class="heros-actions">
+        <a class="btn btn-devis" href="#contact">Demander un devis</a>
+        <a class="btn btn-contour-clair" href="tel:<%= site.telephones[0].e164 %>">
+          <%- include('partials/icones', { icone: 'telephone', taille: 18, stroke: 'currentColor', epais: 2 }) %>
+          Appeler maintenant
+        </a>
+      </div>
+      <ul class="heros-points">
+        <li>
+          <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
+          Disponibles 24&nbsp;h/24 et 7&nbsp;j/7
+        </li>
+        <li>
+          <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
+          Depuis <%= site.anneeCreation %> — plus de 10 ans d'expérience
+        </li>
+        <li>
+          <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
+          Devis gratuit sous 48&nbsp;h
+        </li>
+        <li>
+          <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
+          Tout le Grand Casablanca
+        </li>
+      </ul>
+    </div>
+
+    <!-- La carte de visite, réinterprétée -->
+    <aside class="carte-visite" aria-label="Coordonnées <%= site.nom %>">
+      <div class="cv-tete">
+        <div class="cv-marque">
+          <%- include('partials/marque', { largeur: 34, couleurTrait: '#1B3A6B' }) %>
+          <span class="nom">FORTY<br><span>SERVICES</span></span>
+        </div>
+        <span class="badge-247">24&nbsp;h/24 · 7&nbsp;j/7</span>
+      </div>
+
+      <p class="cv-metiers">Surveillance — Gardiennage<br>Nettoyage — Fin de chantier</p>
+
+      <div class="cv-lignes">
+        <div>
+          <%- include('partials/icones', { icone: 'telephone', taille: 18, epais: 2 }) %>
+          <span>
+            <% site.telephones.forEach(function (tel, i) { %><a href="tel:<%= tel.e164 %>"><%= tel.affiche %></a><%= i < site.telephones.length - 1 ? ' · ' : '' %><% }); %>
+          </span>
+        </div>
+        <div>
+          <%- include('partials/icones', { icone: 'email', taille: 18, epais: 2 }) %>
+          <span><a href="mailto:<%= site.email %>"><%= site.email %></a></span>
+        </div>
+        <div>
+          <%- include('partials/icones', { icone: 'lieu', taille: 18, epais: 2 }) %>
+          <span>Lot. Al Ward, Rue 22, Imm 4<br><%= site.quartier %> — <%= site.ville %></span>
+        </div>
+      </div>
+
+      <!-- La double vague de la carte -->
+      <svg class="cv-vague" viewBox="0 0 480 84" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0,52 C110,14 240,70 340,42 C400,26 450,30 480,44 L480,84 L0,84 Z" fill="#29A8DF" opacity="0.28"/>
+        <path d="M0,64 C120,30 250,80 360,52 C420,38 460,42 480,54 L480,84 L0,84 Z" fill="#1B3A6B"/>
+        <path d="M0,58 C115,22 245,74 350,46 C410,31 455,35 480,48" fill="none" stroke="#29A8DF" stroke-width="4"/>
+      </svg>
+    </aside>
+  </div>
+
+  <!-- Vague signature : marine vers blanc -->
+  <svg class="vague" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="background:#1B3A6B;">
+    <path d="M0,48 C240,88 480,8 720,34 C960,60 1200,76 1440,26 L1440,90 L0,90 Z" fill="#FFFFFF"/>
+    <path d="M0,40 C240,80 480,0 720,26 C960,52 1200,68 1440,18" fill="none" stroke="#29A8DF" stroke-width="3" opacity="0.75"/>
+  </svg>
+</div>
+
+<!-- ══════════════ SERVICES ══════════════ -->
+<section id="services" style="padding-top:56px;">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Nos services</span>
+      <h2>Quatre métiers, une même exigence</h2>
+      <p>Chaque prestation est encadrée par un responsable dédié, avec un périmètre clair et un suivi régulier.</p>
+    </div>
+
+    <div class="grille-services">
+      <% site.services.forEach(function (service, i) { %>
+      <article class="carte revele"<% if (i > 0) { %> style="--delai:<%= (i * 0.08).toFixed(2) %>s;"<% } %>>
+        <div class="icone">
+          <%- include('partials/icones', { icone: service.icone, taille: 28 }) %>
+        </div>
+        <h3><%= service.titre %></h3>
+        <p><%= service.description %></p>
+        <a class="lien-devis" href="#contact">Demander un devis
+          <%- include('partials/icones', { icone: 'fleche-droite', taille: 14, stroke: 'currentColor', epais: 2.4 }) %>
+        </a>
+      </article>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ ÉQUIPE ══════════════ -->
+<section id="equipe" style="padding-top:0;">
+  <div class="conteneur equipe-grille">
+    <figure class="equipe-photo revele">
+      <img src="<%= site.photos.equipe.src %>" alt="<%= site.photos.equipe.alt %>" loading="lazy">
+    </figure>
+    <div class="equipe-texte">
+      <span class="sur-titre">Notre équipe</span>
+      <h2>Des hommes de terrain, pas des promesses</h2>
+      <p>Depuis <%= site.anneeCreation %>, nos agents interviennent chez des industriels, des hôtels, des résidences et des institutions du Grand Casablanca. Encadrés, ponctuels, présentables&nbsp;: la même exigence sur chaque site.</p>
+      <ul class="equipe-points">
+        <li>
+          <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
+          Agents sélectionnés et suivis par le gérant
+        </li>
+        <li>
+          <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
+          Tenue professionnelle adaptée à chaque mission
+        </li>
+        <li>
+          <%- include('partials/icones', { icone: 'coche', taille: 17, epais: 2.5 }) %>
+          Relève assurée&nbsp;: jamais de poste vacant
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- Vague signature : blanc vers gris -->
+<svg class="vague" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="background:#FFFFFF;">
+  <path d="M0,34 C260,78 520,8 780,40 C1040,72 1260,60 1440,20 L1440,90 L0,90 Z" fill="#F4F7FA"/>
+  <path d="M0,26 C260,70 520,0 780,32 C1040,64 1260,52 1440,12" fill="none" stroke="#29A8DF" stroke-width="3" opacity="0.45"/>
+</svg>
+
+<!-- ══════════════ ENGAGEMENTS ══════════════ -->
+<section class="fond-gris" id="engagements" style="padding-top:48px;">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Nos engagements</span>
+      <h2>Pourquoi nous confier vos locaux</h2>
+    </div>
+
+    <div class="grille-engagements">
+      <% site.engagements.forEach(function (engagement, i) { %>
+      <div class="engagement revele"<% if (i > 0) { %> style="--delai:<%= (i * 0.08).toFixed(2) %>s;"<% } %>>
+        <%- include('partials/icones', { icone: engagement.icone, taille: 27 }) %>
+        <div>
+          <h3><%= engagement.titre %></h3>
+          <p><%= engagement.description %></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ RÉFÉRENCES ══════════════ -->
+<section id="references" class="fond-gris" style="padding-top:0;">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Ils nous font confiance</span>
+      <h2>Des références qui parlent depuis <%= site.anneeCreation %></h2>
+      <p>Usines textiles, hôtels, résidences, institutions : plus de dix ans de contrats menés dans la durée.</p>
+    </div>
+
+    <div class="reference-phare revele">
+      <%- include('partials/icones', { icone: 'bouclier-coche', taille: 26, epais: 1.8 }) %>
+      <span><%= site.referencePhare %></span>
+    </div>
+
+    <ul class="grille-references">
+      <% site.references.forEach(function (client) { %>
+      <li><%= client %></li>
+      <% }); %>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════ DÉROULEMENT ══════════════ -->
+<section id="deroulement" class="fond-gris" style="padding-top:0;">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Comment ça marche</span>
+      <h2>Trois étapes, c'est tout</h2>
+    </div>
+
+    <div class="grille-etapes">
+      <% site.etapes.forEach(function (etape, i) { %>
+      <div class="etape revele"<% if (i > 0) { %> style="--delai:<%= (i * 0.1).toFixed(2) %>s;"<% } %>>
+        <span class="numero"><%= i + 1 %></span>
+        <div>
+          <h3><%= etape.titre %></h3>
+          <p><%= etape.description %></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- Vague signature : gris vers marine -->
+<svg class="vague" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true" style="background:#F4F7FA;">
+  <path d="M0,42 C220,10 500,82 760,46 C1020,12 1240,34 1440,60 L1440,90 L0,90 Z" fill="#1B3A6B"/>
+  <path d="M0,34 C220,2 500,74 760,38 C1020,4 1240,26 1440,52" fill="none" stroke="#29A8DF" stroke-width="3" opacity="0.75"/>
+</svg>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section class="contact" id="contact" style="padding-top:56px;">
+  <div class="conteneur">
+    <div class="contact-grille">
+      <div>
+        <div class="tete-section">
+          <span class="sur-titre">Contact</span>
+          <h2>Parlons de vos locaux</h2>
+          <p>Basés à <%= site.quartier %>, nous intervenons dans <%= site.zone %>. Décrivez simplement votre besoin&nbsp;: type de prestation, adresse du site, fréquence souhaitée.</p>
+        </div>
+
+        <div class="contact-lignes">
+          <div>
+            <%- include('partials/icones', { icone: 'personne', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">Votre interlocuteur</span><%= site.gerant %>, gérant</span>
+          </div>
+          <div>
+            <%- include('partials/icones', { icone: 'telephone', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">Téléphone</span>
+              <% site.telephones.forEach(function (tel, i) { %><a href="tel:<%= tel.e164 %>"><%= tel.affiche %></a><%= i < site.telephones.length - 1 ? ' · ' : '' %><% }); %>
+            </span>
+          </div>
+          <div>
+            <%- include('partials/icones', { icone: 'email', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">E-mail</span><a href="mailto:<%= site.email %>?subject=Demande%20de%20devis"><%= site.email %></a></span>
+          </div>
+          <div>
+            <%- include('partials/icones', { icone: 'lieu', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">Adresse</span><%= site.adresse %></span>
+          </div>
+          <div>
+            <%- include('partials/icones', { icone: 'horloge', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">Disponibilité</span><%= site.disponibilite %> — appelez-nous à toute heure</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panneau-devis revele">
+        <h3>Devis gratuit sous <%= site.delaiDevis %></h3>
+        <p>Sans engagement. Réponse rapide, même le week-end.</p>
+        <a class="btn btn-wa-panneau" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
+          <%- include('partials/whatsapp-icone', { taille: 20 }) %>
+          Devis sur WhatsApp
+        </a>
+        <a class="btn btn-appel" href="tel:<%= site.telephones[0].e164 %>">
+          <%- include('partials/icones', { icone: 'telephone', taille: 18, stroke: 'currentColor', epais: 2 }) %>
+          <%= site.telephones[0].affiche %>
+        </a>
+        <a class="btn btn-devis" style="box-shadow:none;" href="mailto:<%= site.email %>?subject=Demande%20de%20devis">
+          <%- include('partials/icones', { icone: 'email', taille: 18, stroke: 'currentColor', epais: 2 }) %>
+          Écrire un e-mail
+        </a>
+        <p class="note">Vous serez recontacté sous 24&nbsp;h ouvrées.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%- include('partials/pied') %>
+
+</body>
+</html>

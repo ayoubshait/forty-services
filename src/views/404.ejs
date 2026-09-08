@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — <%= site.nom %></title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page-404">
+  <%- include('partials/marque', { largeur: 72, couleurTrait: '#FFFFFF' }) %>
+  <h1>Cette page n'existe pas</h1>
+  <p>L'adresse est peut-être erronée, ou la page a été déplacée. Retournez à l'accueil pour retrouver nos services.</p>
+  <a class="btn btn-devis" href="/">Retour à l'accueil</a>
+</body>
+</html>

@@ -1,0 +1,9 @@
+<%
+// La flèche à chevrons de la marque (logo de la carte de visite).
+// Options : largeur (nombre), couleurTrait (couleur du trait principal).
+const l = typeof largeur !== 'undefined' ? largeur : 38;
+const c = typeof couleurTrait !== 'undefined' ? couleurTrait : '#FFFFFF';
+%><svg width="<%= l %>" height="<%= Math.round(l * 0.85) %>" viewBox="0 0 40 34" fill="none" aria-hidden="true">
+  <path d="M4 17h20M18 9l8 8-8 8" stroke="<%= c %>" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M22 3l8 8M34 7l6 6-6 6M22 31l8-8" stroke="#29A8DF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

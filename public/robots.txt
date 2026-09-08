@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# REMPLACER fortyservices.example par votre vrai domaine une fois choisi
+Sitemap: https://fortyservices.example/sitemap.xml

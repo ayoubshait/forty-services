@@ -1,0 +1,31 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><%= site.seo.titre %></title>
+<meta name="description" content="<%= site.seo.description %>">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="/css/style.css">
+<meta property="og:title" content="<%= site.seo.titre %>">
+<meta property="og:description" content="<%= site.seo.description %>">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_MA">
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": site.nom,
+  "description": site.seo.description,
+  "telephone": site.telephones[0].e164,
+  "email": site.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Lot. Al Ward, Rue 22, Imm 4, " + site.quartier,
+    "addressLocality": site.ville,
+    "addressCountry": "MA"
+  },
+  "areaServed": "Grand Casablanca",
+  "foundingDate": String(site.anneeCreation),
+  "openingHours": "Mo-Su 00:00-24:00",
+  "founder": { "@type": "Person", "name": site.gerant }
+}, null, 2) %>
+</script>

@@ -1,0 +1,41 @@
+<footer>
+  <div class="conteneur">
+    <div class="pied-haut">
+      <div>
+        <div class="pied-marque">
+          <%- include('marque', { largeur: 34, couleurTrait: '#FFFFFF' }) %>
+          <span class="nom">FORTY<br><span>SERVICES</span></span>
+        </div>
+        <p>Depuis <%= site.anneeCreation %> — surveillance, gardiennage et nettoyage professionnel à <%= site.ville %>. Des locaux entre de bonnes mains, jour et nuit.</p>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <% site.services.forEach(function (service) { %>
+          <li><a href="#services"><%= service.titre %></a></li>
+          <% }); %>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <% site.telephones.forEach(function (tel) { %>
+          <li><a href="tel:<%= tel.e164 %>"><%= tel.affiche %></a></li>
+          <% }); %>
+          <li><a href="mailto:<%= site.email %>"><%= site.email %></a></li>
+          <li><%= site.quartier %> — <%= site.ville %></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied-bas">
+      <span>© <%= new Date().getFullYear() %> <%= site.nom %> — <%= site.ville %></span>
+      <span>Disponibles <%= site.disponibilite %></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-flottant" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>" aria-label="Nous contacter sur WhatsApp">
+  <%- include('whatsapp-icone', { taille: 30 }) %>
+</a>
+
+<script src="/js/main.js"></script>

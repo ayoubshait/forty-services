@@ -1,0 +1,22 @@
+<header>
+  <div class="conteneur barre">
+    <a class="logo" href="#accueil" aria-label="<%= site.nom %> — retour à l'accueil">
+      <%- include('marque', { largeur: 38, couleurTrait: '#FFFFFF' }) %>
+      <span class="logo-texte">FORTY<br><span>SERVICES</span></span>
+    </a>
+    <nav id="menu" aria-label="Navigation principale">
+      <a href="#services">Services</a>
+      <a href="#engagements">Nos engagements</a>
+      <a href="#references">Références</a>
+      <a href="#deroulement">Comment ça marche</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn btn-appel-clair" href="tel:<%= site.telephones[0].e164 %>">
+      <%- include('icones', { icone: 'telephone', taille: 17, stroke: 'currentColor', epais: 2 }) %>
+      <%= site.telephones[0].affiche %>
+    </a>
+    <button class="bouton-menu" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
