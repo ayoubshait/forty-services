@@ -26,6 +26,8 @@ html { scroll-behavior: smooth; }
   scroll-margin-top: 78px;
 }
 
+html, body { overflow-x: hidden; }
+
 body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   color: var(--gris-texte);
@@ -507,18 +509,27 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
 @media (max-width: 700px) {
   .conteneur { padding: 0 18px; }
   section { padding: 48px 0; }
-  h1 { font-size: 1.75rem; }
+  h1 { font-size: 1.58rem; }
   h2 { font-size: 1.45rem; }
   .vague { height: 44px; }
+
+  /* En-tête plus fin */
+  .barre { padding: 10px 0; }
+  .logo-texte { font-size: 1.05rem; }
 
   /* Héros : direct à l'essentiel — la carte de visite est masquée
      (ses infos sont dans le menu, le contact et la barre du bas) */
   .carte-visite { display: none; }
-  .heros-grille { padding: 40px 0 52px; gap: 0; }
-  .heros-texte p { font-size: 1.02rem; margin: 14px 0 22px; }
-  .heros-actions { margin-bottom: 24px; gap: 10px; }
+  .heros-grille { padding: 26px 0 42px; gap: 0; }
+  .heros-texte p { font-size: 0.98rem; margin: 12px 0 18px; }
+  .heros-actions { margin-bottom: 20px; gap: 10px; }
   .heros-actions .btn { width: 100%; }
+  /* Le bouton d'appel du héros est retiré : la barre fixe en bas fait ce travail */
+  .heros-actions .btn-contour-clair { display: none; }
+  /* Deux points de confiance suffisent en haut, le reste est dans la page */
   .heros-points { font-size: 0.93rem; gap: 8px; }
+  .heros-points li:nth-child(3),
+  .heros-points li:nth-child(4) { display: none; }
 
   /* Services : icône et titre côte à côte, cartes légères */
   .tete-section p { font-size: 0.99rem; margin-top: 10px; }
