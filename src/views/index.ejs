@@ -61,10 +61,6 @@
     <ul class="heros-reassurance">
       <li>
         <%- include('partials/icones', { icone: 'coche', taille: 16, epais: 2.5 }) %>
-        Depuis <%= site.anneeCreation %>
-      </li>
-      <li>
-        <%- include('partials/icones', { icone: 'coche', taille: 16, epais: 2.5 }) %>
         Dirigeant : <%= site.experienceMetier %> ans d'expérience
       </li>
       <li>
@@ -127,10 +123,6 @@
       <p><%= paragraphe %></p>
       <% }); %>
       <div class="equipe-stats">
-        <div>
-          <strong data-compte="<%= site.anneeCreation %>"><%= site.anneeCreation %></strong>
-          <span>création de l'entreprise</span>
-        </div>
         <div>
           <strong data-compte="<%= site.experienceMetier %>" data-suffixe=" ans"><%= site.experienceMetier %> ans</strong>
           <span>d'expérience du dirigeant en surveillance</span>
