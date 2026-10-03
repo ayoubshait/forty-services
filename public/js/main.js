@@ -7,11 +7,13 @@ if (boutonMenu && menu) {
   boutonMenu.addEventListener('click', () => {
     const ouvert = menu.classList.toggle('ouvert');
     boutonMenu.setAttribute('aria-expanded', ouvert);
+    boutonMenu.setAttribute('aria-label', ouvert ? 'Fermer le menu' : 'Ouvrir le menu');
   });
   menu.querySelectorAll('a').forEach((lien) => {
     lien.addEventListener('click', () => {
       menu.classList.remove('ouvert');
       boutonMenu.setAttribute('aria-expanded', 'false');
+      boutonMenu.setAttribute('aria-label', 'Ouvrir le menu');
     });
   });
 }

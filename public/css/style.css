@@ -115,6 +115,9 @@ nav a:hover { color: var(--blanc); }
 .barre .btn { min-height: 44px; padding: 8px 20px; font-size: 0.96rem; }
 
 .bouton-menu { display: none; background: none; border: none; padding: 10px; cursor: pointer; }
+.i-croix { display: none; }
+.bouton-menu[aria-expanded="true"] .i-barres { display: none; }
+.bouton-menu[aria-expanded="true"] .i-croix { display: inline; }
 .nav-appel { display: none; }
 @media (max-width: 920px) {
   nav {
@@ -126,12 +129,12 @@ nav a:hover { color: var(--blanc); }
     background: var(--marine);
     flex-direction: column;
     gap: 0;
-    padding: 6px 26px 16px;
+    padding: 2px 26px 10px;
     border-top: 1px solid rgba(255, 255, 255, 0.14);
     box-shadow: 0 12px 24px rgba(20, 45, 84, 0.35);
   }
   nav.ouvert { display: flex; }
-  nav a { padding: 14px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+  nav a { padding: 11px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
   .bouton-menu { display: block; }
   .barre .btn-appel-clair { display: none; }
   .nav-appel {
@@ -298,38 +301,66 @@ nav a:hover { color: var(--blanc); }
 .sf-cta:hover { filter: brightness(1.08); }
 .scene-fiche.maj .sf-texte { animation: monte 0.35s ease both; }
 
-/* Téléphone et petite tablette : scène sous le texte, métiers en grille, fiche courte (le devis est déjà dans la barre fixe) */
+/* Téléphone et petite tablette : titre, devis, sélecteurs, scène, fiche, réassurance — l'ensemble forme une seule carte */
 @media (max-width: 920px) {
   .heros { display: flex; flex-direction: column; }
   .heros > .conteneur { width: 100%; }
   .heros > .heros-grille { order: 1; }
-  .heros > .scene-vue {
+  /* le panneau est « dissous » pour que sélecteurs, scène et fiche s'ordonnent librement */
+  .heros > .heros-panneau, .scene-cadre { display: contents; }
+  .heros .scene-choix {
     order: 2;
+    grid-template-columns: 1fr 1fr;
+    margin: 6px 18px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-bottom: none;
+    border-radius: 14px 14px 0 0;
+    overflow: hidden;
+  }
+  .heros > .scene-vue {
+    order: 3;
     position: relative;
     inset: auto;
     height: 320px;
-    margin: 4px 18px 0;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
+    margin: 0 18px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0;
     background: url(/images/scene-0.webp) center / contain no-repeat, radial-gradient(ellipse at 50% 55%, rgba(41, 168, 223, 0.16), rgba(14, 32, 66, 0.35) 70%);
     -webkit-mask-image: none;
     mask-image: none;
     overflow: hidden;
   }
   .heros.scene-ok > .scene-vue { background-image: radial-gradient(ellipse at 50% 55%, rgba(41, 168, 223, 0.16), rgba(14, 32, 66, 0.35) 70%); }
-  .heros > .heros-panneau { order: 3; margin-top: 8px; }
-  .heros > .heros-bandeau { order: 4; }
-  .heros > .vague { order: 5; }
-  .scene-cadre { grid-template-columns: 1fr; }
-  .scene-choix { grid-template-columns: 1fr 1fr; }
+  .heros .scene-fiche {
+    order: 4;
+    margin: 0 18px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 10px 14px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 14px 14px;
+    background: rgba(14, 32, 66, 0.7);
+  }
+  .heros > .heros-bandeau { order: 5; }
+  .heros > .vague { order: 6; }
   .choix { flex-direction: row; justify-content: flex-start; text-align: left; min-height: 42px; gap: 8px; padding: 6px 10px; font-size: 0.8rem; }
-  .scene-fiche { flex-direction: column; align-items: stretch; gap: 0; padding: 10px 14px 12px; border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.12); }
   .sf-titre { font-size: 1rem; margin-bottom: 2px; }
   .sf-desc { font-size: 0.8rem; line-height: 1.4; }
   .sf-cta { display: none; }
   .heros-reassurance { margin-top: 14px; }
 }
-@media (max-width: 380px) { .heros > .scene-vue { height: 290px; margin: 4px 14px 0; } }
+@media (max-width: 380px) {
+  .heros > .scene-vue { height: 290px; margin: 0 14px; }
+  .heros .scene-choix { margin: 6px 14px 0; }
+  .heros .scene-fiche { margin: 0 14px; }
+}
+/* téléphone : moins de vide entre la vague et « Nos services », photo d'équipe moins haute */
+@media (max-width: 700px) {
+  #services { padding-top: 26px; }
+  .equipe-grille .equipe-photo { max-height: 320px; }
+  .equipe-grille .equipe-photo img { max-height: 320px; object-position: center 33%; }
+}
 
 /* Réassurance sur une ligne */
 .heros-reassurance {
