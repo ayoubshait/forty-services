@@ -307,7 +307,7 @@ nav a:hover { color: var(--blanc); }
     order: 2;
     position: relative;
     inset: auto;
-    height: 232px;
+    height: 320px;
     margin: 4px 18px 0;
     border-radius: 14px;
     border: 1px solid rgba(255, 255, 255, 0.14);
@@ -329,7 +329,7 @@ nav a:hover { color: var(--blanc); }
   .sf-cta { display: none; }
   .heros-reassurance { margin-top: 14px; }
 }
-@media (max-width: 380px) { .heros > .scene-vue { height: 210px; margin: 4px 14px 0; } }
+@media (max-width: 380px) { .heros > .scene-vue { height: 290px; margin: 4px 14px 0; } }
 
 /* Réassurance sur une ligne */
 .heros-reassurance {

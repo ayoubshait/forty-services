@@ -389,7 +389,7 @@
     rendu2.setSize(T, T, false);
     scene2 = new THREE.Scene();
     camera2 = new THREE.PerspectiveCamera(40, 1, 0.1, 50);
-    camera2.position.set(0, 0.15, 5.7);
+    camera2.position.set(0, 0.15, PETIT ? 4.9 : 5.7);
     eclairer(scene2);
     modeles2 = construire();
     modeles2.forEach(function (m) {

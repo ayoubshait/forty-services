@@ -924,7 +924,7 @@
   function placer(cfg) {
     var etroit = vue.clientWidth < 921;
     var k = etroit
-      ? Math.max(1.2, 1.95 / camera.aspect)                               // téléphone : la scène occupe toute la largeur du bloc
+      ? Math.max(1.0, 1.47 / camera.aspect)                               // téléphone : la scène occupe toute la largeur du bloc
       : Math.max(1.1, Math.min(2.4, ECHELLE * 2 / camera.aspect));         // ordinateur : la scène reste dans la moitié droite
     var az = 0.62 + souris.x * 0.12, el = 0.55 - souris.y * 0.05, d = cfg.d * k;
     camera.position.set(
