@@ -9,7 +9,7 @@ module.exports = {
   adresse: 'Lot. Al Ward, Rue 22, Imm 4, Sidi Moumen, Casablanca',
   zone: 'Casablanca et ses environs',
   // Autres villes : on ne cite aucune ville supplémentaire tant qu'elle n'est pas confirmée
-  zoneAutresVilles: "Votre site se trouve dans une autre ville ? Contactez-nous pour étudier les possibilités d'intervention.",
+  zoneAutresVilles: "Pour une intervention dans une autre ville, contactez-nous afin d'étudier les possibilités.",
   gerant: 'Mustapha Shait',
   experienceGerant: 13,   // années à la tête de Forty Services
   experienceMetier: 26,   // années d'expérience du dirigeant dans la surveillance
@@ -17,7 +17,7 @@ module.exports = {
 
   // Présentation factuelle de l'entreprise (utilisée dans la section équipe)
   presentation: [
-    "Depuis 2013, Forty Services accompagne les professionnels à Casablanca et ses environs pour protéger, entretenir et remettre en état leurs locaux.",
+    "Depuis 2013, Forty Services accompagne les professionnels à Casablanca et ses environs dans la surveillance, le gardiennage et la propreté de leurs locaux.",
     "Basée à Sidi Moumen, l'entreprise est dirigée par Mustapha Shait, qui compte 26 ans d'expérience en surveillance."
   ],
 
@@ -107,25 +107,25 @@ module.exports = {
     {
       titre: 'Surveillance de sites',
       court: 'Surveillance',
-      description: "Contrôle d'accès, rondes et prévention des risques pour vos commerces, sites professionnels et événements.",
+      description: "Renforcez la vigilance sur vos sites professionnels, commerces et événements. Contrôle des accès et rondes : nos agents contribuent à prévenir les risques selon les besoins définis pour votre site.",
       icone: 'bouclier'
     },
     {
-      titre: 'Gardiennage de locaux et chantiers',
+      titre: 'Gardiennage de locaux et de chantiers',
       court: 'Gardiennage',
-      description: "Une présence ponctuelle ou régulière pour vos bâtiments, entrepôts et chantiers, avec des comptes rendus d'intervention.",
+      description: "Organisez une présence sur vos bâtiments, entrepôts et chantiers. Ponctuelle ou régulière, la prestation tient compte de vos contraintes et comprend des comptes rendus d'intervention.",
       icone: 'badge'
     },
     {
-      titre: 'Nettoyage professionnel de bureaux et locaux',
+      titre: 'Nettoyage professionnel de bureaux et de locaux',
       court: 'Nettoyage de locaux',
-      description: 'Entretien de bureaux, commerces et parties communes, avec des passages planifiés et un résultat contrôlé.',
+      description: 'Offrez à vos équipes et à vos visiteurs des espaces propres et entretenus. Nous planifions les passages selon vos besoins, avec des produits adaptés et un résultat contrôlé.',
       icone: 'etincelle'
     },
     {
       titre: 'Nettoyage de fin de chantier',
       court: 'Fin de chantier',
-      description: 'Remise en état après travaux : élimination des poussières et nettoyage des vitres, sols et surfaces avant la livraison des locaux.',
+      description: 'Préparez vos locaux à la livraison après travaux. Dépoussiérage et nettoyage des vitres, sols et surfaces : une remise en état définie selon les besoins du chantier.',
       icone: 'chantier'
     }
   ],
@@ -133,7 +133,7 @@ module.exports = {
   engagements: [
     {
       titre: 'Une expérience de terrain',
-      description: 'Entreprise créée en 2013, dirigée par un professionnel comptant 26 ans d\'expérience en surveillance.',
+      description: "Une entreprise créée en 2013, dirigée par un professionnel comptant 26 ans d'expérience en surveillance.",
       icone: 'bouclier-coche'
     },
     {
@@ -143,45 +143,45 @@ module.exports = {
     },
     {
       titre: 'Une organisation adaptée',
-      description: 'Prestations définies selon le site et ses contraintes.',
+      description: 'Les prestations sont définies selon votre site, votre activité et vos contraintes.',
       icone: 'horloge'
     },
     {
-      titre: 'Un devis précis',
-      description: "Des prestations détaillées et un prix précisé avant l'intervention.",
+      titre: 'Un devis détaillé',
+      description: 'Vous connaissez les prestations prévues et leur prix avant le démarrage.',
       icone: 'document'
     },
     {
-      titre: 'Un interlocuteur identifié',
-      description: 'Un interlocuteur qui connaît votre site et vos exigences.',
+      titre: 'Un interlocuteur dédié',
+      description: 'Vous échangez avec un responsable qui connaît votre site et vos exigences.',
       icone: 'bulle'
     },
     {
-      titre: 'Des moyens professionnels',
-      description: 'Tenues, équipements et produits adaptés.',
+      titre: 'Des moyens adaptés',
+      description: 'Tenues, équipements et produits sont choisis selon la prestation à réaliser.',
       icone: 'etincelle'
     }
   ],
 
   etapes: [
     {
-      titre: 'Votre besoin',
-      description: 'Précisez le service recherché, le site concerné et la fréquence souhaitée.',
+      titre: 'Vous précisez votre besoin',
+      description: "Indiquez le service recherché, l'adresse du site et la fréquence souhaitée.",
       icone: 'bulle'
     },
     {
-      titre: "L'évaluation du site",
-      description: 'Nous échangeons sur vos contraintes et visitons le site si nécessaire.',
+      titre: 'Nous évaluons les contraintes',
+      description: 'Nous échangeons sur votre organisation et visitons le site si nécessaire.',
       icone: 'lieu'
     },
     {
-      titre: 'Votre devis',
-      description: 'Vous recevez une proposition qui précise le périmètre et le prix.',
+      titre: 'Vous recevez votre devis',
+      description: 'La proposition détaille les prestations prévues et leur prix.',
       icone: 'document'
     },
     {
-      titre: "L'intervention et le suivi",
-      description: 'Nous démarrons à la date convenue. Un interlocuteur identifié assure le suivi.',
+      titre: 'Nous intervenons et assurons le suivi',
+      description: 'La prestation démarre à la date convenue. Votre interlocuteur suit les interventions.',
       icone: 'bouclier-coche'
     }
   ]

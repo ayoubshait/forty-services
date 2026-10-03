@@ -17,8 +17,8 @@
   <div class="conteneur heros-grille">
     <div class="heros-texte">
       <h1>Gardiennage et nettoyage professionnel <span>à <%= site.ville %> et ses environs</span></h1>
-      <p class="heros-accroche">Protégez vos locaux. Exigez la propreté.</p>
-      <p class="heros-intro">Surveillance, gardiennage, nettoyage de bureaux et remise en état après travaux : <%= site.nom %> organise vos interventions avec des équipes encadrées et un interlocuteur dédié.</p>
+      <p class="heros-accroche">Protégez vos sites. Prenez soin de vos locaux.</p>
+      <p class="heros-intro">Surveillance, gardiennage, entretien des bureaux ou nettoyage après travaux : <%= site.nom %> adapte ses prestations aux contraintes de votre site. Des équipes encadrées, des interventions organisées et un interlocuteur dédié pour suivre vos besoins.</p>
       <div class="heros-actions">
         <a class="btn btn-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 19 }) %>
@@ -90,8 +90,8 @@
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Nos services</span>
-      <h2>Surveillance, gardiennage et nettoyage : nos prestations</h2>
-      <p class="accroche-section">Protéger. Entretenir. Remettre en état.</p>
+      <h2>Des prestations adaptées à votre site et à votre activité</h2>
+      <p>Prévenir les risques, entretenir vos espaces, préparer la livraison de vos locaux : choisissez la prestation qui répond à vos besoins.</p>
     </div>
 
     <div class="grille-services">
@@ -122,7 +122,7 @@
     </figure>
     <div class="equipe-texte">
       <span class="sur-titre">Notre équipe</span>
-      <h2>Des équipes encadrées. Un interlocuteur dédié.</h2>
+      <h2>Une équipe de proximité pour vos sites</h2>
       <% site.presentation.forEach(function (paragraphe) { %>
       <p><%= paragraphe %></p>
       <% }); %>
@@ -145,7 +145,7 @@
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Nos engagements</span>
-      <h2>Des engagements concrets, à chaque intervention</h2>
+      <h2>Un cadre clair. Des équipes encadrées. Un suivi identifié.</h2>
     </div>
 
     <div class="grille-engagements">
@@ -166,9 +166,9 @@
 <section id="references" class="fond-gris">
   <div class="conteneur">
     <div class="tete-section">
-      <span class="sur-titre">Références</span>
-      <h2>Ils nous confient leurs sites</h2>
-      <p>Usines textiles, hôtels, résidences et institutions.</p>
+      <span class="sur-titre">Nos références</span>
+      <h2>Ils nous confient la surveillance ou l'entretien de leurs sites</h2>
+      <p>Usines textiles, hôtels, résidences et institutions : découvrez les clients qui font appel à Forty Services.</p>
     </div>
 
     <div class="reference-phare revele">
@@ -192,8 +192,8 @@
 <section id="deroulement">
   <div class="conteneur">
     <div class="tete-section">
-      <span class="sur-titre">Processus</span>
-      <h2>Votre prestation, étape par étape</h2>
+      <span class="sur-titre">Notre processus</span>
+      <h2>De votre besoin à l'intervention : quatre étapes claires</h2>
     </div>
 
     <ol class="grille-etapes">
@@ -236,8 +236,8 @@
       <div>
         <div class="tete-section">
           <span class="sur-titre">Contact</span>
-          <h2>Parlons de votre site et de vos besoins</h2>
-          <p>Basés à <%= site.quartier %>, nous intervenons à <%= site.zone %>. Indiquez le service recherché, l'adresse du site et la fréquence souhaitée.</p>
+          <h2>Votre site a ses exigences. Parlons-en.</h2>
+          <p>Vous recherchez une prestation de surveillance, de gardiennage ou de nettoyage à <%= site.zone %> ? Précisez votre besoin : nous étudierons avec vous l'organisation adaptée à votre site.</p>
           <p><%= site.zoneAutresVilles %></p>
         </div>
 
