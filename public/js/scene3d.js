@@ -376,14 +376,15 @@
 
   /* ═══════════════ Vignettes des cartes ═══════════════ */
   var cartes = Array.prototype.slice.call(document.querySelectorAll('.carte'));
+  var PETIT = window.matchMedia('(max-width: 920px)').matches;     // téléphone / tablette : rendu allégé
   var rendu2, scene2, camera2, modeles2, vignettes = [];
-  if (cartes.length === 4 && window.matchMedia('(min-width: 921px)').matches) {
+  if (cartes.length === 4) {
     try {
-      rendu2 = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      rendu2 = new THREE.WebGLRenderer({ alpha: true, antialias: !PETIT });
     } catch (e) { rendu2 = null; }
   }
   if (rendu2) {
-    var T = 200;
+    var T = PETIT ? 160 : 200;
     rendu2.setPixelRatio(1);
     rendu2.setSize(T, T, false);
     scene2 = new THREE.Scene();
@@ -421,9 +422,12 @@
   }
 
   /* ═══════════════ Boucle unique ═══════════════ */
-  function boucle() {
+  var dernier = 0;
+  function boucle(now) {
     requestAnimationFrame(boucle);
     if (document.hidden) return;
+    if (PETIT && now - dernier < 30) return;               // ≈ 30 images/s sur téléphone
+    dernier = now;
     var t = horloge.getElapsedTime();
 
     if (rendu2) {

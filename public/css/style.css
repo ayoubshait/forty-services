@@ -434,6 +434,13 @@ section { padding: 84px 0; }
     margin: -10px 0 4px -14px;
   }
 }
+@media (max-width: 920px) {
+  .avec-3d .carte .carte-tete .icone { display: none; }
+  .avec-3d .carte-3d { display: block; width: 84px; height: 84px; margin: -8px 0 2px -10px; }
+}
+@media (max-width: 700px) {
+  .avec-3d .carte-3d { width: 72px; height: 72px; margin: -8px 0 -8px -8px; flex-shrink: 0; }
+}
 .carte:hover .carte-tete { transform: translateZ(34px); }
 .carte-tete { transition: transform 0.2s ease-out; }
 .carte:hover::after { transform: translateZ(20px); }

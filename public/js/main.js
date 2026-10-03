@@ -65,7 +65,7 @@ if (boutonMenu && menu) {
   // Les scripts se téléchargent en parallèle et s'exécutent dans l'ordre (async = false) : bien plus rapide qu'une file d'attente
   function demarrer() {
     var scripts = ['https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'];
-    if (!etroit) scripts.push('/js/scene3d.js');                 // ordinateur : + icônes 3D des cartes
+    scripts.push('/js/scene3d.js');                              // icônes 3D des cartes (ordinateur et téléphone)
     scripts.push('/js/batiment3d.js');
     scripts.forEach(function (src) {
       var s = document.createElement('script');
