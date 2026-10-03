@@ -38,8 +38,8 @@ if (boutonMenu && menu) {
       b.classList.toggle('actif', k === i);
       b.setAttribute('aria-pressed', k === i);
     });
-    titre.textContent = choix[i].dataset.titre;
-    desc.textContent = choix[i].dataset.desc;
+    titre.textContent = choix[i].dataset.titre.replace(/ ([?!:;])/g, '\u00a0$1');
+    desc.textContent = choix[i].dataset.desc.replace(/ ([?!:;])/g, '\u00a0$1');
     cta.href = choix[i].dataset.wa;
     fiche.classList.remove('maj');
     void fiche.offsetWidth;

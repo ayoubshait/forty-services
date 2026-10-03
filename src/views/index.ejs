@@ -18,7 +18,7 @@
     <div class="heros-texte">
       <h1>Gardiennage et nettoyage professionnel <span>à <%= site.ville %> et ses environs</span></h1>
       <p class="heros-accroche">Protégez vos sites. Prenez soin de vos locaux.</p>
-      <p class="heros-intro">Surveillance, gardiennage, entretien des bureaux ou nettoyage après travaux : <%= site.nom %> adapte ses prestations aux contraintes de votre site. Des équipes encadrées, des interventions organisées et un interlocuteur dédié pour suivre vos besoins.</p>
+      <p class="heros-intro">Surveillance, gardiennage et nettoyage : des prestations adaptées à votre site, avec des équipes encadrées et un interlocuteur dédié.</p>
       <div class="heros-actions">
         <a class="btn btn-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 19 }) %>
@@ -37,7 +37,7 @@
     <aside class="scene-cadre" aria-label="Nos prestations">
       <div class="scene-choix" role="group" aria-label="Choisir une prestation">
         <% site.services.forEach(function (service, i) { %>
-        <button type="button" class="choix<%= i === 0 ? ' actif' : '' %>" aria-pressed="<%= i === 0 %>" data-titre="<%= service.titre %>" data-desc="<%= service.description %>" data-wa="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + service.titre + '.') %>">
+        <button type="button" class="choix<%= i === 0 ? ' actif' : '' %>" aria-pressed="<%= i === 0 %>" data-titre="<%= service.titre %>" data-desc="<%= service.courte %>" data-wa="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + service.titre + '.') %>">
           <%- include('partials/icones', { icone: service.icone, taille: 18, epais: 2 }) %>
           <span><%= service.court %></span>
         </button>
@@ -46,7 +46,7 @@
       <div class="scene-fiche" aria-live="polite">
         <div class="sf-texte">
           <span class="sf-titre"><%= site.services[0].titre %></span>
-          <p class="sf-desc"><%= site.services[0].description %></p>
+          <p class="sf-desc"><%= site.services[0].courte %></p>
         </div>
         <a class="sf-cta" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + site.services[0].titre + '.') %>">
           <%- include('partials/whatsapp-icone', { taille: 17 }) %>
@@ -264,12 +264,18 @@
             <%- include('partials/icones', { icone: 'horloge', taille: 19, epais: 2 }) %>
             <span><span class="etiquette">Disponibilité</span><%= site.disponibilite %></span>
           </div>
+          <% if (site.horairesContact) { %>
+          <div>
+            <%- include('partials/icones', { icone: 'telephone', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">Horaires de contact</span><%= site.horairesContact %></span>
+          </div>
+          <% } %>
         </div>
       </div>
 
       <div class="panneau-devis revele">
         <h3>Devis gratuit sous <%= site.delaiDevis %></h3>
-        <p>Sans engagement. Nous vous répondons rapidement.</p>
+        <p>Sans engagement. Le délai court à partir de la réception des informations nécessaires.</p>
         <a class="btn btn-wa-panneau" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 20 }) %>
           Demander un devis
@@ -282,7 +288,6 @@
           <%- include('partials/icones', { icone: 'email', taille: 18, stroke: 'currentColor', epais: 2 }) %>
           Écrire un e-mail
         </a>
-        <p class="note">Vous serez recontacté sous 24&nbsp;h ouvrées.</p>
       </div>
     </div>
   </div>

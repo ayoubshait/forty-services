@@ -27,7 +27,7 @@ module.exports = {
   // Questions fréquentes : réponses tirées du contenu du site ; à valider avec vos pratiques réelles
   faq: [
     {
-      q: "Dans quelles zones intervenez-vous ?",
+      q: "Où intervenez-vous ?",
       r: "Nous sommes basés à Sidi Moumen et nous intervenons à Casablanca et ses environs. " +
          "Votre site se trouve dans une autre ville ? Contactez-nous pour étudier les possibilités d'intervention."
     },
@@ -65,6 +65,7 @@ module.exports = {
   whatsappMessage: 'Bonjour, je souhaite un devis pour une prestation.',
 
   disponibilite: '24 h/24 et 7 j/7',
+  horairesContact: '',   // à renseigner quand ils seront confirmés (ex. « du lundi au samedi, de 8 h à 18 h ») : la ligne apparaît alors dans le contact
   delaiDevis: '48 h',
 
   seo: {
@@ -102,29 +103,33 @@ module.exports = {
     { nom: 'Village Centre Sport' }
   ],
 
-  // `court` : libellé raccourci pour les boutons de sélection (mobile)
+  // `court` : libellé raccourci des boutons de sélection ; `courte` : phrase courte de la fiche sous la maquette (la description complète est dans les cartes)
   services: [
     {
       titre: 'Surveillance de sites',
       court: 'Surveillance',
+      courte: "Contrôle des accès et rondes pour renforcer la vigilance sur vos sites, commerces et événements.",
       description: "Renforcez la vigilance sur vos sites professionnels, commerces et événements. Contrôle des accès et rondes : nos agents contribuent à prévenir les risques selon les besoins définis pour votre site.",
       icone: 'bouclier'
     },
     {
       titre: 'Gardiennage de locaux et de chantiers',
       court: 'Gardiennage',
+      courte: "Une présence ponctuelle ou régulière sur vos locaux et chantiers, avec des comptes rendus d'intervention.",
       description: "Organisez une présence sur vos bâtiments, entrepôts et chantiers. Ponctuelle ou régulière, la prestation tient compte de vos contraintes et comprend des comptes rendus d'intervention.",
       icone: 'badge'
     },
     {
       titre: 'Nettoyage professionnel de bureaux et de locaux',
       court: 'Nettoyage de locaux',
+      courte: "Des passages planifiés pour entretenir vos bureaux, commerces et parties communes.",
       description: 'Offrez à vos équipes et à vos visiteurs des espaces propres et entretenus. Nous planifions les passages selon vos besoins, avec des produits adaptés et un résultat contrôlé.',
       icone: 'etincelle'
     },
     {
       titre: 'Nettoyage de fin de chantier',
       court: 'Fin de chantier',
+      courte: "Dépoussiérage et nettoyage des vitres, sols et surfaces avant la livraison de vos locaux.",
       description: 'Préparez vos locaux à la livraison après travaux. Dépoussiérage et nettoyage des vitres, sols et surfaces : une remise en état définie selon les besoins du chantier.',
       icone: 'chantier'
     }

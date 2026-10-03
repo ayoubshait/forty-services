@@ -304,7 +304,8 @@ nav a:hover { color: var(--blanc); }
   letter-spacing: -0.01em;
   margin-bottom: 3px;
 }
-.sf-desc { font-size: 0.84rem; line-height: 1.45; color: #E6EDF7; }
+.sf-titre { color: #FFFFFF; }
+.sf-desc { font-size: 0.84rem; line-height: 1.45; color: #F2F6FC; }
 .sf-cta {
   display: inline-flex; align-items: center; gap: 8px;
   flex-shrink: 0;
@@ -363,7 +364,7 @@ nav a:hover { color: var(--blanc); }
     padding: 10px 14px 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 0 0 14px 14px;
-    background: rgba(14, 32, 66, 0.7);
+    background: rgba(14, 32, 66, 0.94);
   }
   .heros > .heros-bandeau { order: 5; }
   .heros > .vague { order: 6; }
@@ -780,7 +781,7 @@ section { padding: 84px 0; }
 }
 
 /* ---------- Pied de page ---------- */
-footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
+footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 .pied-haut {
   display: grid;
   grid-template-columns: 1.3fr 1fr 1fr;
@@ -789,7 +790,7 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
 }
 .pied-haut h4 { color: var(--blanc); font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
 .pied-haut ul { list-style: none; display: grid; gap: 9px; }
-.pied-haut a { color: #93A8C6; text-decoration: none; }
+.pied-haut a { color: #D3DEEE; text-decoration: none; }
 .pied-haut a:hover { color: var(--blanc); }
 .pied-marque { display: flex; align-items: center; gap: 11px; margin-bottom: 14px; }
 .pied-marque .nom { color: var(--blanc); font-weight: 800; letter-spacing: 1px; line-height: 1.1; }
