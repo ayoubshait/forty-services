@@ -18,8 +18,7 @@ module.exports = {
   // Présentation factuelle de l'entreprise (utilisée dans la section équipe)
   presentation: [
     "Depuis 2013, Forty Services accompagne les professionnels à Casablanca et ses environs pour protéger, entretenir et remettre en état leurs locaux.",
-    "Basée à Sidi Moumen, l'entreprise est dirigée par Mustapha Shait, qui compte 26 ans d'expérience en surveillance. " +
-    "Des équipes encadrées et un interlocuteur dédié assurent le suivi de vos prestations."
+    "Basée à Sidi Moumen, l'entreprise est dirigée par Mustapha Shait, qui compte 26 ans d'expérience en surveillance."
   ],
 
   // Informations légales (affichées dans le pied de page seulement si elles sont renseignées)
