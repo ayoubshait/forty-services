@@ -4,6 +4,7 @@
 module.exports = {
   nom: 'Forty Services',
   anneeCreation: 2013,
+  formeJuridique: 'S.A.R.L',   // d'après le logo officiel
   ville: 'Casablanca',
   quartier: 'Sidi Moumen',
   adresse: 'Lot. Al Ward, Rue 22, Imm 4, Sidi Moumen, Casablanca',

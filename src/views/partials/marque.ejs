@@ -1,9 +1,15 @@
 <%
-// La flèche à chevrons de la marque (logo de la carte de visite).
-// Options : largeur (nombre), couleurTrait (couleur du trait principal).
-const l = typeof largeur !== 'undefined' ? largeur : 38;
+// La flèche à chevrons du logo Forty Services (reproduction vectorielle du logo officiel).
+// Options : largeur (nombre, en px), couleurTrait (couleur de la flèche), couleurBarres (couleur des barres claires).
+const l = typeof largeur !== 'undefined' ? largeur : 28;
 const c = typeof couleurTrait !== 'undefined' ? couleurTrait : '#FFFFFF';
-%><svg width="<%= l %>" height="<%= Math.round(l * 0.85) %>" viewBox="0 0 40 34" fill="none" aria-hidden="true">
-  <path d="M4 17h20M18 9l8 8-8 8" stroke="<%= c %>" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M22 3l8 8M34 7l6 6-6 6M22 31l8-8" stroke="#29A8DF" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>
+const b = typeof couleurBarres !== 'undefined' ? couleurBarres : '#6CC4F0';
+%><svg width="<%= l %>" height="<%= Math.round(l * 606 / 440) %>" viewBox="28 4 440 606" aria-hidden="true">
+  <path d="M36 293H369.5L276.8 200.3L300.8 176.3L432 307.5L300.8 438.7L276.8 414.7L369.5 322H36Z" fill="<%= c %>"/>
+  <rect x="99.3" y="73.0" width="187.4" height="38.9" transform="rotate(45 193 92.5)" fill="<%= b %>"/>
+  <rect x="209.4" y="45.5" width="118.1" height="38.9" transform="rotate(45 268.5 65)" fill="<%= b %>"/>
+  <rect x="316.4" y="169.6" width="156.3" height="38.9" transform="rotate(45 394.5 189)" fill="<%= b %>"/>
+  <rect x="316.4" y="406.6" width="156.3" height="38.9" transform="rotate(-45 394.5 426)" fill="<%= b %>"/>
+  <rect x="98.8" y="503.3" width="188.1" height="38.9" transform="rotate(-45 192.8 522.8)" fill="<%= b %>"/>
+  <rect x="209.4" y="530.5" width="118.1" height="38.9" transform="rotate(-45 268.5 550)" fill="<%= b %>"/>
 </svg>

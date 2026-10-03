@@ -1,5 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="12" fill="#1B3A6B"/>
-  <path d="M12 32h24M30 20l12 12-12 12" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-  <path d="M36 12l10 10M52 18l8 8-8 8M36 52l10-10" stroke="#29A8DF" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <g transform="translate(11.5 3.6) scale(0.0935)">
+  <g transform="translate(-28 -4)">
+  <path d="M36 293H369.5L276.8 200.3L300.8 176.3L432 307.5L300.8 438.7L276.8 414.7L369.5 322H36Z" fill="#FFFFFF"/>
+  <rect x="99.3" y="73.0" width="187.4" height="38.9" transform="rotate(45 193 92.5)" fill="#6CC4F0"/>
+  <rect x="209.4" y="45.5" width="118.1" height="38.9" transform="rotate(45 268.5 65)" fill="#6CC4F0"/>
+  <rect x="316.4" y="169.6" width="156.3" height="38.9" transform="rotate(45 394.5 189)" fill="#6CC4F0"/>
+  <rect x="316.4" y="406.6" width="156.3" height="38.9" transform="rotate(-45 394.5 426)" fill="#6CC4F0"/>
+  <rect x="98.8" y="503.3" width="188.1" height="38.9" transform="rotate(-45 192.8 522.8)" fill="#6CC4F0"/>
+  <rect x="209.4" y="530.5" width="118.1" height="38.9" transform="rotate(-45 268.5 550)" fill="#6CC4F0"/>
+  </g></g>
 </svg>

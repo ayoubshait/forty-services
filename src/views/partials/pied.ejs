@@ -3,7 +3,7 @@
     <div class="pied-haut">
       <div>
         <div class="pied-marque">
-          <%- include('marque', { largeur: 34, couleurTrait: '#FFFFFF' }) %>
+          <%- include('marque', { largeur: 26, couleurTrait: '#FFFFFF' }) %>
           <span class="nom">FORTY<br><span>SERVICES</span></span>
         </div>
         <p>Depuis <%= site.anneeCreation %> : gardiennage, surveillance et nettoyage professionnel à <%= site.zone %>.</p>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="pied-bas">
-      <span>© <%= new Date().getFullYear() %> <%= site.nom %>, <%= site.ville %></span>
+      <span>© <%= new Date().getFullYear() %> <%= site.nom %><%= site.formeJuridique ? " " + site.formeJuridique : "" %>, <%= site.ville %></span>
       <span>Disponibles <%= site.disponibilite %></span>
       <% var legal = []; if (site.infosLegales.ice) legal.push('ICE : ' + site.infosLegales.ice); if (site.infosLegales.rc) legal.push('RC : ' + site.infosLegales.rc); if (site.infosLegales.patente) legal.push('Patente : ' + site.infosLegales.patente); %>
       <% if (legal.length) { %><span><%= legal.join(' · ') %></span><% } %>
