@@ -17,7 +17,7 @@
   <div class="conteneur heros-grille">
     <div class="heros-texte">
       <h1>Gardiennage et nettoyage professionnel <span>à <%= site.ville %> et ses environs</span></h1>
-      <p class="heros-accroche">Protégez vos sites. Prenez soin de vos locaux.</p>
+      <p class="heros-accroche">Protégez vos sites. Prenez soin de vos&nbsp;locaux.</p>
       <p class="heros-intro">Surveillance, gardiennage et nettoyage : des prestations adaptées à votre site, avec des équipes encadrées et un interlocuteur dédié.</p>
       <div class="heros-actions">
         <a class="btn btn-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
@@ -73,7 +73,7 @@
       </li>
       <li>
         <%- include('partials/icones', { icone: 'coche', taille: 16, epais: 2.5 }) %>
-        Devis gratuit sous 48&nbsp;h
+        Devis gratuit et détaillé
       </li>
     </ul>
   </div>
@@ -145,7 +145,7 @@
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Nos engagements</span>
-      <h2>Un cadre clair. Des équipes encadrées. Un suivi identifié.</h2>
+      <h2>Des équipes encadrées. Un suivi clair.</h2>
     </div>
 
     <div class="grille-engagements">
@@ -274,8 +274,8 @@
       </div>
 
       <div class="panneau-devis revele">
-        <h3>Devis gratuit sous <%= site.delaiDevis %></h3>
-        <p>Sans engagement. Le délai court à partir de la réception des informations nécessaires.</p>
+        <h3>Devis gratuit et détaillé</h3>
+        <p>Sans engagement. Précisez votre besoin : nous vous répondons avec une proposition adaptée à votre site.</p>
         <a class="btn btn-wa-panneau" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 20 }) %>
           Demander un devis

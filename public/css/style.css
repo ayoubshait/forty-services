@@ -94,7 +94,8 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  padding: 13px 0;
+  padding-top: 13px;
+  padding-bottom: 13px;
 }
 .logo { display: flex; align-items: center; gap: 11px; text-decoration: none; }
 .logo-texte {
@@ -373,6 +374,8 @@ nav a:hover { color: var(--blanc); }
   .sf-desc { font-size: 0.93rem; line-height: 1.5; }
   .sf-cta { display: none; }
   .heros-reassurance { margin-top: 14px; }
+  /* .scene-cadre et .heros-panneau sont en display: contents : leur fondu d'entrée est supprimé (Safari mobile peut l'appliquer au contenu et le laisser pâle) */
+  .heros .scene-cadre, .heros .heros-panneau, .scene-fiche.maj .sf-texte, .heros .scene-fiche, .heros .scene-choix { animation: none; opacity: 1; transform: none; }
 }
 @media (max-width: 380px) {
   .heros > .scene-vue { height: 290px; margin: 0 14px; }
@@ -849,7 +852,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
   .vague { height: 44px; }
 
   /* En-tête plus fin */
-  .barre { padding: 10px 0; }
+  .barre { padding-top: 10px; padding-bottom: 10px; }
   .logo-texte { font-size: 1.05rem; }
 
   .heros-grille { padding-top: 26px; padding-bottom: 4px; gap: 0; }
@@ -863,7 +866,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
   .heros-reassurance { font-size: 0.88rem; gap: 8px 20px; padding: 20px 0 36px; }
 
   /* Services : icône et titre côte à côte, cartes légères */
-  .tete-section p { font-size: 0.99rem; margin-top: 10px; }
+  .tete-section p { font-size: 0.99rem; margin-top: 14px; }
   .grille-services { margin-top: 28px; gap: 12px; }
   .carte { padding: 18px 16px; }
   .carte::after { display: none; }

@@ -40,7 +40,7 @@ module.exports = {
     {
       q: "Comment est préparé le devis ?",
       r: "Indiquez le service recherché, l'adresse du site et la fréquence souhaitée. " +
-         "Nous vous répondons sous 48 h avec un devis gratuit, qui précise le périmètre et le prix."
+         "Nous vous répondons avec un devis gratuit et détaillé, qui précise le périmètre et le prix."
     },
     {
       q: "Comment se passe le suivi ?",
@@ -67,7 +67,6 @@ module.exports = {
 
   disponibilite: '24 h/24 et 7 j/7',
   horairesContact: '',   // à renseigner quand ils seront confirmés (ex. « du lundi au samedi, de 8 h à 18 h ») : la ligne apparaît alors dans le contact
-  delaiDevis: '48 h',
 
   seo: {
     titre: 'Gardiennage et nettoyage à Casablanca | Forty Services',
