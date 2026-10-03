@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- REMPLACER fortyservices.example par votre vrai domaine une fois choisi -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://fortyservices.example/</loc>
+    <loc>https://forty-services.onrender.com/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>

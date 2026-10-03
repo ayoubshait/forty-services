@@ -12,6 +12,7 @@ module.exports = {
   experienceGerant: 13,   // années à la tête de Forty Services
   experienceMetier: 26,   // années dans le domaine de la surveillance
   email: 'forty.services@gmail.com',
+  url: 'https://forty-services.onrender.com',   // à changer le jour où le site aura son propre nom de domaine
 
   telephones: [
     { affiche: '06 11 62 47 18', e164: '+212611624718' },
@@ -35,7 +36,7 @@ module.exports = {
   // Photos (fichiers dans public/images/)
   photos: {
     equipe: {
-      src: '/images/equipe.jpeg',
+      src: '/images/equipe.webp',
       alt: "L'équipe Forty Services en costume devant un site client à Casablanca"
     }
   },

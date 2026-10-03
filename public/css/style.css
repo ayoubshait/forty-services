@@ -15,6 +15,8 @@
   --bordure: #DEE5EE;
   --bleu-clair: #C9D6E8;
   --radius: 8px;
+  --police-titre: "Bricolage Grotesque", "Figtree", system-ui, sans-serif;
+  --police-texte: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,7 +31,7 @@ html { scroll-behavior: smooth; }
 html, body { overflow-x: hidden; }
 
 body {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-family: var(--police-texte);
   color: var(--gris-texte);
   background: var(--blanc);
   font-size: 17px;
@@ -37,12 +39,19 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3 { color: var(--marine); line-height: 1.22; }
-h1 { font-size: clamp(2rem, 4.6vw, 3.25rem); font-weight: 800; letter-spacing: -0.02em; }
-h2 { font-size: clamp(1.55rem, 3vw, 2.25rem); font-weight: 800; letter-spacing: -0.015em; }
-h3 { font-size: 1.16rem; font-weight: 700; }
+h1, h2, h3 { color: var(--marine); line-height: 1.18; font-family: var(--police-titre); }
+h1 { font-size: clamp(2.2rem, 4.6vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1.06; }
+h2 { font-size: clamp(1.65rem, 3.2vw, 2.5rem); font-weight: 800; letter-spacing: -0.025em; }
+h3 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; }
 
 a { color: var(--cyan); }
+
+/* Focus clavier bien visible */
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
 
 .conteneur { max-width: 1140px; margin: 0 auto; padding: 0 26px; }
 
@@ -136,20 +145,54 @@ nav a:hover { color: var(--blanc); }
 /* ---------- Héros ---------- */
 .heros {
   background: var(--marine);
-  background-image: radial-gradient(ellipse 900px 520px at 78% -10%, rgba(41, 168, 223, 0.16), transparent 60%);
+  background-image:
+    radial-gradient(ellipse 900px 520px at 78% -10%, rgba(41, 168, 223, 0.2), transparent 60%),
+    linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: auto, 56px 56px, 56px 56px;
   color: var(--blanc);
   position: relative;
   overflow: hidden;
 }
+/* Le quadrillage s'estompe vers le bas, avant la vague */
+.heros::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 55%;
+  background: linear-gradient(to top, var(--marine), transparent);
+  pointer-events: none;
+}
+.heros > * { position: relative; z-index: 1; }
+
+
+/* Entrée en scène échelonnée */
+@keyframes monte { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+.heros h1, .heros-texte p, .heros-actions, .scene-cadre, .heros-reassurance {
+  animation: monte 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.heros-texte p { animation-delay: 0.1s; }
+.heros-actions { animation-delay: 0.2s; }
+.scene-cadre { animation-delay: 0.3s; }
+.heros-reassurance { animation-delay: 0.4s; }
+@media (prefers-reduced-motion: reduce) {
+  .heros h1, .heros-texte p, .heros-actions, .scene-cadre, .heros-reassurance { animation: none; }
+}
 .heros-grille {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 64px;
+  grid-template-columns: minmax(0, 520px);
+  gap: 0;
+  min-height: 480px;
   align-items: center;
-  padding: 72px 0 8px;
+  padding-top: 72px;
+  padding-bottom: 8px;
 }
 .heros h1 { color: var(--blanc); }
-.heros h1 span { color: var(--cyan); }
+.heros h1 span {
+  color: var(--cyan);
+  background: linear-gradient(var(--cyan), var(--cyan)) 0 100% / 100% 4px no-repeat;
+  padding-bottom: 4px;
+}
 .heros-texte p {
   max-width: 520px;
   margin: 20px 0 30px;
@@ -158,39 +201,135 @@ nav a:hover { color: var(--blanc); }
 }
 .heros-actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
-/* Panneau compact des prestations */
-.panneau-prestations {
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: rgba(255, 255, 255, 0.04);
-  border-radius: 10px;
-  padding: 22px 24px 12px;
-  max-width: 380px;
+
+/* ---------- Scène 3D plein écran de l'accueil ---------- */
+.heros > .scene-vue {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  /* la scène s'estompe vers la gauche pour laisser respirer le texte */
+  -webkit-mask-image: linear-gradient(90deg, transparent 30%, #000 54%);
+  mask-image: linear-gradient(90deg, transparent 30%, #000 54%);
+}
+.scene-canvas {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  justify-self: end;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.8s ease;
 }
-.pp-titre {
-  display: block;
-  font-size: 0.8rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
+.scene-canvas.pret { opacity: 1; }
+.scene-canvas.pret.fondu { opacity: 0; transition-duration: 0.25s; }
+.heros.sans-3d > .scene-vue { display: none; }
+
+/* Panneau de contrôle vitré : métiers à gauche, fiche et devis à droite */
+.scene-cadre {
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(14, 32, 66, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  overflow: hidden;
+}
+.scene-choix {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.1);
+}
+.choix {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 78px;
+  padding: 10px 8px;
+  border: none;
+  background: rgba(14, 32, 66, 0.55);
+  color: var(--bleu-clair);
+  font-family: var(--police-texte);
   font-weight: 700;
-  color: var(--cyan);
-  margin-bottom: 8px;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
 }
-.pp-ligne {
+.choix svg { flex-shrink: 0; }
+.choix:hover { color: var(--blanc); background: rgba(27, 58, 107, 0.9); }
+.choix.actif { background: var(--cyan); color: var(--blanc); }
+.choix.actif svg { stroke: var(--blanc); }
+
+.scene-fiche {
   display: flex;
   align-items: center;
-  gap: 13px;
-  padding: 13px 0;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 22px;
   color: var(--blanc);
-  font-weight: 600;
-  font-size: 0.99rem;
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
 }
-.pp-ligne:last-child { border-bottom: none; }
-.pp-ligne span { flex: 1; }
-.pp-ligne svg { flex-shrink: 0; }
+.sf-titre {
+  display: block;
+  font-family: var(--police-titre);
+  font-weight: 800;
+  font-size: 1.08rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 3px;
+}
+.sf-desc { font-size: 0.84rem; line-height: 1.45; color: var(--bleu-clair); }
+.sf-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  flex-shrink: 0;
+  background: var(--vert-wa);
+  color: var(--blanc);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 10px 16px;
+  border-radius: 7px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.sf-cta:hover { filter: brightness(1.08); }
+.scene-fiche.maj .sf-texte { animation: monte 0.35s ease both; }
+
+/* Téléphone et petite tablette : scène sous le texte, métiers en grille, fiche courte (le devis est déjà dans la barre fixe) */
+@media (max-width: 920px) {
+  .heros { display: flex; flex-direction: column; }
+  .heros > .conteneur { width: 100%; }
+  .heros > .heros-grille { order: 1; }
+  .heros > .scene-vue {
+    order: 2;
+    position: relative;
+    inset: auto;
+    height: 232px;
+    margin: 4px 18px 0;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: url(/images/scene-0.webp) center / contain no-repeat, radial-gradient(ellipse at 50% 55%, rgba(41, 168, 223, 0.16), rgba(14, 32, 66, 0.35) 70%);
+    -webkit-mask-image: none;
+    mask-image: none;
+    overflow: hidden;
+  }
+  .heros.scene-ok > .scene-vue { background-image: radial-gradient(ellipse at 50% 55%, rgba(41, 168, 223, 0.16), rgba(14, 32, 66, 0.35) 70%); }
+  .heros > .heros-panneau { order: 3; margin-top: 8px; }
+  .heros > .heros-bandeau { order: 4; }
+  .heros > .vague { order: 5; }
+  .scene-cadre { grid-template-columns: 1fr; }
+  .scene-choix { grid-template-columns: 1fr 1fr; }
+  .choix { flex-direction: row; justify-content: flex-start; text-align: left; min-height: 42px; gap: 8px; padding: 6px 10px; font-size: 0.8rem; }
+  .scene-fiche { flex-direction: column; align-items: stretch; gap: 0; padding: 10px 14px 12px; border-left: none; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+  .sf-titre { font-size: 1rem; margin-bottom: 2px; }
+  .sf-desc { font-size: 0.8rem; line-height: 1.4; }
+  .sf-cta { display: none; }
+  .heros-reassurance { margin-top: 14px; }
+}
+@media (max-width: 380px) { .heros > .scene-vue { height: 210px; margin: 4px 14px 0; } }
 
 /* Réassurance sur une ligne */
 .heros-reassurance {
@@ -198,7 +337,9 @@ nav a:hover { color: var(--blanc); }
   display: flex;
   flex-wrap: wrap;
   gap: 10px 34px;
-  padding: 30px 0 52px;
+  margin-top: 26px;
+  padding: 22px 0 56px;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
   color: var(--bleu-clair);
   font-weight: 600;
   font-size: 0.95rem;
@@ -207,8 +348,7 @@ nav a:hover { color: var(--blanc); }
 .heros-reassurance svg { flex-shrink: 0; }
 
 @media (max-width: 920px) {
-  .heros-grille { grid-template-columns: 1fr; gap: 40px; padding: 56px 0 8px; }
-  .panneau-prestations { justify-self: start; }
+  .heros-grille { grid-template-columns: 1fr; gap: 40px; padding-top: 56px; padding-bottom: 8px; min-height: 0; }
 }
 
 /* ---------- Vagues signature (double couche) ---------- */
@@ -238,8 +378,11 @@ section { padding: 84px 0; }
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 24px;
   margin-top: 48px;
+  counter-reset: svc;
 }
 .carte {
+  position: relative;
+  counter-increment: svc;
   display: flex;
   flex-direction: column;
   background: var(--blanc);
@@ -248,14 +391,62 @@ section { padding: 84px 0; }
   padding: 30px 26px 26px;
   transition: border-color 0.18s ease;
 }
+.carte::after {
+  content: "0" counter(svc);
+  position: absolute;
+  top: 20px; right: 22px;
+  font-family: var(--police-titre);
+  font-weight: 800;
+  font-size: 1.05rem;
+  letter-spacing: 1px;
+  color: var(--bordure);
+  transition: color 0.18s ease;
+}
 .carte:hover { border-color: var(--cyan); }
+.carte:hover::after { color: var(--cyan); }
+
+/* Inclinaison 3D pilotée par main.js (--rx, --ry) + reflet suivant le curseur (--gx, --gy) */
+.grille-services { perspective: 1100px; }
+.carte.revele.visible {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transform-style: preserve-3d;
+  transition: opacity 0.6s ease, border-color 0.18s ease, transform 0.18s ease-out;
+  will-change: transform;
+}
+.carte::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle 180px at var(--gx, 50%) var(--gy, 50%), rgba(41, 168, 223, 0.14), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.carte:hover::before { opacity: 1; }
+.carte-3d { display: none; }
+@media (min-width: 921px) {
+  .avec-3d .carte .icone { display: none; }
+  .avec-3d .carte-3d {
+    display: block;
+    width: 100px;
+    height: 100px;
+    margin: -10px 0 4px -14px;
+  }
+}
+.carte:hover .carte-tete { transform: translateZ(34px); }
+.carte-tete { transition: transform 0.2s ease-out; }
+.carte:hover::after { transform: translateZ(20px); }
 .carte .icone {
   width: 60px; height: 60px;
   border-radius: var(--radius);
   background: rgba(41, 168, 223, 0.1);
+  color: var(--cyan);
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
+  transition: background 0.18s ease, transform 0.18s ease;
 }
+.carte:hover .icone { background: rgba(41, 168, 223, 0.2); transform: scale(1.05); }
 .carte-tete { margin-bottom: 12px; }
 .carte-tete .icone { margin-bottom: 18px; }
 .carte h3 { margin-bottom: 0; }
@@ -278,19 +469,28 @@ section { padding: 84px 0; }
   align-items: center;
 }
 .equipe-photo {
+  position: relative;
   margin: 0;
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid var(--bordure);
-  max-height: 360px;
+  max-height: 500px;
+}
+.equipe-photo::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  background: linear-gradient(to top, rgba(20, 45, 84, 0.35), transparent 45%);
+  pointer-events: none;
 }
 .equipe-photo img {
   display: block;
   width: 100%;
   height: 100%;
-  max-height: 360px;
+  max-height: 500px;
   object-fit: cover;
-  object-position: center 22%;
+  object-position: center 30%;
 }
 .equipe-texte p { margin-top: 16px; color: var(--gris-doux); font-size: 1.06rem; max-width: 480px; }
 .equipe-stats {
@@ -308,7 +508,8 @@ section { padding: 84px 0; }
 }
 .equipe-stats strong {
   display: block;
-  font-size: 1.75rem;
+  font-family: var(--police-titre);
+  font-size: 1.9rem;
   font-weight: 800;
   color: var(--marine);
   line-height: 1.1;
@@ -317,8 +518,8 @@ section { padding: 84px 0; }
 .equipe-stats span { font-size: 0.9rem; color: var(--gris-doux); line-height: 1.45; display: block; }
 @media (max-width: 920px) {
   .equipe-grille { grid-template-columns: 1fr; gap: 36px; }
-  .equipe-photo { max-height: 320px; }
-  .equipe-photo img { max-height: 320px; }
+  .equipe-photo { max-height: 420px; }
+  .equipe-photo img { max-height: 420px; }
 }
 
 /* ---------- Engagements ---------- */
@@ -337,7 +538,9 @@ section { padding: 84px 0; }
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  transition: border-color 0.18s ease;
 }
+.engagement:hover { border-color: var(--cyan); }
 .engagement svg { flex-shrink: 0; margin-top: 2px; }
 .engagement h3 { font-size: 1.04rem; margin-bottom: 6px; }
 .engagement p { font-size: 0.94rem; color: var(--gris-doux); }
@@ -397,11 +600,12 @@ section { padding: 84px 0; }
   border-radius: 50%;
   background: var(--marine);
   color: var(--blanc);
+  font-family: var(--police-titre);
   font-weight: 800;
   font-size: 1.15rem;
   margin-bottom: 20px;
   border: 4px solid var(--blanc);
-  box-shadow: 0 0 0 1px var(--bordure);
+  box-shadow: 0 0 0 2px var(--cyan);
 }
 .etape h3 { margin-bottom: 8px; }
 .etape p { font-size: 0.96rem; color: var(--gris-doux); }
@@ -414,7 +618,16 @@ section { padding: 84px 0; }
 }
 
 /* ---------- Contact ---------- */
-.contact { background: var(--marine); color: var(--blanc); position: relative; overflow: hidden; }
+.contact {
+  background-color: var(--marine);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 56px 56px;
+  color: var(--blanc);
+  position: relative;
+  overflow: hidden;
+}
 .contact::after {
   content: "";
   position: absolute;
@@ -529,10 +742,7 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
   .barre { padding: 10px 0; }
   .logo-texte { font-size: 1.05rem; }
 
-  /* Héros : direct à l'essentiel — le panneau prestations est masqué
-     (la section services est juste en dessous) */
-  .panneau-prestations { display: none; }
-  .heros-grille { padding: 26px 0 4px; gap: 0; }
+  .heros-grille { padding-top: 26px; padding-bottom: 4px; gap: 0; }
   .heros-texte p { font-size: 0.98rem; margin: 12px 0 18px; }
   .heros-actions { gap: 10px; }
   .heros-actions .btn { width: 100%; }

@@ -9,6 +9,11 @@
 
 <!-- ══════════════ HÉROS ══════════════ -->
 <div class="heros" id="accueil">
+  <!-- Scène 3D plein écran : le site client en miniature, un métier = une scène -->
+  <div class="scene-vue">
+    <canvas id="scene3d" class="scene-canvas" aria-hidden="true"></canvas>
+  </div>
+
   <div class="conteneur heros-grille">
     <div class="heros-texte">
       <h1>Vos locaux surveillés, gardés, <span>impeccables.</span></h1>
@@ -24,22 +29,34 @@
         </a>
       </div>
     </div>
+  </div>
 
-    <!-- Panneau compact : les quatre prestations -->
-    <aside class="panneau-prestations" aria-label="Nos prestations">
-      <span class="pp-titre">Nos prestations</span>
-      <% site.services.forEach(function (service) { %>
-      <a class="pp-ligne" href="#services">
-        <%- include('partials/icones', { icone: service.icone, taille: 22, epais: 2 }) %>
-        <span><%= service.titre %></span>
-        <%- include('partials/icones', { icone: 'fleche-droite', taille: 15, stroke: 'rgba(255,255,255,0.4)', epais: 2.2 }) %>
-      </a>
-      <% }); %>
+  <!-- Panneau de contrôle : choix du métier, fiche courte, devis -->
+  <div class="conteneur heros-panneau">
+    <aside class="scene-cadre" aria-label="Nos prestations">
+      <div class="scene-choix" role="group" aria-label="Choisir une prestation">
+        <% site.services.forEach(function (service, i) { %>
+        <button type="button" class="choix<%= i === 0 ? ' actif' : '' %>" aria-pressed="<%= i === 0 %>" data-titre="<%= service.titre %>" data-desc="<%= service.description %>" data-wa="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + service.titre + '.') %>">
+          <%- include('partials/icones', { icone: service.icone, taille: 18, epais: 2 }) %>
+          <span><%= service.titre %></span>
+        </button>
+        <% }); %>
+      </div>
+      <div class="scene-fiche" aria-live="polite">
+        <div class="sf-texte">
+          <span class="sf-titre"><%= site.services[0].titre %></span>
+          <p class="sf-desc"><%= site.services[0].description %></p>
+        </div>
+        <a class="sf-cta" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + site.services[0].titre + '.') %>">
+          <%- include('partials/whatsapp-icone', { taille: 17 }) %>
+          Demander un devis
+        </a>
+      </div>
     </aside>
   </div>
 
   <!-- Réassurance sur une ligne -->
-  <div class="conteneur">
+  <div class="conteneur heros-bandeau">
     <ul class="heros-reassurance">
       <li>
         <%- include('partials/icones', { icone: 'coche', taille: 16, epais: 2.5 }) %>
@@ -108,11 +125,11 @@
       <p>Une équipe encadrée, ponctuelle et présentable, au service des industriels, hôtels, résidences et institutions du Grand Casablanca.</p>
       <div class="equipe-stats">
         <div>
-          <strong><%= site.anneeCreation %></strong>
+          <strong data-compte="<%= site.anneeCreation %>"><%= site.anneeCreation %></strong>
           <span>création de l'entreprise</span>
         </div>
         <div>
-          <strong><%= site.experienceMetier %> ans</strong>
+          <strong data-compte="<%= site.experienceMetier %>" data-suffixe=" ans"><%= site.experienceMetier %> ans</strong>
           <span>d'expérience du dirigeant en surveillance</span>
         </div>
       </div>
