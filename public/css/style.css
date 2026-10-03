@@ -367,7 +367,7 @@ nav a:hover { color: var(--blanc); }
   }
   .heros > .heros-bandeau { order: 5; }
   .heros > .vague { order: 6; }
-  .choix { flex-direction: row; justify-content: flex-start; text-align: left; min-height: 42px; gap: 8px; padding: 6px 10px; font-size: 0.8rem; }
+  .choix { flex-direction: row; justify-content: flex-start; text-align: left; min-height: 48px; gap: 8px; padding: 6px 10px; font-size: 0.82rem; }
   .sf-titre { font-size: 1.1rem; margin-bottom: 4px; }
   .sf-desc { font-size: 0.93rem; line-height: 1.5; }
   .sf-cta { display: none; }
@@ -871,7 +871,7 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
   .carte .lien-wa { font-size: 0.88rem; padding-top: 12px; }
 
   /* Engagements : cartes compactes, une colonne */
-  .grille-engagements { margin-top: 26px; gap: 12px; }
+  .grille-engagements { grid-template-columns: 1fr; margin-top: 26px; gap: 12px; }
   .engagement { padding: 16px; gap: 12px; }
   .engagement h3 { margin-bottom: 3px; }
   .engagement p { font-size: 0.93rem; }
@@ -907,7 +907,7 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
   /* Pied de page */
   .pied-haut { padding: 36px 0 24px; gap: 26px; }
   .pied-bas { padding: 14px 0 12px; }
-  footer { padding-bottom: 60px; }
+  footer { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
 
   /* Barre d'action fixe en bas : appel + WhatsApp sous le pouce */
   .wa-flottant { display: none; }
@@ -917,7 +917,9 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
     position: fixed;
     left: 0; right: 0; bottom: 0;
     z-index: 70;
-    height: 58px;
+    height: calc(58px + env(safe-area-inset-bottom, 0px));
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    background: var(--marine);
     box-shadow: 0 -4px 16px rgba(20, 45, 84, 0.18);
   }
   .barre-mobile a {
@@ -934,9 +936,21 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
   .bm-wa { background: var(--vert-wa); }
 }
 
+/* Téléphones courants (jusqu'à 430 px) : texte d'accueil compact pour que le devis apparaisse vite */
+@media (max-width: 430px) {
+  .heros h1 { font-size: 1.45rem; }
+  .heros-texte .heros-accroche { font-size: 1.05rem; }
+  .heros-texte .heros-intro { font-size: 0.92rem; }
+}
+
 /* Très petits écrans (moins de 380 px) */
 @media (max-width: 380px) {
   body { font-size: 16px; }
+  .heros h1 { font-size: 1.42rem; }
+  .heros-texte .heros-accroche { font-size: 1.02rem; }
+  .heros-texte .heros-intro { font-size: 0.9rem; }
+  .barre-mobile a { font-size: 0.84rem; gap: 5px; padding: 0 4px; }
+  .barre-mobile svg { width: 17px; height: 17px; }
   .conteneur { padding: 0 14px; }
   .logo-texte { font-size: 1.02rem; }
   .equipe-stats { grid-template-columns: 1fr; }
