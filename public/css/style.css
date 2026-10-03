@@ -596,10 +596,10 @@ section { padding: 84px 0; }
 .equipe-texte p { margin-top: 16px; color: var(--gris-doux); font-size: 1.06rem; max-width: 480px; }
 .equipe-stats {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 14px;
   margin-top: 26px;
-  max-width: 300px;
+  max-width: 460px;
 }
 .equipe-stats > div {
   background: var(--blanc);
