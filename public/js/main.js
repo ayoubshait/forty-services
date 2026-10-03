@@ -62,25 +62,26 @@ if (boutonMenu && menu) {
     || (etroit && /^(slow-2g|2g|3g)$/.test(cnx.effectiveType || ''));
   if (reduit || !webgl || faible) { hero.classList.add('sans-3d'); return; }
 
-  function charger(src, suite) {
-    var s = document.createElement('script');
-    s.src = src;
-    s.onload = suite;
-    s.onerror = function () { hero.classList.add('sans-3d'); };
-    document.body.appendChild(s);
-  }
+  // Les scripts se téléchargent en parallèle et s'exécutent dans l'ordre (async = false) : bien plus rapide qu'une file d'attente
   function demarrer() {
-    charger('https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js', function () {
-      if (etroit) charger('/js/batiment3d.js');                                        // téléphone : la scène seule
-      else charger('/js/scene3d.js', function () { charger('/js/batiment3d.js'); });  // ordinateur : + icônes 3D des cartes
+    var scripts = ['https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'];
+    if (!etroit) scripts.push('/js/scene3d.js');                 // ordinateur : + icônes 3D des cartes
+    scripts.push('/js/batiment3d.js');
+    scripts.forEach(function (src) {
+      var s = document.createElement('script');
+      s.src = src;
+      s.async = false;
+      s.onerror = function () { hero.classList.add('sans-3d'); };
+      document.body.appendChild(s);
     });
   }
-  // chargé après l'affichage de la page, pour ne jamais retarder le texte et les boutons
+  // ordinateur : on démarre tout de suite ; téléphone : après l'affichage de la page, pour ne jamais retarder le texte et les boutons
   function apres() {
     if (window.requestIdleCallback) window.requestIdleCallback(demarrer, { timeout: 2500 });
     else setTimeout(demarrer, 800);
   }
-  if (document.readyState === 'complete') apres();
+  if (!etroit) demarrer();
+  else if (document.readyState === 'complete') apres();
   else window.addEventListener('load', apres);
 })();
 
