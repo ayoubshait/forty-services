@@ -12,6 +12,29 @@ module.exports = {
   experienceGerant: 13,   // années à la tête de Forty Services
   experienceMetier: 26,   // années dans le domaine de la surveillance
   email: 'forty.services@gmail.com',
+  // Informations légales : à renseigner avec les vrais numéros (elles n'apparaissent dans le pied de page que si elles sont remplies)
+  infosLegales: { ice: '', rc: '', patente: '' },
+
+  // Questions fréquentes — réponses tirées du contenu du site ; à valider avec vos pratiques réelles
+  faq: [
+    {
+      q: 'Dans quelles zones intervenez-vous ?',
+      r: 'Nous sommes basés à Sidi Moumen et nous intervenons dans tout le Grand Casablanca.'
+    },
+    {
+      q: 'Proposez-vous des prestations ponctuelles ou régulières ?',
+      r: 'Les deux. Le gardiennage peut être continu ou ponctuel (événements, chantiers), le nettoyage de locaux se fait par passages planifiés, et le nettoyage de fin de chantier est une intervention de remise en état après travaux.'
+    },
+    {
+      q: 'Comment est préparé le devis ?',
+      r: 'Décrivez-nous votre besoin : type de prestation, adresse du site, fréquence souhaitée. Nous vous répondons sous 48 h avec un devis gratuit, à prix ferme et avec un périmètre écrit.'
+    },
+    {
+      q: 'Comment se passe le suivi ?',
+      r: 'Vous avez un interlocuteur unique, joignable directement, qui connaît votre site et vos contraintes. Le gardiennage donne lieu à des comptes rendus systématiques.'
+    }
+  ],
+
   url: 'https://forty-services.onrender.com',   // à changer le jour où le site aura son propre nom de domaine
 
   telephones: [
@@ -95,7 +118,7 @@ module.exports = {
     },
     {
       titre: 'Personnel formé et encadré',
-      description: 'Des intervenants qualifiés, suivis par un responsable. Aucune sous-traitance opaque.',
+      description: 'Des intervenants qualifiés, suivis par un responsable dédié.',
       icone: 'badge'
     },
     {

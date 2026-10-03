@@ -49,7 +49,7 @@
         </div>
         <a class="sf-cta" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + site.services[0].titre + '.') %>">
           <%- include('partials/whatsapp-icone', { taille: 17 }) %>
-          Demander un devis
+          Devis sur WhatsApp
         </a>
       </div>
     </aside>
@@ -105,7 +105,7 @@
         <p><%= service.description %></p>
         <a class="lien-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + service.titre + '.') %>">
           <%- include('partials/whatsapp-icone', { taille: 15, fill: 'currentColor' }) %>
-          Devis WhatsApp
+          Devis sur WhatsApp
         </a>
       </article>
       <% }); %>
@@ -121,7 +121,7 @@
     </figure>
     <div class="equipe-texte">
       <span class="sur-titre">Notre équipe</span>
-      <h2>Des hommes de terrain, pas des promesses</h2>
+      <h2>Des équipes de terrain, un encadrement de proximité</h2>
       <p>Une équipe encadrée, ponctuelle et présentable, au service des industriels, hôtels, résidences et institutions du Grand Casablanca.</p>
       <div class="equipe-stats">
         <div>
@@ -198,6 +198,24 @@
           <p><%= etape.description %></p>
         </div>
       </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ QUESTIONS FRÉQUENTES ══════════════ -->
+<section id="faq" class="fond-gris">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Questions fréquentes</span>
+      <h2>Ce que l'on nous demande le plus</h2>
+    </div>
+    <div class="faq">
+      <% site.faq.forEach(function (item) { %>
+      <details>
+        <summary><%= item.q %></summary>
+        <p><%= item.r %></p>
+      </details>
       <% }); %>
     </div>
   </div>

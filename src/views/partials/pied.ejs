@@ -23,13 +23,15 @@
           <li><a href="tel:<%= tel.e164 %>"><%= tel.affiche %></a></li>
           <% }); %>
           <li><a href="mailto:<%= site.email %>"><%= site.email %></a></li>
-          <li><%= site.quartier %> — <%= site.ville %></li>
+          <li><%= site.adresse %></li>
         </ul>
       </div>
     </div>
     <div class="pied-bas">
       <span>© <%= new Date().getFullYear() %> <%= site.nom %> — <%= site.ville %></span>
       <span>Disponibles <%= site.disponibilite %></span>
+      <% var legal = []; if (site.infosLegales.ice) legal.push('ICE : ' + site.infosLegales.ice); if (site.infosLegales.rc) legal.push('RC : ' + site.infosLegales.rc); if (site.infosLegales.patente) legal.push('Patente : ' + site.infosLegales.patente); %>
+      <% if (legal.length) { %><span><%= legal.join(' · ') %></span><% } %>
     </div>
   </div>
 </footer>

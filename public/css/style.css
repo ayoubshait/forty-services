@@ -24,7 +24,7 @@
 html { scroll-behavior: smooth; }
 
 /* Les ancres s'arrêtent sous l'en-tête collant, pas derrière */
-#accueil, #services, #equipe, #engagements, #references, #deroulement, #contact {
+#accueil, #services, #equipe, #faq, #engagements, #references, #deroulement, #contact {
   scroll-margin-top: 78px;
 }
 
@@ -226,6 +226,13 @@ nav a:hover { color: var(--blanc); }
 .scene-canvas.pret { opacity: 1; }
 .scene-canvas.pret.fondu { opacity: 0; transition-duration: 0.25s; }
 .heros.sans-3d > .scene-vue { display: none; }
+/* ordinateur sans 3D (WebGL absent, animations réduites…) : image fixe à la place de la scène */
+@media (min-width: 921px) {
+  .heros.sans-3d > .scene-vue {
+    display: block;
+    background: url(/images/scene-0.webp) 74% 38% / min(46%, 560px) auto no-repeat;
+  }
+}
 
 /* Panneau de contrôle vitré : métiers à gauche, fiche et devis à droite */
 .scene-cadre {
@@ -361,6 +368,40 @@ nav a:hover { color: var(--blanc); }
   .equipe-grille .equipe-photo { max-height: 320px; }
   .equipe-grille .equipe-photo img { max-height: 320px; object-position: center 33%; }
 }
+
+/* ---------- Questions fréquentes ---------- */
+.faq { max-width: 820px; margin-top: 36px; display: grid; gap: 12px; }
+.faq details {
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: var(--radius);
+  padding: 0 20px;
+  transition: border-color 0.18s ease;
+}
+.faq details[open] { border-color: var(--cyan); }
+.faq summary {
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding: 18px 30px 18px 0;
+  font-family: var(--police-titre);
+  font-weight: 700;
+  font-size: 1.04rem;
+  color: var(--marine);
+}
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after {
+  content: "+";
+  position: absolute;
+  right: 0; top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.6rem;
+  line-height: 1;
+  color: var(--cyan);
+  transition: transform 0.2s ease;
+}
+.faq details[open] summary::after { transform: translateY(-50%) rotate(45deg); }
+.faq p { padding: 0 0 18px; color: var(--gris-doux); font-size: 0.97rem; }
 
 /* Réassurance sur une ligne */
 .heros-reassurance {

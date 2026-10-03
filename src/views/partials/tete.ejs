@@ -41,3 +41,12 @@
   "founder": { "@type": "Person", "name": site.gerant }
 }, null, 2) %>
 </script>
+<script type="application/ld+json">
+<%- JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": site.faq.map(function (f) {
+    return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.r } };
+  })
+}) %>
+</script>
