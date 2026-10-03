@@ -17,10 +17,10 @@
 
   var rendu;
   try {
-    rendu = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: (window.devicePixelRatio || 1) < 2 });
+    rendu = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
     rendu.setClearColor(0x000000, 0);
   } catch (e) { cadre.classList.add('sans-3d'); return; }
-  rendu.setPixelRatio(Math.min(window.devicePixelRatio || 1, PETIT ? 1.5 : 2));
+  rendu.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   rendu.outputEncoding = THREE.sRGBEncoding;
   rendu.toneMapping = THREE.ACESFilmicToneMapping;
   rendu.toneMappingExposure = 0.92;
@@ -924,7 +924,7 @@
   function placer(cfg) {
     var etroit = vue.clientWidth < 921;
     var k = etroit
-      ? Math.max(1.05, 1.62 / camera.aspect)                               // téléphone : la scène occupe toute la largeur du bloc
+      ? Math.max(1.2, 1.95 / camera.aspect)                               // téléphone : la scène occupe toute la largeur du bloc
       : Math.max(1.1, Math.min(2.4, ECHELLE * 2 / camera.aspect));         // ordinateur : la scène reste dans la moitié droite
     var az = 0.62 + souris.x * 0.12, el = 0.55 - souris.y * 0.05, d = cfg.d * k;
     camera.position.set(

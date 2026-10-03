@@ -380,11 +380,11 @@
   var rendu2, scene2, camera2, modeles2, vignettes = [];
   if (cartes.length === 4) {
     try {
-      rendu2 = new THREE.WebGLRenderer({ alpha: true, antialias: !PETIT });
+      rendu2 = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     } catch (e) { rendu2 = null; }
   }
   if (rendu2) {
-    var T = PETIT ? 160 : 200;
+    var T = PETIT ? 224 : 200;
     rendu2.setPixelRatio(1);
     rendu2.setSize(T, T, false);
     scene2 = new THREE.Scene();
