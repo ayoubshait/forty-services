@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Mentions légales | <%= site.nom %></title>
+<meta name="description" content="Mentions légales du site <%= site.nom %> : éditeur, hébergeur, données personnelles.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="<%= site.url %>/mentions-legales">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page-legal">
+<header class="legal-entete">
+  <div class="conteneur barre">
+    <a class="logo" href="/" aria-label="<%= site.nom %> : retour à l'accueil">
+      <%- include('partials/marque', { largeur: 28, couleurTrait: '#FFFFFF' }) %>
+      <span class="logo-texte">FORTY<br><span>SERVICES</span></span>
+    </a>
+    <a class="legal-retour" href="/">Retour à l'accueil</a>
+  </div>
+</header>
+
+<main class="conteneur legal">
+  <h1>Mentions légales</h1>
+
+  <h2>Éditeur du site</h2>
+  <p>
+    <strong><%= site.nom %><%= site.formeJuridique ? ' ' + site.formeJuridique : '' %></strong><br>
+    <% if (site.capital) { %>Capital : <%= site.capital %><br><% } %>
+    <% if (site.infosLegales.rc) { %>Registre du commerce : <%= site.infosLegales.rc %><br><% } %>
+    <% if (site.infosLegales.ice) { %>ICE : <%= site.infosLegales.ice %><br><% } %>
+    <% if (site.infosLegales.patente) { %>Patente : <%= site.infosLegales.patente %><br><% } %>
+    Adresse : <%= site.adresse %><br>
+    Téléphone : <%= site.telephones.map(function (t) { return t.affiche; }).join(' / ') %><br>
+    E-mail : <a href="mailto:<%= site.email %>"><%= site.email %></a>
+  </p>
+  <p>Directeur de la publication : <%= site.gerant %>, gérant.</p>
+
+  <h2>Hébergement</h2>
+  <p>
+    Le site est hébergé par <strong><%= site.hebergeur.nom %></strong>,
+    <%= site.hebergeur.adresse %> (<a href="<%= site.hebergeur.site %>" rel="noopener"><%= site.hebergeur.site.replace('https://', '') %></a>).
+  </p>
+
+  <h2>Propriété intellectuelle</h2>
+  <p>
+    Les textes, images, illustrations et le logo présents sur ce site sont la propriété de <%= site.nom %>,
+    sauf mention contraire. Toute reproduction sans autorisation écrite préalable est interdite.
+  </p>
+
+  <h2>Données personnelles</h2>
+  <p>
+    Ce site ne comporte pas de formulaire et ne dépose pas de cookies de suivi. Les informations que vous nous transmettez par téléphone,
+    par e-mail ou par WhatsApp servent uniquement à répondre à votre demande de devis ou de renseignement.
+    Conformément à la loi n° 09-08 relative à la protection des personnes physiques à l'égard du traitement des données à caractère personnel,
+    vous disposez d'un droit d'accès, de rectification et d'opposition, que vous pouvez exercer en nous écrivant à
+    <a href="mailto:<%= site.email %>"><%= site.email %></a>.
+  </p>
+  <p>
+    Pour s'afficher, le site charge des ressources hébergées par des tiers (polices Google Fonts, bibliothèque cdnjs). Ces services peuvent
+    recevoir votre adresse IP lors du chargement des pages.
+  </p>
+
+  <p class="legal-maj">Dernière mise à jour : <%= new Date().toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' }) %></p>
+</main>
+</body>
+</html>

@@ -73,7 +73,7 @@
       </li>
       <li>
         <%- include('partials/icones', { icone: 'coche', taille: 16, epais: 2.5 }) %>
-        Devis gratuit et détaillé
+        Devis gratuit sous <%- site.delaiDevis.replace(" ", "&nbsp;") %>
       </li>
     </ul>
   </div>
@@ -274,8 +274,8 @@
       </div>
 
       <div class="panneau-devis revele">
-        <h3>Devis gratuit et détaillé</h3>
-        <p>Sans engagement. Précisez votre besoin : nous vous répondons avec une proposition adaptée à votre site.</p>
+        <h3>Devis gratuit sous <%- site.delaiDevis.replace(" ", "&nbsp;") %></h3>
+        <p>Sans engagement. Le délai court à partir de la réception des informations nécessaires.</p>
         <a class="btn btn-wa-panneau" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 20 }) %>
           Demander un devis

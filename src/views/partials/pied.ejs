@@ -32,6 +32,7 @@
       <span>Disponibles <%= site.disponibilite %></span>
       <% var legal = []; if (site.infosLegales.ice) legal.push('ICE : ' + site.infosLegales.ice); if (site.infosLegales.rc) legal.push('RC : ' + site.infosLegales.rc); if (site.infosLegales.patente) legal.push('Patente : ' + site.infosLegales.patente); %>
       <% if (legal.length) { %><span><%= legal.join(' · ') %></span><% } %>
+      <a href="/mentions-legales">Mentions légales</a>
     </div>
   </div>
 </footer>

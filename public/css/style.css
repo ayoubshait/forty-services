@@ -975,3 +975,17 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 }
 .page-404 h1 { color: var(--blanc); font-size: clamp(1.6rem, 4vw, 2.4rem); margin: 26px 0 10px; }
 .page-404 p { color: var(--bleu-clair); max-width: 440px; margin-bottom: 30px; }
+
+/* ---------- Page mentions légales ---------- */
+.page-legal { background: var(--blanc); }
+.legal-entete { background: var(--marine); }
+.legal-entete .barre { padding-top: 10px; padding-bottom: 10px; }
+.legal-retour { color: #D3DEEE; font-weight: 600; font-size: 0.95rem; text-decoration: none; padding: 10px 0; }
+.legal-retour:hover { color: var(--blanc); }
+.legal { max-width: 760px; padding-top: 44px; padding-bottom: 72px; }
+.legal h1 { font-size: clamp(1.7rem, 4vw, 2.3rem); margin-bottom: 22px; }
+.legal h2 { font-size: 1.15rem; margin: 30px 0 8px; }
+.legal p { color: var(--gris-doux); line-height: 1.65; margin-bottom: 12px; }
+.legal a { color: var(--marine); }
+.legal-maj { font-size: 0.86rem; margin-top: 34px; }
+.pied-bas a { color: #D3DEEE; }

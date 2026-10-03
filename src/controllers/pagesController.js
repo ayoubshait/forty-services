@@ -18,3 +18,7 @@ exports.accueil = (req, res, next) => {
     res.send(typographie(html));
   });
 };
+
+exports.mentionsLegales = (req, res) => {
+  res.render('mentions-legales', { site: entreprise });
+};

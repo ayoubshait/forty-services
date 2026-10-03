@@ -5,5 +5,6 @@ const pagesController = require('../controllers/pagesController');
 const router = express.Router();
 
 router.get('/', pagesController.accueil);
+router.get('/mentions-legales', pagesController.mentionsLegales);
 
 module.exports = router;
