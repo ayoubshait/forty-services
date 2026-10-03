@@ -17,9 +17,9 @@ module.exports = {
 
   // Présentation factuelle de l'entreprise (utilisée dans la section équipe)
   presentation: [
-    "Depuis 2013, Forty Services assure le gardiennage, la surveillance et le nettoyage de sites à Casablanca et ses environs. " +
-    "Société basée à Sidi Moumen, elle est dirigée par Mustapha Shait, professionnel de la surveillance depuis 26 ans.",
-    "Ses prestations : surveillance de sites, gardiennage de locaux et de chantiers, nettoyage de bureaux et de locaux, nettoyage de fin de chantier."
+    "Depuis 2013, Forty Services accompagne les professionnels à Casablanca et ses environs pour protéger, entretenir et remettre en état leurs locaux.",
+    "Basée à Sidi Moumen, l'entreprise est dirigée par Mustapha Shait, qui compte 26 ans d'expérience en surveillance. " +
+    "Des équipes encadrées et un interlocuteur dédié assurent le suivi de vos prestations."
   ],
 
   // Informations légales (affichées dans le pied de page seulement si elles sont renseignées)
@@ -139,7 +139,7 @@ module.exports = {
     },
     {
       titre: 'Des équipes encadrées',
-      description: 'Intervenants suivis par un responsable dédié.',
+      description: 'Un responsable dédié encadre les équipes et suit les interventions.',
       icone: 'badge'
     },
     {
@@ -149,12 +149,12 @@ module.exports = {
     },
     {
       titre: 'Un devis précis',
-      description: 'Périmètre écrit et prix annoncé.',
+      description: "Des prestations détaillées et un prix précisé avant l'intervention.",
       icone: 'document'
     },
     {
       titre: 'Un interlocuteur identifié',
-      description: 'Un responsable qui connaît la prestation.',
+      description: 'Un interlocuteur qui connaît votre site et vos exigences.',
       icone: 'bulle'
     },
     {
