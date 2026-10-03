@@ -123,7 +123,9 @@
     <div class="equipe-texte">
       <span class="sur-titre">Notre équipe</span>
       <h2>Des équipes de terrain. Un suivi de proximité.</h2>
-      <p><%= site.presentation %></p>
+      <% site.presentation.forEach(function (paragraphe) { %>
+      <p><%= paragraphe %></p>
+      <% }); %>
       <div class="equipe-stats">
         <div>
           <strong data-compte="<%= site.anneeCreation %>"><%= site.anneeCreation %></strong>

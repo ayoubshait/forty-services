@@ -304,7 +304,7 @@ nav a:hover { color: var(--blanc); }
   letter-spacing: -0.01em;
   margin-bottom: 3px;
 }
-.sf-desc { font-size: 0.84rem; line-height: 1.45; color: var(--bleu-clair); }
+.sf-desc { font-size: 0.84rem; line-height: 1.45; color: #E6EDF7; }
 .sf-cta {
   display: inline-flex; align-items: center; gap: 8px;
   flex-shrink: 0;
@@ -865,6 +865,7 @@ footer { background: var(--marine-fonce); color: #93A8C6; font-size: 0.93rem; }
   .tete-section p { font-size: 0.99rem; margin-top: 10px; }
   .grille-services { margin-top: 28px; gap: 12px; }
   .carte { padding: 18px 16px; }
+  .carte::after { display: none; }
   .carte-tete { display: flex; align-items: center; gap: 13px; margin-bottom: 10px; }
   .carte-tete .icone { width: 44px; height: 44px; margin-bottom: 0; }
   .carte p { font-size: 0.93rem; }

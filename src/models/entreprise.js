@@ -16,14 +16,14 @@ module.exports = {
   email: 'forty.services@gmail.com',
 
   // Présentation factuelle de l'entreprise (utilisée dans la section équipe)
-  presentation:
-    "Forty Services est une société de gardiennage et de nettoyage créée en 2013 et basée à Sidi Moumen, à Casablanca. " +
-    "Elle propose la surveillance de sites, le gardiennage de locaux et de chantiers, le nettoyage de bureaux et de locaux, " +
-    "et le nettoyage de fin de chantier, à Casablanca et ses environs. " +
-    "Elle est dirigée par Mustapha Shait, professionnel de la surveillance depuis 26 ans.",
+  presentation: [
+    "Depuis 2013, Forty Services assure le gardiennage, la surveillance et le nettoyage de sites à Casablanca et ses environs. " +
+    "Société basée à Sidi Moumen, elle est dirigée par Mustapha Shait, professionnel de la surveillance depuis 26 ans.",
+    "Ses prestations : surveillance de sites, gardiennage de locaux et de chantiers, nettoyage de bureaux et de locaux, nettoyage de fin de chantier."
+  ],
 
-  // Informations légales : à renseigner avec les vrais numéros (elles n'apparaissent dans le pied de page que si elles sont remplies)
-  infosLegales: { ice: '', rc: '', patente: '' },
+  // Informations légales (affichées dans le pied de page seulement si elles sont renseignées)
+  infosLegales: { ice: '000009597000065', rc: '294027 Casablanca', patente: '' },   // ICE et RC : source annuaire Telecontact.ma, à confirmer avec vos documents officiels
 
   // Questions fréquentes : réponses tirées du contenu du site ; à valider avec vos pratiques réelles
   faq: [
