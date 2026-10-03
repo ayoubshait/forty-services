@@ -1,14 +1,14 @@
 <header>
   <div class="conteneur barre">
-    <a class="logo" href="#accueil" aria-label="<%= site.nom %> — retour à l'accueil">
+    <a class="logo" href="#accueil" aria-label="<%= site.nom %> : retour à l'accueil">
       <%- include('marque', { largeur: 38, couleurTrait: '#FFFFFF' }) %>
       <span class="logo-texte">FORTY<br><span>SERVICES</span></span>
     </a>
     <nav id="menu" aria-label="Navigation principale">
       <a href="#services">Services</a>
-      <a href="#engagements">Nos engagements</a>
+      <a href="#engagements">Engagements</a>
       <a href="#references">Références</a>
-      <a href="#deroulement">Comment ça marche</a>
+      <a href="#deroulement">Processus</a>
       <a href="#contact">Contact</a>
       <a class="nav-appel" href="tel:<%= site.telephones[0].e164 %>">Appeler&nbsp;: <%= site.telephones[0].affiche %></a>
     </nav>

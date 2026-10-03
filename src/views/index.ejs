@@ -16,12 +16,13 @@
 
   <div class="conteneur heros-grille">
     <div class="heros-texte">
-      <h1>Vos locaux surveillés, gardés, <span>impeccables.</span></h1>
-      <p>Surveillance, gardiennage et nettoyage professionnel à <%= site.ville %> — un seul interlocuteur, jour et nuit.</p>
+      <h1>Gardiennage et nettoyage professionnel <span>à <%= site.ville %> et ses environs</span></h1>
+      <p class="heros-accroche">Protégez vos locaux. Exigez la propreté.</p>
+      <p class="heros-intro">Surveillance, gardiennage, nettoyage de bureaux et remise en état après travaux : <%= site.nom %> organise vos interventions avec des équipes encadrées et un interlocuteur dédié.</p>
       <div class="heros-actions">
         <a class="btn btn-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 19 }) %>
-          Devis sur WhatsApp
+          Demander un devis
         </a>
         <a class="btn btn-appel-clair" href="tel:<%= site.telephones[0].e164 %>">
           <%- include('partials/icones', { icone: 'telephone', taille: 18, stroke: 'currentColor', epais: 2 }) %>
@@ -38,7 +39,7 @@
         <% site.services.forEach(function (service, i) { %>
         <button type="button" class="choix<%= i === 0 ? ' actif' : '' %>" aria-pressed="<%= i === 0 %>" data-titre="<%= service.titre %>" data-desc="<%= service.description %>" data-wa="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + service.titre + '.') %>">
           <%- include('partials/icones', { icone: service.icone, taille: 18, epais: 2 }) %>
-          <span><%= service.titre %></span>
+          <span><%= service.court %></span>
         </button>
         <% }); %>
       </div>
@@ -49,7 +50,7 @@
         </div>
         <a class="sf-cta" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + site.services[0].titre + '.') %>">
           <%- include('partials/whatsapp-icone', { taille: 17 }) %>
-          Devis sur WhatsApp
+          Demander un devis
         </a>
       </div>
     </aside>
@@ -64,7 +65,7 @@
       </li>
       <li>
         <%- include('partials/icones', { icone: 'coche', taille: 16, epais: 2.5 }) %>
-        <%= site.experienceMetier %> ans de métier
+        Dirigeant : <%= site.experienceMetier %> ans d'expérience
       </li>
       <li>
         <%- include('partials/icones', { icone: 'coche', taille: 16, epais: 2.5 }) %>
@@ -89,8 +90,8 @@
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Nos services</span>
-      <h2>Quatre métiers, une même exigence</h2>
-      <p>Chaque prestation est encadrée par un responsable dédié, avec un périmètre clair et un suivi régulier.</p>
+      <h2>Surveillance, gardiennage et nettoyage : nos prestations</h2>
+      <p class="accroche-section">Protéger. Entretenir. Remettre en état.</p>
     </div>
 
     <div class="grille-services">
@@ -105,7 +106,7 @@
         <p><%= service.description %></p>
         <a class="lien-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + service.titre + '.') %>">
           <%- include('partials/whatsapp-icone', { taille: 15, fill: 'currentColor' }) %>
-          Devis sur WhatsApp
+          Demander un devis
         </a>
       </article>
       <% }); %>
@@ -121,8 +122,8 @@
     </figure>
     <div class="equipe-texte">
       <span class="sur-titre">Notre équipe</span>
-      <h2>Des équipes de terrain, un encadrement de proximité</h2>
-      <p>Une équipe encadrée, ponctuelle et présentable, au service des industriels, hôtels, résidences et institutions du Grand Casablanca.</p>
+      <h2>Des équipes de terrain. Un suivi de proximité.</h2>
+      <p><%= site.presentation %></p>
       <div class="equipe-stats">
         <div>
           <strong data-compte="<%= site.anneeCreation %>"><%= site.anneeCreation %></strong>
@@ -142,7 +143,7 @@
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Nos engagements</span>
-      <h2>Pourquoi nous confier vos locaux</h2>
+      <h2>Des engagements concrets, à chaque intervention</h2>
     </div>
 
     <div class="grille-engagements">
@@ -163,9 +164,9 @@
 <section id="references" class="fond-gris">
   <div class="conteneur">
     <div class="tete-section">
-      <span class="sur-titre">Ils nous font confiance</span>
-      <h2>Des références qui parlent depuis <%= site.anneeCreation %></h2>
-      <p>Usines textiles, hôtels, résidences, institutions : plus de dix ans de contrats menés dans la durée.</p>
+      <span class="sur-titre">Références</span>
+      <h2>Ils nous confient leurs sites</h2>
+      <p>Usines textiles, hôtels, résidences et institutions.</p>
     </div>
 
     <div class="reference-phare revele">
@@ -175,31 +176,36 @@
 
     <ul class="grille-references">
       <% site.references.forEach(function (client) { %>
-      <li><%= client %></li>
+      <% if (client.logo) { %>
+      <li class="ref-logo"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" loading="lazy"></li>
+      <% } else { %>
+      <li><%= client.nom %></li>
+      <% } %>
       <% }); %>
     </ul>
   </div>
 </section>
 
-<!-- ══════════════ DÉROULEMENT ══════════════ -->
+<!-- ══════════════ PROCESSUS ══════════════ -->
 <section id="deroulement">
   <div class="conteneur">
     <div class="tete-section">
-      <span class="sur-titre">Comment ça marche</span>
-      <h2>Trois étapes, c'est tout</h2>
+      <span class="sur-titre">Processus</span>
+      <h2>Votre prestation, étape par étape</h2>
     </div>
 
-    <div class="grille-etapes">
+    <ol class="grille-etapes">
       <% site.etapes.forEach(function (etape, i) { %>
-      <div class="etape revele"<% if (i > 0) { %> style="--delai:<%= (i * 0.1).toFixed(2) %>s;"<% } %>>
+      <li class="etape revele"<% if (i > 0) { %> style="--delai:<%= (i * 0.1).toFixed(2) %>s;"<% } %>>
         <span class="numero"><%= i + 1 %></span>
         <div>
+          <span class="etape-icone"><%- include('partials/icones', { icone: etape.icone, taille: 26, epais: 1.8 }) %></span>
           <h3><%= etape.titre %></h3>
           <p><%= etape.description %></p>
         </div>
-      </div>
+      </li>
       <% }); %>
-    </div>
+    </ol>
   </div>
 </section>
 
@@ -207,8 +213,8 @@
 <section id="faq" class="fond-gris">
   <div class="conteneur">
     <div class="tete-section">
-      <span class="sur-titre">Questions fréquentes</span>
-      <h2>Ce que l'on nous demande le plus</h2>
+      <span class="sur-titre">FAQ</span>
+      <h2>Vos questions sur le gardiennage et le nettoyage</h2>
     </div>
     <div class="faq">
       <% site.faq.forEach(function (item) { %>
@@ -228,14 +234,15 @@
       <div>
         <div class="tete-section">
           <span class="sur-titre">Contact</span>
-          <h2>Parlons de vos locaux</h2>
-          <p>Basés à <%= site.quartier %>, nous intervenons dans <%= site.zone %>. Décrivez simplement votre besoin&nbsp;: type de prestation, adresse du site, fréquence souhaitée.</p>
+          <h2>Parlons de votre site et de vos besoins</h2>
+          <p>Basés à <%= site.quartier %>, nous intervenons à <%= site.zone %>. Indiquez le service recherché, l'adresse du site et la fréquence souhaitée.</p>
+          <p><%= site.zoneAutresVilles %></p>
         </div>
 
         <div class="contact-lignes">
           <div>
             <%- include('partials/icones', { icone: 'personne', taille: 19, epais: 2 }) %>
-            <span><span class="etiquette">Votre interlocuteur</span><%= site.gerant %>, gérant — <%= site.experienceMetier %> ans dans la surveillance</span>
+            <span><span class="etiquette">Votre interlocuteur</span><%= site.gerant %>, gérant : <%= site.experienceMetier %> ans d'expérience en surveillance</span>
           </div>
           <div>
             <%- include('partials/icones', { icone: 'telephone', taille: 19, epais: 2 }) %>
@@ -253,23 +260,23 @@
           </div>
           <div>
             <%- include('partials/icones', { icone: 'horloge', taille: 19, epais: 2 }) %>
-            <span><span class="etiquette">Disponibilité</span><%= site.disponibilite %> — appelez-nous à toute heure</span>
+            <span><span class="etiquette">Disponibilité</span><%= site.disponibilite %></span>
           </div>
         </div>
       </div>
 
       <div class="panneau-devis revele">
         <h3>Devis gratuit sous <%= site.delaiDevis %></h3>
-        <p>Sans engagement. Réponse rapide, même le week-end.</p>
+        <p>Sans engagement. Nous vous répondons rapidement.</p>
         <a class="btn btn-wa-panneau" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 20 }) %>
-          Devis sur WhatsApp
+          Demander un devis
         </a>
         <a class="btn btn-appel" href="tel:<%= site.telephones[0].e164 %>">
           <%- include('partials/icones', { icone: 'telephone', taille: 18, stroke: 'currentColor', epais: 2 }) %>
           <%= site.telephones[0].affiche %>
         </a>
-        <a class="btn btn-devis" style="box-shadow:none;" href="mailto:<%= site.email %>?subject=Demande%20de%20devis">
+        <a class="btn btn-contour" href="mailto:<%= site.email %>?subject=Demande%20de%20devis">
           <%- include('partials/icones', { icone: 'email', taille: 18, stroke: 'currentColor', epais: 2 }) %>
           Écrire un e-mail
         </a>

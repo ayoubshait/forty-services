@@ -146,3 +146,15 @@ if ('IntersectionObserver' in window) {
   }, { threshold: 0.6 });
   els.forEach(function (el) { obs.observe(el); });
 })();
+
+// Processus : la ligne de liaison se trace quand la section apparaît (le contenu reste lisible sans animation)
+(function () {
+  var grille = document.querySelector('.grille-etapes');
+  if (!grille || !('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  grille.classList.add('anime');
+  var obs = new IntersectionObserver(function (entries) {
+    if (entries[0].isIntersecting) { grille.classList.add('trace'); obs.disconnect(); }
+  }, { threshold: 0.3 });
+  obs.observe(grille);
+})();

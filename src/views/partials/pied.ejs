@@ -6,7 +6,7 @@
           <%- include('marque', { largeur: 34, couleurTrait: '#FFFFFF' }) %>
           <span class="nom">FORTY<br><span>SERVICES</span></span>
         </div>
-        <p>Depuis <%= site.anneeCreation %> — surveillance, gardiennage et nettoyage professionnel à <%= site.ville %>. Des locaux entre de bonnes mains, jour et nuit.</p>
+        <p>Depuis <%= site.anneeCreation %> : gardiennage, surveillance et nettoyage professionnel à <%= site.zone %>.</p>
       </div>
       <div>
         <h4>Services</h4>
@@ -28,7 +28,7 @@
       </div>
     </div>
     <div class="pied-bas">
-      <span>© <%= new Date().getFullYear() %> <%= site.nom %> — <%= site.ville %></span>
+      <span>© <%= new Date().getFullYear() %> <%= site.nom %>, <%= site.ville %></span>
       <span>Disponibles <%= site.disponibilite %></span>
       <% var legal = []; if (site.infosLegales.ice) legal.push('ICE : ' + site.infosLegales.ice); if (site.infosLegales.rc) legal.push('RC : ' + site.infosLegales.rc); if (site.infosLegales.patente) legal.push('Patente : ' + site.infosLegales.patente); %>
       <% if (legal.length) { %><span><%= legal.join(' · ') %></span><% } %>
@@ -48,7 +48,7 @@
   </a>
   <a class="bm-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
     <%- include('whatsapp-icone', { taille: 19 }) %>
-    WhatsApp
+    Demander un devis
   </a>
 </div>
 

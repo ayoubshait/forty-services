@@ -819,12 +819,11 @@
       gravats.push({ o: sac, x: p[0] });
     });
     gravats.push({ o: boite(0.9, 0.12, 0.9, mat(0xB08D63, { r: 0.9 }), 1.1, 0.1, 1.9, g, true), x: 1.1 });
-    [[-2.2, 3.0], [2.8, 0.6]].forEach(function (p) {
+    [[-2.2, 3.0], [2.8, 0.6], [-0.6, 3.05]].forEach(function (p) {
       var cone = new THREE.Mesh(new THREE.ConeGeometry(0.17, 0.55, 14), mat(0xF2762E, { r: 0.6 }));
       cone.position.set(p[0], 0.28, p[1]); cone.castShadow = true; g.add(cone);
       var bande = new THREE.Mesh(new THREE.CylinderGeometry(0.1, 0.12, 0.08, 14), mat(0xFFFFFF, { r: 0.6 }));
       bande.position.set(p[0], 0.3, p[1]); g.add(bande);
-      gravats.push({ o: cone, x: p[0] }); gravats.push({ o: bande, x: p[0] });
     });
     boite(1.3, 0.65, 0.7, mat(0x2A528F, { r: 0.5, m: 0.3 }), 4.1, 0.37, -0.1, g, true, 0.03);     // benne
     arbre(g, 4.4, -2.4, 1); arbre(g, -4.4, -2.4, 1);
@@ -862,6 +861,21 @@
     a.g.rotation.y = Math.PI / 2;
     g.add(a.g);
     var balai = outil(a, 0.8, 0x4B5B70);
+    // casque de chantier jaune sur la tête de l'agent
+    var casque = new THREE.Group();
+    var coque = new THREE.Mesh(new THREE.SphereGeometry(0.32, 22, 12, 0, Math.PI * 2, 0, Math.PI / 2), mat(0xFFC93C, { r: 0.4 }));
+    coque.scale.y = 0.9; coque.castShadow = true; casque.add(coque);
+    var bordCasque = new THREE.Mesh(new THREE.CylinderGeometry(0.37, 0.37, 0.04, 26), mat(0xFFC93C, { r: 0.4 }));
+    bordCasque.scale.z = 1.15; casque.add(bordCasque);
+    casque.position.set(0, 0.1, 0);
+    a.tete.add(casque);
+    // matériel de nettoyage : seau, serpillère et balai appuyés près de l'entrée (ils restent en place)
+    var seauM = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.15, 0.34, 18), mat(CYAN, { r: 0.4 }));
+    seauM.position.set(3.55, 0.17, 2.3); seauM.castShadow = true; g.add(seauM);
+    var mancheM = new THREE.Mesh(new THREE.CylinderGeometry(0.02, 0.02, 1.3, 8), mat(0x5B6B7E, { r: 0.4, m: 0.4 }));
+    mancheM.position.set(3.35, 0.65, 2.15); mancheM.rotation.z = -0.25; mancheM.castShadow = true; g.add(mancheM);
+    var tetesM = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.08, 0.16), mat(0xF4F7FA, { r: 1 }));
+    tetesM.position.set(3.2, 0.06, 2.1); g.add(tetesM);
 
     var RUN = 9, TENUE = 3.2, PERIODE = RUN + TENUE + 1.2;
     return {
@@ -940,7 +954,7 @@
     rendu.setSize(w, h, false);
     camera.aspect = w / h;
     if (w < 921) camera.clearViewOffset();
-    else camera.setViewOffset(w, h, -w * 0.2, h * 0.17, w, h);   // ordinateur : décalée à droite, au-dessus du panneau
+    else camera.setViewOffset(w, h, -w * 0.23, h * 0.17, w, h);   // ordinateur : décalée à droite, au-dessus du panneau
     camera.updateProjectionMatrix();
   }
   ajuster();

@@ -2,6 +2,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title><%= site.seo.titre %></title>
 <meta name="description" content="<%= site.seo.description %>">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="<%= site.url %>/">
 <meta name="theme-color" content="#1B3A6B">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,14 +21,20 @@
 <meta property="og:image" content="<%= site.url %>/images/partage.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="<%= site.nom %> : gardiennage et nettoyage professionnel à Casablanca">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="<%= site.seo.titre %>">
+<meta name="twitter:description" content="<%= site.seo.description %>">
 <meta name="twitter:image" content="<%= site.url %>/images/partage.jpg">
 <script type="application/ld+json">
 <%- JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": site.nom,
+  "url": site.url + "/",
   "description": site.seo.description,
+  "image": site.url + "/images/partage.jpg",
+  "logo": site.url + "/favicon.svg",
   "telephone": site.telephones[0].e164,
   "email": site.email,
   "address": {
@@ -35,10 +43,17 @@
     "addressLocality": site.ville,
     "addressCountry": "MA"
   },
-  "areaServed": "Grand Casablanca",
+  "areaServed": site.zone,
   "foundingDate": String(site.anneeCreation),
   "openingHours": "Mo-Su 00:00-24:00",
-  "founder": { "@type": "Person", "name": site.gerant }
+  "founder": { "@type": "Person", "name": site.gerant },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Prestations de " + site.nom,
+    "itemListElement": site.services.map(function (s) {
+      return { "@type": "Offer", "itemOffered": { "@type": "Service", "name": s.titre, "description": s.description } };
+    })
+  }
 }, null, 2) %>
 </script>
 <script type="application/ld+json">
