@@ -937,8 +937,11 @@
   var ECHELLE = 1.28;       // la scène occupe la moitié droite de l'accueil
   function placer(cfg) {
     var etroit = vue.clientWidth < 921;
+    // téléphone : le cadrage reste celui de l'ancienne hauteur de bloc (320 px, 290 px sous 381 px) ;
+    // le bloc est plus bas de ~8 %, le bâtiment rétrécit dans les mêmes proportions : rien n'est rogné
+    var aspectRef = vue.clientWidth / (vue.clientWidth < 381 ? 290 : 320);
     var k = etroit
-      ? Math.max(1.0, 1.47 / camera.aspect)                               // téléphone : la scène occupe toute la largeur du bloc
+      ? Math.max(1.0, 1.47 / aspectRef)                                   // téléphone : la scène occupe toute la largeur du bloc
       : Math.max(1.1, Math.min(2.4, ECHELLE * 2 / camera.aspect));         // ordinateur : la scène reste dans la moitié droite
     var az = 0.62 + souris.x * 0.12, el = 0.55 - souris.y * 0.05, d = cfg.d * k;
     camera.position.set(

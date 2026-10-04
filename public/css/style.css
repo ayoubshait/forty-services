@@ -342,7 +342,7 @@ nav a:hover { color: var(--blanc); }
     order: 3;
     position: relative;
     inset: auto;
-    height: 320px;
+    height: 296px;
     margin: 0 18px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 0;
@@ -356,8 +356,12 @@ nav a:hover { color: var(--blanc); }
     background: var(--poster, url(/images/scene-0.webp)) center / contain no-repeat, radial-gradient(ellipse at 50% 55%, rgba(41, 168, 223, 0.16), rgba(14, 32, 66, 0.35) 70%);
   }
   .heros.scene-ok > .scene-vue { background-image: radial-gradient(ellipse at 50% 55%, rgba(41, 168, 223, 0.16), rgba(14, 32, 66, 0.35) 70%); }
+  /* le conteneur « dissous » ne doit rien peindre ni flouter (certains navigateurs mobiles appliquent encore son fond ou son flou) */
+  .heros .scene-cadre { background: none; border: 0; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
   .heros .scene-fiche {
     order: 4;
+    position: relative;
+    z-index: 2;
     margin: 0 18px;
     flex-direction: column;
     align-items: stretch;
@@ -365,8 +369,10 @@ nav a:hover { color: var(--blanc); }
     padding: 10px 14px 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 0 0 14px 14px;
-    background: rgba(14, 32, 66, 0.94);
+    background: #0E2042;
   }
+  /* titre et description : blanc pur, pleine opacité, aucune animation ni transition */
+  .heros .sf-titre, .heros .sf-desc { color: #FFFFFF; -webkit-text-fill-color: #FFFFFF; opacity: 1; animation: none; transition: none; }
   .heros > .heros-bandeau { order: 5; }
   .heros > .vague { order: 6; }
   .choix { flex-direction: row; justify-content: flex-start; text-align: left; min-height: 48px; gap: 8px; padding: 6px 10px; font-size: 0.82rem; }
@@ -378,7 +384,7 @@ nav a:hover { color: var(--blanc); }
   .heros .scene-cadre, .heros .heros-panneau, .scene-fiche.maj .sf-texte, .heros .scene-fiche, .heros .scene-choix { animation: none; opacity: 1; transform: none; }
 }
 @media (max-width: 380px) {
-  .heros > .scene-vue { height: 290px; margin: 0 14px; }
+  .heros > .scene-vue { height: 268px; margin: 0 14px; }
   .heros .scene-choix { margin: 6px 14px 0; }
   .heros .scene-fiche { margin: 0 14px; }
 }
