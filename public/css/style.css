@@ -673,6 +673,8 @@ section { padding: 84px 0; }
 .ref-zone img { display: block; height: var(--h, 48px); width: auto; max-width: 100%; object-fit: contain; }
 /* Fond marine uniquement pour le logo blanc de Melliber */
 .ref-zone--sombre { width: auto; max-width: 100%; align-self: center; padding: 4px 12px; background: var(--marine-fonce); border-radius: 6px; }
+/* Logo qui écrit déjà le nom (pas de nom dessous) : la zone occupe l'espace libre, le logo y est centré, les prestations restent alignées en bas */
+.ref-zone--libre { flex: 1; height: auto; min-height: 56px; }
 .ref-nom { font-size: 0.92rem; line-height: 1.25; overflow-wrap: anywhere; }
 /* Client sans logo : son nom en texte, sans symbole inventé */
 .ref-wordmark { font-size: 24px; font-weight: 600; line-height: 1; white-space: nowrap; color: var(--marine); letter-spacing: 0; }

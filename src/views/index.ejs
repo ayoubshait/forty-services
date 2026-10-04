@@ -173,9 +173,9 @@
 
     <ul class="grille-ref-cartes">
       <% site.referencesPhares.forEach(function (client) { %>
-      <li class="ref-carte revele">
+      <li class="ref-carte">
         <% if (client.logo) { %>
-        <span class="ref-zone ref-zone--<%= client.logoFond === 'sombre' ? 'sombre' : 'clair' %>"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" style="--h: <%= client.logoHauteur || 48 %>px" loading="lazy"></span>
+        <span class="ref-zone ref-zone--<%= client.logoFond === 'sombre' ? 'sombre' : 'clair' %><%= client.nomDansLogo ? ' ref-zone--libre' : '' %>"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" style="--h: <%= client.logoHauteur || 48 %>px"></span>
         <h3 class="ref-nom<%= client.nomDansLogo ? ' sr-only' : '' %>"><%= client.nom %></h3>
         <% } else { %>
         <div class="ref-zone"><h3 class="ref-wordmark"><%= client.nom %></h3></div>
