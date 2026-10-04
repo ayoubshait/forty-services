@@ -239,12 +239,19 @@ nav a:hover { color: var(--blanc); }
 .scene-canvas.pret { opacity: 1; }
 .scene-canvas.pret.fondu { opacity: 0; transition-duration: 0.25s; }
 .heros.sans-3d > .scene-vue { display: none; }
-/* ordinateur sans 3D (WebGL absent, animations réduites…) : image fixe à la place de la scène */
+/* ordinateur : l'image fixe de la scène s'affiche immédiatement ; la 3D se fond par-dessus dès qu'elle est prête,
+   puis l'image s'efface. Sans 3D (WebGL absent, animations réduites…), l'image reste. */
 @media (min-width: 921px) {
-  .heros.sans-3d > .scene-vue {
-    display: block;
+  .heros > .scene-vue::before {
+    content: "";
+    position: absolute;
+    inset: 0;
     background: var(--poster, url(/images/scene-0.webp)) 74% 38% / min(46%, 560px) auto no-repeat;
+    opacity: 1;
+    transition: opacity 0.5s ease 0.9s;
   }
+  .heros.scene-ok > .scene-vue::before { opacity: 0; }
+  .heros.sans-3d > .scene-vue { display: block; }
 }
 
 /* Panneau de contrôle vitré : métiers à gauche, fiche et devis à droite */
@@ -329,6 +336,7 @@ nav a:hover { color: var(--blanc); }
   .heros > .heros-grille { order: 1; }
   /* le panneau est « dissous » pour que sélecteurs, scène et fiche s'ordonnent librement */
   .heros > .heros-panneau, .scene-cadre { display: contents; }
+  .heros > .scene-vue::before { display: none; }
   .heros .scene-choix {
     order: 2;
     grid-template-columns: 1fr 1fr;

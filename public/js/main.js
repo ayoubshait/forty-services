@@ -45,9 +45,9 @@ if (boutonMenu && menu) {
     void fiche.offsetWidth;
     fiche.classList.add('maj');
     window.dispatchEvent(new CustomEvent('metier', { detail: i }));
-    // sans 3D : l'image fixe de remplacement change avec le métier
+    // l'image fixe (avant la 3D, ou à sa place) change avec le métier
     var accueil = document.getElementById('accueil');
-    if (accueil.classList.contains('sans-3d')) accueil.style.setProperty('--poster', 'url(/images/scene-' + i + '.webp)');
+    accueil.style.setProperty('--poster', 'url(/images/scene-' + i + '.webp)');
   }
   choix.forEach(function (b, i) {
     b.addEventListener('click', function () { choisir(i); });
