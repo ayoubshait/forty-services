@@ -8,9 +8,7 @@ module.exports = {
   ville: 'Casablanca',
   quartier: 'Sidi Moumen',
   adresse: 'Lot. Al Ward, Rue 22, Imm 4, Sidi Moumen, Casablanca',
-  zone: 'Casablanca et ses environs',
-  // Autres villes : on ne cite aucune ville supplémentaire tant qu'elle n'est pas confirmée
-  zoneAutresVilles: "Pour une intervention dans une autre ville, contactez-nous afin d'étudier les possibilités.",
+  // Aucune zone d'intervention n'est annoncée (décision : ne pas se limiter à une ville). L'adresse ci-dessus reste affichée comme simple information.
   gerant: 'Mustapha Shait',
   experienceGerant: 13,   // années à la tête de Forty Services
   experienceMetier: 26,   // années d'expérience du dirigeant dans la surveillance
@@ -18,7 +16,7 @@ module.exports = {
 
   // Présentation factuelle de l'entreprise (utilisée dans la section équipe)
   presentation: [
-    "Depuis 2013, Forty Services accompagne les professionnels à Casablanca et ses environs dans la surveillance, le gardiennage et la propreté de leurs locaux.",
+    "Depuis 2013, Forty Services accompagne les professionnels dans la surveillance, le gardiennage et la propreté de leurs locaux.",
     "Basée à Sidi Moumen, l'entreprise est dirigée par Mustapha Shait, qui compte 26 ans d'expérience en surveillance."
   ],
 
@@ -31,8 +29,8 @@ module.exports = {
   faq: [
     {
       q: "Où intervenez-vous ?",
-      r: "Nous sommes basés à Sidi Moumen et nous intervenons à Casablanca et ses environs. " +
-         "Votre site se trouve dans une autre ville ? Contactez-nous pour étudier les possibilités d'intervention."
+      r: "Nous sommes basés à Sidi Moumen, à Casablanca. " +
+         "Indiquez-nous l'adresse de votre site : nous étudions avec vous les possibilités d'intervention."
     },
     {
       q: "Proposez-vous des prestations ponctuelles ou régulières ?",
@@ -72,9 +70,9 @@ module.exports = {
   horairesContact: '',   // à renseigner quand ils seront confirmés (ex. « du lundi au samedi, de 8 h à 18 h ») : la ligne apparaît alors dans le contact
 
   seo: {
-    titre: 'Gardiennage et nettoyage à Casablanca | Forty Services',
+    titre: 'Gardiennage et nettoyage professionnel | Forty Services',
     description:
-      'Gardiennage, surveillance et nettoyage professionnel à Casablanca et ses environs. ' +
+      'Gardiennage, surveillance et nettoyage professionnel. ' +
       'Forty Services accompagne vos sites depuis 2013. Demandez votre devis.'
   },
 
@@ -82,7 +80,7 @@ module.exports = {
   photos: {
     equipe: {
       src: '/images/equipe.webp',
-      alt: "L'équipe Forty Services devant un site client à Casablanca"
+      alt: "L'équipe Forty Services devant un site client"
     }
   },
 
