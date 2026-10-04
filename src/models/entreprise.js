@@ -59,7 +59,7 @@ module.exports = {
     }
   ],
 
-  url: 'https://forty-services.onrender.com',   // à changer le jour où le site aura son propre nom de domaine
+  url: 'https://fortyservices.ma',   // adresse officielle (source unique : balises SEO, partage, données structurées) ; sitemap.xml et robots.txt la répètent
 
   telephones: [
     { affiche: '06 11 62 47 18', e164: '+212611624718' },

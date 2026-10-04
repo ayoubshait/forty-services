@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://forty-services.onrender.com/sitemap.xml
+Sitemap: https://fortyservices.ma/sitemap.xml
