@@ -198,7 +198,7 @@ module.exports = {
       icone: 'document'
     },
     {
-      titre: 'Nous intervenons et assurons le suivi',
+      titre: 'Intervention et suivi',
       description: 'La prestation démarre à la date convenue. Votre interlocuteur suit les interventions.',
       icone: 'bouclier-coche'
     }

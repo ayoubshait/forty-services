@@ -757,9 +757,22 @@ section { padding: 84px 0; }
 .etape p { font-size: 0.96rem; color: var(--gris-doux); }
 @media (max-width: 760px) {
   .grille-etapes { grid-template-columns: 1fr; gap: 30px; }
-  .grille-etapes::before { top: 22px; bottom: 22px; left: 21px; right: auto; width: 2px; height: auto; transform-origin: center top; }
-  .grille-etapes.anime::before { transform: scaleY(0); }
-  .grille-etapes.anime.trace::before { transform: scaleY(1); }
+  /* ligne verticale : un segment par étape, du centre d'un cercle au centre du suivant ; elle s'arrête au centre du cercle 4 */
+  .grille-etapes::before { display: none; }
+  .etape:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    left: 21px; top: 22px;
+    width: 2px;
+    height: calc(100% + 30px);
+    background: rgba(41, 168, 223, 0.5);
+    transform-origin: center top;
+    transition: transform 0.45s ease calc(var(--delai, 0s) * 4);
+  }
+  .etape .numero { z-index: 1; }
+  .grille-etapes.anime .etape::after { transform: scaleY(0); }
+  .grille-etapes.anime.trace .etape::after { transform: scaleY(1); }
   .etape { text-align: left; padding: 0; display: grid; grid-template-columns: 44px 1fr; gap: 16px; }
   .etape .numero { margin-bottom: 0; }
   .etape .etape-icone { justify-content: flex-start; margin-bottom: 6px; }
