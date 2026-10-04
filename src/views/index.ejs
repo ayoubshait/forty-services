@@ -174,11 +174,13 @@
     <ul class="grille-ref-cartes">
       <% site.referencesPhares.forEach(function (client) { %>
       <li class="ref-carte revele">
-        <% if (client.logo) { %><span class="ref-carte-logo ref-carte-logo--<%= client.logoFond === 'sombre' ? 'sombre' : 'clair' %>"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" loading="lazy"></span><% } %>
-        <h3><%= client.nom %></h3>
-        <ul class="ref-badges" aria-label="Prestations">
-          <% client.prestations.forEach(function (prestation) { %><li><%= prestation %></li><% }); %>
-        </ul>
+        <% if (client.logo) { %>
+        <span class="ref-logo-zone ref-logo-zone--<%= client.logoFond === 'sombre' ? 'sombre' : 'clair' %>"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" loading="lazy"></span>
+        <h3 class="ref-nom"><%= client.nom %></h3>
+        <% } else { %>
+        <div class="ref-wordmark-zone"><h3 class="ref-wordmark"><%= client.nom %></h3></div>
+        <% } %>
+        <p class="ref-prestations"><span class="sr-only">Prestations : </span><%= client.prestations.join(' · ') %></p>
       </li>
       <% }); %>
     </ul>

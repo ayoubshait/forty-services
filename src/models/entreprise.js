@@ -96,7 +96,7 @@ module.exports = {
   // Attention : on indique les prestations réalisées, sans préciser si le contrat est en cours (à ne pas affirmer sans confirmation).
   referencesPhares: [
     { nom: 'Ambassade de la République de Slovénie à Rabat', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair' },
-    { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith.svg', logoFond: 'sombre' },
+    { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith-mauve.svg', logoFond: 'clair' },
     { nom: 'DNA Maroc', prestations: ['Surveillance'] },
     { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance', 'Gardiennage'], logo: '/images/clients/melliber.png', logoFond: 'sombre' }
   ],
