@@ -89,18 +89,24 @@ module.exports = {
     }
   },
 
-  // Références clients. Pour afficher un logo : ajouter  logo: '/images/clients/nom.svg'  (fichier officiel, fourni et autorisé).
-  // Sans logo, le nom du client s'affiche en texte.
-  referencePhare: 'Ambassade de la République de Slovénie à Rabat',
+  // Références clients.
+  // Pour afficher un logo : ajouter  logo: '/images/clients/nom.svg'  (fichier officiel, fourni et autorisé par le client)
+  // et  logoFond: 'sombre'  si le logo est blanc ou clair (version « blanche »), sinon 'clair'.
+  // Sans logo, seul le nom du client s'affiche.
+  // Attention : on indique les prestations réalisées, sans préciser si le contrat est en cours (à ne pas affirmer sans confirmation).
+  referencesPhares: [
+    { nom: 'Ambassade de la République de Slovénie à Rabat', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair' },
+    { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith.svg', logoFond: 'sombre' },
+    { nom: 'DNA Maroc', prestations: ['Surveillance'] },
+    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance', 'Gardiennage'], logo: '/images/clients/melliber.png', logoFond: 'sombre' }
+  ],
+  // Autres références (liste compacte) : ne pas y répéter les clients ci-dessus
   references: [
-    { nom: 'AMITH' },
     { nom: 'CMTV' },
     { nom: 'Coutexport' },
-    { nom: 'DNA Maroc' },
     { nom: 'Hymco' },
     { nom: 'Lina Wash' },
     { nom: 'Maroquinerie New World' },
-    { nom: 'Melliber Appart Hôtel' },
     { nom: 'Nach Garment' },
     { nom: 'Pellatex' },
     { nom: 'Résidence Dream Garden 2' },

@@ -168,14 +168,22 @@
     <div class="tete-section">
       <span class="sur-titre">Nos références</span>
       <h2>Ils nous confient la surveillance ou l'entretien de leurs sites</h2>
-      <p>Usines textiles, hôtels, résidences et institutions : découvrez les clients qui font appel à Forty Services.</p>
+      <p>Usines textiles, hôtels, résidences et institutions : des clients de secteurs variés nous ont confié leurs sites.</p>
     </div>
 
-    <div class="reference-phare revele">
-      <%- include('partials/icones', { icone: 'bouclier-coche', taille: 26, epais: 1.8 }) %>
-      <span><%= site.referencePhare %></span>
-    </div>
+    <ul class="grille-ref-cartes">
+      <% site.referencesPhares.forEach(function (client) { %>
+      <li class="ref-carte revele">
+        <% if (client.logo) { %><span class="ref-carte-logo ref-carte-logo--<%= client.logoFond === 'sombre' ? 'sombre' : 'clair' %>"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" loading="lazy"></span><% } %>
+        <h3><%= client.nom %></h3>
+        <ul class="ref-badges" aria-label="Prestations">
+          <% client.prestations.forEach(function (prestation) { %><li><%= prestation %></li><% }); %>
+        </ul>
+      </li>
+      <% }); %>
+    </ul>
 
+    <p class="ref-autres-titre">Autres références</p>
     <ul class="grille-references">
       <% site.references.forEach(function (client) { %>
       <% if (client.logo) { %>
