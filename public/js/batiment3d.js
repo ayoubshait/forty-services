@@ -980,6 +980,8 @@
     if (!visible || document.hidden) return;
     if (PETIT && now - dernier < 30) return;
     dernier = now;
+    // la construction d'une scène et son premier rendu se font sur deux images successives (pas de longue pause d'un seul bloc)
+    if (!scenes[courant]) { scene(courant); return; }
     var dt = Math.min(horloge.getDelta(), 0.1);
     var t = horloge.elapsedTime;
     var sc = scene(courant);
@@ -988,8 +990,9 @@
     placer(sc.cam);
     sc.anim(t, dt);
     rendu.render(sc.o.scene, camera);
+    // la 3D n'est annoncée prête (et l'image fixe n'est retirée) qu'une fois la première image réellement dessinée
+    if (!prete) { prete = true; canvas.classList.add('pret'); cadre.classList.add('scene-ok'); }
   }
+  var prete = false;
   boucle();
-  canvas.classList.add('pret');
-  cadre.classList.add('scene-ok');
 })();

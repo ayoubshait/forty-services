@@ -241,12 +241,22 @@ nav a:hover { color: var(--blanc); }
 .heros.sans-3d > .scene-vue { display: none; }
 /* ordinateur : l'image fixe de la scène s'affiche immédiatement ; la 3D se fond par-dessus dès qu'elle est prête,
    puis l'image s'efface. Sans 3D (WebGL absent, animations réduites…), l'image reste. */
+/* L'image fixe suit la même règle de taille et de position que la caméra 3D (batiment3d.js, placer / ajuster) :
+   --u = hauteur de l'accueil / éloignement k, avec k = bornes(1,1 ; 2,56 × hauteur / largeur ; 2,4) ; le centre de la vue 3D est à 73 % / 33 %.
+   Tout est exprimé en multiples de --u : la bascule vers la 3D ne fait ni saut ni changement de taille, quel que soit l'écran.
+   (constantes calées sur l'emprise mesurée de la scène 3D à 1265 × 858 px) */
 @media (min-width: 921px) {
+  .heros > .scene-vue { container-type: size; }
   .heros > .scene-vue::before {
     content: "";
     position: absolute;
-    inset: 0;
-    background: var(--poster, url(/images/scene-0.webp)) 74% 38% / min(46%, 560px) auto no-repeat;
+    /* repli (navigateurs sans unités de conteneur) : valeurs pour ~1280 px de large */
+    width: 72.7%; aspect-ratio: 4 / 3; left: 36.6%; top: -7.8%;
+    --u: clamp(41.667cqh, 39.0625cqw, 90.909cqh);
+    width: calc(var(--u) * 1.862);
+    left: calc(73cqw + var(--u) * -0.9323);
+    top: calc(33cqh + var(--u) * -0.7084);
+    background: var(--poster, url(/images/scene-0.webp)) center / 100% 100% no-repeat;
     opacity: 1;
     transition: opacity 0.5s ease 0.9s;
   }
