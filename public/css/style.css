@@ -692,11 +692,22 @@ section { padding: 84px 0; }
   text-transform: uppercase;
   color: var(--gris-doux);
 }
-/* Autres références : liste typographique discrète, séparateurs et retours à la ligne naturels */
-.ref-autres { list-style: none; margin-top: 10px; line-height: 1.9; font-size: 0.95rem; color: var(--gris-texte); }
-.ref-autres li { display: inline; }
-.ref-autres li:not(:last-child)::after { content: "·"; margin: 0 0.6em; color: #9AA8BA; font-weight: 700; }
-.ref-autres img { display: inline-block; height: 22px; width: auto; vertical-align: middle; }
+/* Autres références : pastilles blanches, largeur adaptée au nom, retours à la ligne naturels */
+.ref-autres { list-style: none; display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.ref-autres li {
+  display: inline-flex;
+  align-items: center;
+  min-height: 40px;
+  padding: 0 18px;
+  background: var(--blanc);
+  border: 1px solid var(--bordure);
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 0.93rem;
+  line-height: 1.2;
+  color: var(--marine);
+}
+.ref-autres img { display: block; height: 22px; width: auto; }
 
 /* ---------- Processus ---------- */
 .grille-etapes {
@@ -914,7 +925,8 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
   .ref-nom { font-size: 0.86rem; }
   .ref-prestations { font-size: 0.8rem; }
   .ref-autres-titre { margin-top: 26px; }
-  .ref-autres { font-size: 0.9rem; }
+  .ref-autres { gap: 10px; margin-top: 12px; }
+  .ref-autres li { padding: 0 14px; font-size: 0.88rem; }
 
   /* Contact : panneau devis compact */
   .contact-grille { gap: 36px; }
