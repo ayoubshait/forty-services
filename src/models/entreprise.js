@@ -92,12 +92,13 @@ module.exports = {
   // Références clients.
   // Pour afficher un logo : ajouter  logo: '/images/clients/nom.svg'  (fichier officiel, fourni et autorisé par le client)
   // et  logoFond: 'sombre'  si le logo est blanc ou clair (version « blanche »), sinon 'clair'.
+  // logoHauteur : hauteur d'affichage en px (ne jamais dépasser la taille du fichier) ; nomDansLogo : le logo écrit déjà le nom (pas de répétition).
   // Sans logo, seul le nom du client s'affiche.
   // Attention : on indique les prestations réalisées, sans préciser si le contrat est en cours (à ne pas affirmer sans confirmation).
   referencesPhares: [
-    { nom: 'Ambassade de la République de Slovénie à Rabat', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair' },
-    { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith-mauve.svg', logoFond: 'clair' },
-    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance'], logo: '/images/clients/melliber.png', logoFond: 'sombre' },
+    { nom: 'Ambassade de la République de Slovénie à Rabat', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair', logoHauteur: 40 },
+    { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith-mauve.svg', logoFond: 'clair', logoHauteur: 52, nomDansLogo: true },
+    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance'], logo: '/images/clients/melliber.png', logoFond: 'sombre', logoHauteur: 48 },
     { nom: 'DNA Maroc', prestations: ['Surveillance', 'Gardiennage'] }
   ],
   // Autres références (liste compacte) : ne pas y répéter les clients ci-dessus

@@ -167,19 +167,18 @@
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Nos références</span>
-      <h2>Ils nous confient la surveillance ou l'entretien de leurs sites</h2>
-      <p>Usines textiles, hôtels, résidences et institutions : des clients de secteurs variés nous ont confié leurs sites.</p>
+      <h2>Ils nous font confiance</h2>
+      <p>Institutions, hôtels et entreprises : découvrez quelques références en surveillance, gardiennage et nettoyage.</p>
     </div>
 
     <ul class="grille-ref-cartes">
       <% site.referencesPhares.forEach(function (client) { %>
       <li class="ref-carte revele">
         <% if (client.logo) { %>
-        <span class="ref-logo-zone ref-logo-zone--<%= client.logoFond === 'sombre' ? 'sombre' : 'clair' %>"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" loading="lazy"></span>
-        <h3 class="ref-nom"><%= client.nom %></h3>
+        <span class="ref-zone ref-zone--<%= client.logoFond === 'sombre' ? 'sombre' : 'clair' %>"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" style="--h: <%= client.logoHauteur || 48 %>px" loading="lazy"></span>
+        <h3 class="ref-nom<%= client.nomDansLogo ? ' sr-only' : '' %>"><%= client.nom %></h3>
         <% } else { %>
-        <% var mots = client.nom.split(' '); %>
-        <div class="ref-wordmark-zone"><h3 class="ref-wordmark"><span class="sr-only"><%= client.nom %></span><span class="ref-wm-nom" aria-hidden="true"><%= mots[0] %></span><% if (mots.length > 1) { %><span class="ref-wm-suite" aria-hidden="true"><%= mots.slice(1).join(' ') %></span><% } %></h3></div>
+        <div class="ref-zone"><h3 class="ref-wordmark"><%= client.nom %></h3></div>
         <% } %>
         <p class="ref-prestations"><span class="sr-only">Prestations : </span><%= client.prestations.join(' · ') %></p>
       </li>
@@ -187,13 +186,9 @@
     </ul>
 
     <p class="ref-autres-titre">Autres références</p>
-    <ul class="grille-references">
+    <ul class="ref-autres">
       <% site.references.forEach(function (client) { %>
-      <% if (client.logo) { %>
-      <li class="ref-logo"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" loading="lazy"></li>
-      <% } else { %>
-      <li><%= client.nom %></li>
-      <% } %>
+      <li><% if (client.logo) { %><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" loading="lazy"><% } else { %><%= client.nom %><% } %></li>
       <% }); %>
     </ul>
   </div>
