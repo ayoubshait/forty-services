@@ -96,7 +96,7 @@ module.exports = {
   // Sans logo, seul le nom du client s'affiche.
   // Attention : on indique les prestations réalisées, sans préciser si le contrat est en cours (à ne pas affirmer sans confirmation).
   referencesPhares: [
-    { nom: 'Ambassade de la République de Slovénie à Rabat', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair', logoHauteur: 40 },
+    { nom: 'Consulat de la République de Slovénie', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair', logoHauteur: 40 },
     { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith-mauve.svg', logoFond: 'clair', logoHauteur: 68, nomDansLogo: true },
     { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance'], logo: '/images/clients/melliber.png', logoFond: 'sombre', logoHauteur: 48 },
     { nom: 'DNA Maroc', prestations: ['Surveillance', 'Gardiennage'] }
