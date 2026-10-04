@@ -375,16 +375,17 @@
   window.F3D = { agent: agent, solide: solide, lumineux: lumineux, etoile: etoile, CYAN: CYAN, MARINE: MARINE, MARINE_CLAIR: MARINE_CLAIR, visibilite: visibilite };
 
   /* ═══════════════ Vignettes des cartes ═══════════════ */
+  // Elles démarrent APRÈS la scène d'accueil (au repos), ou dès que les cartes approchent de l'écran :
+  // la scène d'accueil n'est ainsi plus retardée par ce travail, qui est de plus découpé en petites tâches.
   var cartes = Array.prototype.slice.call(document.querySelectorAll('.carte'));
   var PETIT = window.matchMedia('(max-width: 920px)').matches;     // téléphone / tablette : rendu allégé
-  var rendu2, scene2, camera2, modeles2, vignettes = [];
-  if (cartes.length === 4) {
+  var rendu2, scene2, camera2, modeles2, vignettes = [], T = PETIT ? 224 : 200, pret2 = false, lancee = false;
+
+  function initVignettes() {
+    if (cartes.length !== 4) return;
     try {
       rendu2 = new THREE.WebGLRenderer({ alpha: true, antialias: true });
-    } catch (e) { rendu2 = null; }
-  }
-  if (rendu2) {
-    var T = PETIT ? 224 : 200;
+    } catch (e) { rendu2 = null; return; }
     rendu2.setPixelRatio(1);
     rendu2.setSize(T, T, false);
     scene2 = new THREE.Scene();
@@ -409,7 +410,8 @@
     });
     camera2.position.z = zLoin;
     var unite = 2 * zLoin * tanMoitie / T;                                   // unités du monde par pixel, à distance
-    modeles2.forEach(function (m) {
+
+    function mesurer(m) {
       m.pivot.visible = true;
       var x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1, sommeMax = 0, nb = 0;
       [0, 1.5, 3, 4.5, 6, 7.5].forEach(function (t) {
@@ -437,30 +439,55 @@
       var dx = ((x0 + x1) / 2 - T / 2) * unite, dy = -((y0 + y1) / 2 - T / 2) * unite;
       m.cadre.scale.setScalar(k);
       m.cadre.position.set(-dx * k, -dy * k, 0);
-    });
-    camera2.position.z = zProche;
+    }
 
-    cartes.forEach(function (carte, i) {
-      var tete = carte.querySelector('.carte-tete');
-      if (!tete) return;
-      var c = document.createElement('canvas');
-      c.className = 'carte-3d';
-      c.width = T; c.height = T;
-      c.setAttribute('aria-hidden', 'true');
-      tete.insertBefore(c, tete.firstChild);
-      var v = { i: i, c: c, ctx: c.getContext('2d'), visible: false, survol: 0, cible: 0, x: 0 };
-      vignettes.push(v);
-      visibilite(carte, function (vis) { v.visible = vis; });
-      carte.addEventListener('pointerenter', function () { v.cible = 1; });
-      carte.addEventListener('pointerleave', function () { v.cible = 0; });
-      carte.addEventListener('pointermove', function (e) {
-        var r = carte.getBoundingClientRect();
-        v.x = (e.clientX - r.left) / r.width - 0.5;
+    function terminer() {
+      camera2.position.z = zProche;
+      cartes.forEach(function (carte, i) {
+        var tete = carte.querySelector('.carte-tete');
+        if (!tete) return;
+        var c = document.createElement('canvas');
+        c.className = 'carte-3d';
+        c.width = T; c.height = T;
+        c.setAttribute('aria-hidden', 'true');
+        tete.insertBefore(c, tete.firstChild);
+        var v = { i: i, c: c, ctx: c.getContext('2d'), visible: false, survol: 0, cible: 0, x: 0 };
+        vignettes.push(v);
+        visibilite(carte, function (vis) { v.visible = vis; });
+        carte.addEventListener('pointerenter', function () { v.cible = 1; });
+        carte.addEventListener('pointerleave', function () { v.cible = 0; });
+        carte.addEventListener('pointermove', function (e) {
+          var r = carte.getBoundingClientRect();
+          v.x = (e.clientX - r.left) / r.width - 0.5;
+        });
       });
-    });
-    var grille = document.querySelector('.grille-services');
-    if (grille) grille.classList.add('avec-3d');
+      var grille = document.querySelector('.grille-services');
+      if (grille) grille.classList.add('avec-3d');
+      pret2 = true;
+    }
+
+    // une mesure par tâche : la page reste fluide pendant ce travail
+    var suite = 0;
+    (function etape() {
+      if (suite >= modeles2.length) { terminer(); return; }
+      mesurer(modeles2[suite++]);
+      setTimeout(etape, 0);
+    })();
   }
+
+  function lancer() { if (lancee) return; lancee = true; initVignettes(); }
+  // 1) dès que la scène d'accueil est dessinée, au repos
+  window.addEventListener('accueil3d-pret', function () {
+    if (window.requestIdleCallback) window.requestIdleCallback(lancer, { timeout: 2500 });
+    else setTimeout(lancer, 300);
+  }, { once: true });
+  // 2) ou dès que les cartes approchent de l'écran
+  var grilleServices = document.querySelector('.grille-services');
+  if (grilleServices && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) lancer(); }, { rootMargin: '700px' }).observe(grilleServices);
+  }
+  // 3) sécurité (scène d'accueil absente ou en échec)
+  setTimeout(lancer, 6000);
 
   /* ═══════════════ Boucle unique ═══════════════ */
   var dernier = 0;
@@ -471,7 +498,7 @@
     dernier = now;
     var t = horloge.getElapsedTime();
 
-    if (rendu2) {
+    if (rendu2 && pret2) {
       vignettes.forEach(function (v) {
         if (!v.visible) return;
         v.survol += (v.cible - v.survol) * 0.12;

@@ -1,5 +1,9 @@
 // Forty Services — interactions minimales
 
+// Version des fichiers (paramètre ?v= de ce script), reprise pour charger les scripts 3D
+const VERSION_FICHIERS = (document.currentScript && document.currentScript.src.split('?')[1]) || '';
+function avecVersion(chemin) { return VERSION_FICHIERS ? chemin + '?' + VERSION_FICHIERS : chemin; }
+
 // Menu mobile
 const boutonMenu = document.querySelector('.bouton-menu');
 const menu = document.getElementById('menu');
@@ -70,8 +74,8 @@ if (boutonMenu && menu) {
   // Les scripts se téléchargent en parallèle et s'exécutent dans l'ordre (async = false) : bien plus rapide qu'une file d'attente
   function demarrer() {
     var scripts = ['https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js'];
-    scripts.push('/js/scene3d.js');                              // icônes 3D des cartes (ordinateur et téléphone)
-    scripts.push('/js/batiment3d.js');
+    scripts.push(avecVersion('/js/scene3d.js'));                              // icônes 3D des cartes (ordinateur et téléphone)
+    scripts.push(avecVersion('/js/batiment3d.js'));
     scripts.forEach(function (src) {
       var s = document.createElement('script');
       s.src = src;

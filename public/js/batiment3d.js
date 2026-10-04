@@ -991,7 +991,7 @@
     sc.anim(t, dt);
     rendu.render(sc.o.scene, camera);
     // la 3D n'est annoncée prête (et l'image fixe n'est retirée) qu'une fois la première image réellement dessinée
-    if (!prete) { prete = true; canvas.classList.add('pret'); cadre.classList.add('scene-ok'); }
+    if (!prete) { prete = true; canvas.classList.add('pret'); cadre.classList.add('scene-ok'); window.dispatchEvent(new Event('accueil3d-pret')); }
   }
   var prete = false;
   boucle();
