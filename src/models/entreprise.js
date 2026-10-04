@@ -97,8 +97,8 @@ module.exports = {
   referencesPhares: [
     { nom: 'Ambassade de la République de Slovénie à Rabat', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair' },
     { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith-mauve.svg', logoFond: 'clair' },
-    { nom: 'DNA Maroc', prestations: ['Surveillance'] },
-    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance', 'Gardiennage'], logo: '/images/clients/melliber.png', logoFond: 'sombre' }
+    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance', 'Gardiennage'], logo: '/images/clients/melliber.png', logoFond: 'sombre' },
+    { nom: 'DNA Maroc', prestations: ['Surveillance'] }
   ],
   // Autres références (liste compacte) : ne pas y répéter les clients ci-dessus
   references: [

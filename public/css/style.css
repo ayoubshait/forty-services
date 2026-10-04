@@ -676,8 +676,10 @@ section { padding: 84px 0; }
 .ref-logo-zone--sombre img { object-position: center; }
 .ref-nom { font-size: 0.98rem; line-height: 1.25; overflow-wrap: anywhere; }
 /* Client sans logo : son nom en wordmark typographique, dans la zone du logo (sans faux symbole) */
-.ref-wordmark-zone { display: flex; align-items: center; flex: 1; min-height: 56px; }
-.ref-wordmark { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.01em; line-height: 1.15; overflow-wrap: anywhere; }
+.ref-wordmark-zone { display: flex; align-items: center; height: 56px; }
+.ref-wordmark { display: flex; flex-direction: column; align-items: flex-start; gap: 3px; color: var(--marine); }
+.ref-wm-nom { font-size: 28px; font-weight: 700; line-height: 1; letter-spacing: 0; }
+.ref-wm-suite { font-size: 11px; font-weight: 600; line-height: 1; letter-spacing: 2px; text-transform: uppercase; }
 .ref-prestations { margin-top: auto; font-size: 0.86rem; font-weight: 600; line-height: 1.35; color: var(--gris-doux); }
 @media (max-width: 1000px) {
   .grille-ref-cartes { grid-template-columns: repeat(2, 1fr); }
@@ -926,7 +928,6 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
   .grille-ref-cartes { gap: 12px; margin-top: 26px; }
   .ref-carte { padding: 16px; gap: 8px; }
   .ref-nom { font-size: 0.92rem; }
-  .ref-wordmark { font-size: 1.2rem; }
   .ref-prestations { font-size: 0.82rem; }
   .ref-autres-titre { margin-top: 30px; }
   .grille-references { gap: 8px; margin-top: 12px; }

@@ -178,7 +178,8 @@
         <span class="ref-logo-zone ref-logo-zone--<%= client.logoFond === 'sombre' ? 'sombre' : 'clair' %>"><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" loading="lazy"></span>
         <h3 class="ref-nom"><%= client.nom %></h3>
         <% } else { %>
-        <div class="ref-wordmark-zone"><h3 class="ref-wordmark"><%= client.nom %></h3></div>
+        <% var mots = client.nom.split(' '); %>
+        <div class="ref-wordmark-zone"><h3 class="ref-wordmark"><span class="sr-only"><%= client.nom %></span><span class="ref-wm-nom" aria-hidden="true"><%= mots[0] %></span><% if (mots.length > 1) { %><span class="ref-wm-suite" aria-hidden="true"><%= mots.slice(1).join(' ') %></span><% } %></h3></div>
         <% } %>
         <p class="ref-prestations"><span class="sr-only">Prestations : </span><%= client.prestations.join(' · ') %></p>
       </li>
