@@ -25,9 +25,6 @@ module.exports = {
   // Informations légales (affichées dans le pied de page seulement si elles sont renseignées)
   // Source du capital : annuaire Telecontact.ma (« 300 000 »), à vérifier avec les statuts
   capital: '300 000 MAD',
-  // Hébergeur du site (à mettre à jour si le site change d'hébergeur)
-  hebergeur: { nom: 'Render Services, Inc.', adresse: '525 Brannan Street, Suite 300, San Francisco, CA 94107, États-Unis', site: 'https://render.com' },
-
   infosLegales: { ice: '000009597000065', rc: '294027 Casablanca', patente: '' },   // ICE et RC : source annuaire Telecontact.ma, à confirmer avec vos documents officiels
 
   // Questions fréquentes : réponses tirées du contenu du site ; à valider avec vos pratiques réelles

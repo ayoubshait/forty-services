@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Mentions légales | <%= site.nom %></title>
-<meta name="description" content="Mentions légales du site <%= site.nom %> : éditeur, hébergeur, données personnelles.">
+<meta name="description" content="Mentions légales du site <%= site.nom %> : éditeur, propriété intellectuelle, données personnelles.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="<%= site.url %>/mentions-legales">
 <meta name="theme-color" content="#1B3A6B">
@@ -38,12 +38,6 @@
     E-mail : <a href="mailto:<%= site.email %>"><%= site.email %></a>
   </p>
   <p>Directeur de la publication : <%= site.gerant %>, gérant.</p>
-
-  <h2>Hébergement</h2>
-  <p>
-    Le site est hébergé par <strong><%= site.hebergeur.nom %></strong>,
-    <%= site.hebergeur.adresse %> (<a href="<%= site.hebergeur.site %>" rel="noopener"><%= site.hebergeur.site.replace('https://', '') %></a>).
-  </p>
 
   <h2>Propriété intellectuelle</h2>
   <p>
