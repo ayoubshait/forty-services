@@ -1058,7 +1058,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 .wallet-page { min-height: calc(100vh - 62px); display: flex; align-items: center; padding: 56px 0; }
 .wallet-page .conteneur { width: 100%; }
 .wallet-page h1 { font-size: clamp(1.65rem, 4.4vw, 2.5rem); font-weight: 800; letter-spacing: -0.025em; margin-top: 4px; }
-.wallet-grille { display: grid; grid-template-columns: 1fr 0.8fr; gap: 56px; align-items: center; }
+.wallet-grille { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
 /* Sur l'accueil, la section suit la FAQ (même fond gris) : on resserre l'espace entre les deux */
 section#carte { padding-top: 0; margin-top: -56px; }
 @media (max-width: 700px) { section#carte { margin-top: -12px; } }
@@ -1076,26 +1076,83 @@ section#carte { padding-top: 0; margin-top: -56px; }
 .wallet-contact svg { stroke: currentColor; flex-shrink: 0; }
 .wallet-contact:hover { background: var(--marine); color: var(--blanc); }
 .wallet-note { margin-top: 2px; font-size: 0.92rem; color: var(--gris-doux); }
-.wallet-visuel { display: flex; flex-direction: column; align-items: center; }
-.wallet-carte {
-  width: min(100%, 320px);
-  background: #18181B;
-  color: #FFFFFF;
-  border-radius: 22px;
-  padding: 20px 20px 22px;
-  display: flex; flex-direction: column;
-  box-shadow: 0 26px 50px -22px rgba(20, 45, 84, 0.55);
+.wallet-legende { margin-top: 14px; font-size: 0.85rem; color: var(--gris-doux); max-width: 420px; }
+.wallet-droite { display: flex; flex-direction: column; align-items: flex-start; min-width: 0; }
+.wallet-droite .wallet-actions { margin-top: 26px; }
+
+/* ---------- Carte interactive (recto / verso) ---------- */
+.carte3d { --rx: 0deg; --ry: 0deg; width: min(100%, 420px); display: flex; flex-direction: column; align-items: center; }
+.carte3d-scene { width: 100%; }
+.carte3d-scene { perspective: 1200px; }
+.carte3d-corps {
+  position: relative; container-type: inline-size;
+  aspect-ratio: 85 / 55;
+  transform-style: preserve-3d;
+  transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+  transform: rotateX(var(--rx)) rotateY(var(--ry));
+  cursor: pointer;
 }
-.wallet-entete { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em; }
-.wallet-entete img { width: 44px; height: 44px; }
-.wallet-etiquette { margin-top: 22px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: #A1A1AA; text-transform: uppercase; }
-.wallet-titre { font-family: var(--police-texte); font-size: 1.9rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
-.wallet-etiquette + .wallet-tel { margin-top: 2px; }
-.wallet-titre + .wallet-etiquette { margin-top: 10px; }
-.wallet-tel { font-size: 1.15rem; font-weight: 600; }
-.wallet-qr { margin-top: 20px; background: #FFFFFF; border-radius: 14px; padding: 14px; display: flex; justify-content: center; }
-.wallet-qr img { width: 132px; height: 132px; display: block; }
-.wallet-legende { margin-top: 12px; font-size: 0.82rem; color: var(--gris-doux); }
+.carte3d.survol .carte3d-corps { transition-duration: 0.15s; }
+.carte3d.est-retournee .carte3d-corps { transform: rotateX(var(--rx)) rotateY(calc(180deg + var(--ry))); }
+.carte3d-face {
+  position: absolute; inset: 0; border-radius: 18px; overflow: hidden;
+  -webkit-backface-visibility: hidden; backface-visibility: hidden;
+  box-shadow: 0 18px 32px -20px rgba(14, 35, 71, 0.32), 0 1px 4px rgba(14, 35, 71, 0.10);
+}
+/* Recto : bleu marine, symbole en relief */
+.carte3d-recto {
+  display: grid; grid-template-columns: 42% 1fr; align-items: center; gap: 2cqw;
+  padding: 6cqw 6cqw 14cqw 4cqw; color: #FFFFFF;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 7cqw 7cqw,
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px) 0 0 / 7cqw 7cqw,
+    radial-gradient(ellipse 70% 90% at 92% 0%, rgba(41, 168, 223, 0.28), transparent 65%),
+    linear-gradient(150deg, #1B3A6B, #0E2347);
+}
+.recto-symbole { width: 100%; height: auto; display: block; justify-self: center; filter: drop-shadow(0 6px 10px rgba(5, 15, 34, 0.45)); }
+.recto-texte { display: flex; flex-direction: column; gap: 1.2cqw; }
+.recto-nom { font-family: var(--police-titre); font-weight: 800; font-size: 8.4cqw; line-height: 1.02; letter-spacing: 0.08em; }
+.recto-forme { font-size: 3.2cqw; font-weight: 700; letter-spacing: 0.3em; color: #6CC4F0; }
+.recto-services {
+  position: absolute; left: 6cqw; right: 6cqw; bottom: 5cqw; margin: 0;
+  padding-top: 3cqw; border-top: 1px solid rgba(108, 196, 240, 0.35);
+  font-size: 3.6cqw; letter-spacing: 0.05em; color: #C9D6E8; text-align: center;
+}
+/* Verso : clair, coordonnées et QR */
+.carte3d-verso {
+  transform: rotateY(180deg);
+  display: grid; grid-template-columns: 1fr 28cqw; align-items: center; gap: 4cqw;
+  padding: 6cqw; background: linear-gradient(150deg, #FFFFFF, #EEF3F8); color: var(--marine);
+  border: 1px solid var(--bordure);
+}
+.verso-texte { display: flex; flex-direction: column; min-width: 0; }
+.verso-nom { font-family: var(--police-titre); font-weight: 800; font-size: 6.4cqw; line-height: 1.1; letter-spacing: -0.01em; }
+.verso-role { margin-top: 1.2cqw; font-size: 3cqw; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+.verso-liens { list-style: none; margin: 4cqw 0 0; padding: 0; display: grid; gap: 1.6cqw; font-size: 3.8cqw; }
+.verso-liens a { color: var(--marine); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(41, 168, 223, 0.55); word-break: break-word; }
+.verso-liens a:hover { color: var(--cyan); }
+.verso-scan { display: flex; flex-direction: column; align-items: center; gap: 1.6cqw; }
+.verso-qr { width: 100%; height: auto; display: block; border-radius: 6px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--bordure); }
+.verso-scan-texte { font-size: 3.1cqw; line-height: 1.25; text-align: center; color: var(--gris-doux); font-weight: 600; }
+
+/* Sans JavaScript : les deux faces sont simplement empilées */
+.carte3d:not(.carte3d-actif) .carte3d-corps { aspect-ratio: auto; display: grid; gap: 16px; cursor: default; }
+.carte3d:not(.carte3d-actif) .carte3d-face { position: relative; aspect-ratio: 85 / 55; }
+.carte3d:not(.carte3d-actif) .carte3d-verso { transform: none; }
+/* Avec JavaScript : seule la face visible reste atteignable (clavier, lecteurs d'écran, liens) */
+.carte3d-actif .carte3d-recto, .carte3d-actif .carte3d-verso { transition: visibility 0s 0.45s; }
+.carte3d-actif .carte3d-verso { visibility: hidden; }
+.carte3d-actif.est-retournee .carte3d-verso { visibility: visible; }
+.carte3d-actif.est-retournee .carte3d-recto { visibility: hidden; }
+.carte3d-bouton {
+  margin-top: 16px; padding: 10px 18px; font: 700 0.92rem var(--police-texte);
+  color: var(--marine); background: transparent; border: 1.5px solid var(--bordure); border-radius: 22px; cursor: pointer;
+}
+.carte3d-bouton:hover { border-color: var(--marine); }
+@media (prefers-reduced-motion: reduce) {
+  .carte3d-corps, .carte3d.survol .carte3d-corps { transition: none; }
+  .carte3d-actif .carte3d-recto, .carte3d-actif .carte3d-verso { transition: none; }
+}
 @media (max-width: 920px) {
   .wallet-grille { grid-template-columns: 1fr; gap: 36px; }
 }

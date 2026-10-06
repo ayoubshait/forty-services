@@ -1,10 +1,46 @@
 <div class="conteneur wallet-grille">
-    <div>
+    <div class="wallet-texte">
       <div class="tete-section">
-        <span class="sur-titre">Carte numérique</span>
+        <span class="sur-titre">Carte interactive</span>
         <<%= niveau %>>Votre contact Forty Services, toujours à portée de main.</<%= niveau %>>
         <p>Retrouvez nos coordonnées et accédez à notre site depuis votre téléphone. Ajoutez notre carte à Apple Wallet ou Google Wallet.</p>
       </div>
+    </div>
+
+    <div class="wallet-droite">
+      <div class="carte3d" data-carte3d>
+        <div class="carte3d-scene">
+          <div class="carte3d-corps">
+            <!-- Recto : logo en relief -->
+            <div class="carte3d-face carte3d-recto">
+              <img class="recto-symbole" src="/images/wallet/symbole-relief.svg" alt="" width="170" height="175">
+              <div class="recto-texte">
+                <span class="recto-nom">FORTY<br>SERVICES</span>
+                <span class="recto-forme">S.A.R.L</span>
+              </div>
+              <p class="recto-services">Surveillance · Gardiennage · Nettoyage</p>
+            </div>
+            <!-- Verso : coordonnées -->
+            <div class="carte3d-face carte3d-verso">
+              <div class="verso-texte">
+                <strong class="verso-nom">Mustapha SHAIT</strong>
+                <span class="verso-role">Gérant</span>
+                <ul class="verso-liens">
+                  <li><a href="tel:+212611624718">+212 611 62 47 18</a></li>
+                  <li><a href="mailto:<%= site.email %>"><%= site.email %></a></li>
+                  <li><a href="<%= site.url %>/">fortyservices.ma</a></li>
+                </ul>
+              </div>
+              <div class="verso-scan">
+                <img class="verso-qr" src="/images/wallet/qr.svg" alt="QR code vers fortyservices.ma" width="110" height="110">
+                <span class="verso-scan-texte">Scanner pour découvrir nos services</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="carte3d-bouton" aria-pressed="false" hidden>Retourner la carte</button>
+      </div>
+
       <div class="wallet-actions">
         <% if (site.carteNumerique.apple) { %>
         <a class="wallet-badge" href="<%= site.carteNumerique.apple %>" aria-label="Ajouter la carte Forty Services à l'app Cartes Apple">
@@ -21,16 +57,7 @@
           Enregistrer le contact
         </a>
       </div>
-    </div>
-    <div class="wallet-visuel" aria-hidden="true">
-      <div class="wallet-carte">
-        <div class="wallet-entete"><img src="/images/wallet/logo-carte-anthracite.png" alt="" width="44" height="44"><span>FORTY SERVICES</span></div>
-        <span class="wallet-etiquette">CARD</span>
-        <strong class="wallet-titre">Forty Services</strong>
-        <span class="wallet-etiquette">MUSTAPHA SHAIT · GÉRANT · FORTYSERVICES.MA</span>
-        <span class="wallet-tel">+212 611 62 47 18</span>
-        <div class="wallet-qr"><img src="/images/wallet/qr.svg" alt="" width="132" height="132"></div>
-      </div>
-      <p class="wallet-legende">Aperçu de la carte</p>
+      <p class="wallet-legende">L'animation est disponible sur le site. L'affichage dans Wallet est différent.</p>
     </div>
   </div>
+<script src="/js/carte3d.js?v=<%= site.version %>" defer></script>
