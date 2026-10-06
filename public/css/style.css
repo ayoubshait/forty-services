@@ -541,10 +541,12 @@ section { padding: 84px 0; }
   pointer-events: none;
 }
 .carte:hover::before { opacity: 1; }
+/* L'icône animée ne remplace l'icône SVG que carte par carte, une fois réellement dessinée (classe « a-3d » posée par scene3d.js).
+   Si l'animation ne se charge pas, est désactivée ou échoue, l'icône SVG reste visible : jamais d'espace vide à gauche du titre. */
 .carte-3d { display: none; }
 @media (min-width: 921px) {
-  .avec-3d .carte .icone { display: none; }
-  .avec-3d .carte-3d {
+  .carte.a-3d .icone { display: none; }
+  .carte.a-3d .carte-3d {
     display: block;
     width: 100px;
     height: 100px;
@@ -552,11 +554,11 @@ section { padding: 84px 0; }
   }
 }
 @media (max-width: 920px) {
-  .avec-3d .carte .carte-tete .icone { display: none; }
-  .avec-3d .carte-3d { display: block; width: 84px; height: 84px; margin: -8px 0 2px -10px; }
+  .carte.a-3d .carte-tete .icone { display: none; }
+  .carte.a-3d .carte-3d { display: block; width: 84px; height: 84px; margin: -8px 0 2px -10px; }
 }
 @media (max-width: 700px) {
-  .avec-3d .carte-3d { width: 72px; height: 72px; margin: -8px 0 -8px -8px; flex-shrink: 0; }
+  .carte.a-3d .carte-3d { width: 72px; height: 72px; margin: -8px 0 -8px -8px; flex-shrink: 0; }
 }
 .carte:hover .carte-tete { transform: translateZ(34px); }
 .carte-tete { transition: transform 0.2s ease-out; }
@@ -575,6 +577,10 @@ section { padding: 84px 0; }
 .carte-tete .icone { margin-bottom: 18px; }
 .carte h3 { margin-bottom: 0; }
 .carte p { font-size: 0.97rem; color: var(--gris-doux); }
+/* Trois points clés par service : une ligne chacun, espacement régulier */
+.carte-points { list-style: none; display: grid; gap: 9px; font-size: 0.97rem; line-height: 1.35; color: var(--gris-texte); }
+.carte-points li { position: relative; padding-left: 16px; }
+.carte-points li::before { content: ""; position: absolute; left: 0; top: 0.55em; width: 6px; height: 6px; border-radius: 50%; background: var(--cyan); }
 .carte .lien-wa {
   display: inline-flex; align-items: center; gap: 8px;
   margin-top: auto;
@@ -651,7 +657,7 @@ section { padding: 84px 0; }
 .fond-gris { background: var(--gris-fond); }
 .grille-engagements {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
   gap: 26px;
   margin-top: 48px;
 }
@@ -692,16 +698,16 @@ section { padding: 84px 0; }
   padding: 14px 14px 12px;
   min-width: 0;
 }
-/* Zone des marques : 56 px de haut, contenu centré. Chaque logo garde ses proportions et sa hauteur propre. */
-.ref-zone { display: flex; align-items: center; justify-content: center; width: 100%; height: 56px; }
+/* Zone des marques : 72 px de haut, contenu centré. Chaque logo garde ses proportions et sa hauteur propre. */
+.ref-zone { display: flex; align-items: center; justify-content: center; width: 100%; height: 72px; }
 .ref-zone img { display: block; height: var(--h, 48px); width: auto; max-width: 100%; object-fit: contain; }
 /* Fond marine uniquement pour le logo blanc de Melliber */
-.ref-zone--sombre { width: auto; max-width: 100%; align-self: center; padding: 4px 12px; background: var(--marine-fonce); border-radius: 6px; }
+.ref-cartouche { display: flex; align-items: center; justify-content: center; max-width: 100%; padding: 10px 20px; background: var(--marine-fonce); border-radius: 8px; }
 /* Logo qui écrit déjà le nom (pas de nom dessous) : la zone occupe l'espace libre, le logo y est centré, les prestations restent alignées en bas */
-.ref-zone--libre { flex: 1; height: auto; min-height: 56px; }
+.ref-zone--libre { flex: 1; height: auto; min-height: 72px; }
 .ref-nom { font-size: 0.92rem; line-height: 1.25; overflow-wrap: anywhere; }
 /* Client sans logo : son nom en texte, sans symbole inventé */
-.ref-wordmark { font-size: 24px; font-weight: 600; line-height: 1; white-space: nowrap; color: var(--marine); letter-spacing: 0; }
+.ref-wordmark { font-family: var(--police-titre); font-size: 26px; font-weight: 700; line-height: 1; white-space: nowrap; color: var(--marine); letter-spacing: -0.01em; }
 /* Prestations alignées au même niveau dans toutes les cartes */
 .ref-prestations { margin-top: auto; font-size: 0.84rem; font-weight: 600; line-height: 1.35; color: var(--gris-doux); }
 @media (max-width: 1000px) {
@@ -942,6 +948,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
   .carte-tete { display: flex; align-items: center; gap: 13px; margin-bottom: 10px; }
   .carte-tete .icone { width: 44px; height: 44px; margin-bottom: 0; }
   .carte p { font-size: 0.93rem; }
+  .carte-points { font-size: 0.93rem; gap: 7px; }
   .carte .lien-wa { font-size: 0.88rem; padding-top: 12px; }
 
   /* Engagements : cartes compactes, une colonne */

@@ -451,7 +451,7 @@
         c.width = T; c.height = T;
         c.setAttribute('aria-hidden', 'true');
         tete.insertBefore(c, tete.firstChild);
-        var v = { i: i, c: c, ctx: c.getContext('2d'), visible: false, survol: 0, cible: 0, x: 0 };
+        var v = { i: i, c: c, carte: carte, ctx: c.getContext('2d'), visible: false, pret: false, essais: 0, survol: 0, cible: 0, x: 0 };
         vignettes.push(v);
         visibilite(carte, function (vis) { v.visible = vis; });
         carte.addEventListener('pointerenter', function () { v.cible = 1; });
@@ -461,8 +461,11 @@
           v.x = (e.clientX - r.left) / r.width - 0.5;
         });
       });
-      var grille = document.querySelector('.grille-services');
-      if (grille) grille.classList.add('avec-3d');
+      // Contexte graphique perdu (fréquent sur téléphone) : on rend la main aux icônes SVG
+      rendu2.domElement.addEventListener('webglcontextlost', function () {
+        pret2 = false;
+        vignettes.forEach(function (v) { v.pret = false; v.carte.classList.remove('a-3d'); });
+      });
       pret2 = true;
     }
 
@@ -510,6 +513,13 @@
         rendu2.render(scene2, camera2);
         v.ctx.clearRect(0, 0, T, T);
         v.ctx.drawImage(rendu2.domElement, 0, 0, T, T);
+        // L'icône SVG n'est remplacée qu'une fois l'icône animée réellement dessinée (au moins quelques pixels visibles)
+        if (!v.pret && v.essais < 20) {
+          v.essais++;
+          var px = v.ctx.getImageData(0, 0, T, T).data, plein = 0;
+          for (var p = 3; p < px.length; p += 16) { if (px[p] > 40 && ++plein > 30) break; }
+          if (plein > 30) { v.pret = true; v.carte.classList.add('a-3d'); }
+        }
       });
     }
   }

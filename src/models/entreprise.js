@@ -119,11 +119,14 @@ module.exports = {
     { nom: 'Village Centre Sport' }
   ],
 
+  // `visible` : titre affiché sur la carte ; `points` : trois points clés de la carte (une ligne chacun) ; `titre` : intitulé complet (pied de page, message WhatsApp, données structurées)
   // `court` : libellé raccourci des boutons de sélection ; `courte` : phrase courte de la fiche sous la maquette (la description complète est dans les cartes)
   services: [
     {
       titre: 'Surveillance de sites',
       court: 'Surveillance',
+      visible: 'Surveillance de sites',
+      points: ["Contrôle des accès", "Rondes", "Sites, commerces, événements"],
       courte: "Contrôle des accès et rondes pour renforcer la vigilance sur vos sites, commerces et événements.",
       description: "Renforcez la vigilance sur vos sites professionnels, commerces et événements. Contrôle des accès et rondes : nos agents contribuent à prévenir les risques selon les besoins définis pour votre site.",
       icone: 'bouclier'
@@ -131,6 +134,8 @@ module.exports = {
     {
       titre: 'Gardiennage de locaux et de chantiers',
       court: 'Gardiennage',
+      visible: 'Gardiennage',
+      points: ["Locaux, entrepôts, chantiers", "Ponctuel ou régulier", "Comptes rendus d'intervention"],
       courte: "Une présence ponctuelle ou régulière sur vos locaux et chantiers, avec des comptes rendus d'intervention.",
       description: "Organisez une présence sur vos bâtiments, entrepôts et chantiers. Ponctuelle ou régulière, la prestation tient compte de vos contraintes et comprend des comptes rendus d'intervention.",
       icone: 'badge'
@@ -138,6 +143,8 @@ module.exports = {
     {
       titre: 'Nettoyage professionnel de bureaux et de locaux',
       court: 'Nettoyage de locaux',
+      visible: 'Nettoyage de locaux',
+      points: ["Bureaux, commerces, parties communes", "Passages planifiés", "Produits adaptés"],
       courte: "Des passages planifiés pour entretenir vos bureaux, commerces et parties communes.",
       description: 'Offrez à vos équipes et à vos visiteurs des espaces propres et entretenus. Nous planifions les passages selon vos besoins, avec des produits adaptés et un résultat contrôlé.',
       icone: 'etincelle'
@@ -145,21 +152,19 @@ module.exports = {
     {
       titre: 'Nettoyage de fin de chantier',
       court: 'Fin de chantier',
+      visible: 'Nettoyage de fin de chantier',
+      points: ["Dépoussiérage", "Vitres, sols, surfaces", "Avant la livraison"],
       courte: "Dépoussiérage et nettoyage des vitres, sols et surfaces avant la livraison de vos locaux.",
       description: 'Préparez vos locaux à la livraison après travaux. Dépoussiérage et nettoyage des vitres, sols et surfaces : une remise en état définie selon les besoins du chantier.',
       icone: 'chantier'
     }
   ],
 
+  // Quatre engagements (les chiffres 2013 et 26 ans restent dans le bandeau d'accueil et la section équipe)
   engagements: [
     {
-      titre: 'Une expérience de terrain',
-      description: "Une entreprise créée en 2013, dirigée par un professionnel comptant 26 ans d'expérience en surveillance.",
-      icone: 'bouclier-coche'
-    },
-    {
-      titre: 'Des équipes encadrées',
-      description: 'Un responsable dédié encadre les équipes et suit les interventions.',
+      titre: 'Un responsable dédié',
+      description: 'Votre interlocuteur encadre les équipes et assure le suivi des interventions.',
       icone: 'badge'
     },
     {
@@ -171,11 +176,6 @@ module.exports = {
       titre: 'Un devis détaillé',
       description: 'Vous connaissez les prestations prévues et leur prix avant le démarrage.',
       icone: 'document'
-    },
-    {
-      titre: 'Un interlocuteur dédié',
-      description: 'Vous échangez avec un responsable qui connaît votre site et vos exigences.',
-      icone: 'bulle'
     },
     {
       titre: 'Des moyens adaptés',
