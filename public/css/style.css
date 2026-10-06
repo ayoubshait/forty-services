@@ -1059,9 +1059,6 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 .wallet-page .conteneur { width: 100%; }
 .wallet-page h1 { font-size: clamp(1.65rem, 4.4vw, 2.5rem); font-weight: 800; letter-spacing: -0.025em; margin-top: 4px; }
 .wallet-grille { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }
-/* Sur l'accueil, la section suit la FAQ (même fond gris) : on resserre l'espace entre les deux */
-section#carte { padding-top: 0; margin-top: -56px; }
-@media (max-width: 700px) { section#carte { margin-top: -12px; } }
 .wallet-actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 14px 16px; align-items: center; }
 .wallet-actions .wallet-note { flex-basis: 100%; }
 .wallet-badge { display: inline-block; line-height: 0; border-radius: 10px; }
