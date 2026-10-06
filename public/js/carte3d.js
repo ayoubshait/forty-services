@@ -7,12 +7,24 @@
   var reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var souris = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+  var recto = carte.querySelector('.carte3d-recto');
+  var verso = carte.querySelector('.carte3d-verso');
   carte.classList.add('carte3d-actif');
   bouton.hidden = false;
+
+  // Seule la face visible reste atteignable (clavier, lecteurs d'écran, liens), sans masquer visuellement l'autre pendant le retournement
+  function activer(face, actif) {
+    face.setAttribute('aria-hidden', String(!actif));
+    if (actif) face.removeAttribute('inert'); else face.setAttribute('inert', '');
+  }
+  activer(recto, true);
+  activer(verso, false);
 
   function retourner(forcer) {
     var etat = typeof forcer === 'boolean' ? forcer : !carte.classList.contains('est-retournee');
     carte.classList.toggle('est-retournee', etat);
+    activer(recto, !etat);
+    activer(verso, etat);
     bouton.setAttribute('aria-pressed', String(etat));
     bouton.textContent = etat ? 'Revenir au recto' : 'Retourner la carte';
   }

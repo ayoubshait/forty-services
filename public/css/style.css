@@ -1082,10 +1082,10 @@ section#carte { padding-top: 0; margin-top: -56px; }
 
 /* ---------- Carte interactive (recto / verso) ---------- */
 .carte3d { --rx: 0deg; --ry: 0deg; width: min(100%, 420px); display: flex; flex-direction: column; align-items: center; }
-.carte3d-scene { width: 100%; }
+.carte3d-scene { width: 100%; container-type: inline-size; }
 .carte3d-scene { perspective: 1200px; }
 .carte3d-corps {
-  position: relative; container-type: inline-size;
+  position: relative;
   aspect-ratio: 85 / 55;
   transform-style: preserve-3d;
   transition: transform 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
@@ -1139,11 +1139,6 @@ section#carte { padding-top: 0; margin-top: -56px; }
 .carte3d:not(.carte3d-actif) .carte3d-corps { aspect-ratio: auto; display: grid; gap: 16px; cursor: default; }
 .carte3d:not(.carte3d-actif) .carte3d-face { position: relative; aspect-ratio: 85 / 55; }
 .carte3d:not(.carte3d-actif) .carte3d-verso { transform: none; }
-/* Avec JavaScript : seule la face visible reste atteignable (clavier, lecteurs d'écran, liens) */
-.carte3d-actif .carte3d-recto, .carte3d-actif .carte3d-verso { transition: visibility 0s 0.45s; }
-.carte3d-actif .carte3d-verso { visibility: hidden; }
-.carte3d-actif.est-retournee .carte3d-verso { visibility: visible; }
-.carte3d-actif.est-retournee .carte3d-recto { visibility: hidden; }
 .carte3d-bouton {
   margin-top: 16px; padding: 10px 18px; font: 700 0.92rem var(--police-texte);
   color: var(--marine); background: transparent; border: 1.5px solid var(--bordure); border-radius: 22px; cursor: pointer;
@@ -1151,7 +1146,6 @@ section#carte { padding-top: 0; margin-top: -56px; }
 .carte3d-bouton:hover { border-color: var(--marine); }
 @media (prefers-reduced-motion: reduce) {
   .carte3d-corps, .carte3d.survol .carte3d-corps { transition: none; }
-  .carte3d-actif .carte3d-recto, .carte3d-actif .carte3d-verso { transition: none; }
 }
 @media (max-width: 920px) {
   .wallet-grille { grid-template-columns: 1fr; gap: 36px; }
