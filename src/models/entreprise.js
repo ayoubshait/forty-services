@@ -30,27 +30,27 @@ module.exports = {
   faq: [
     {
       q: "Où intervenez-vous ?",
-      r: "Nous sommes basés à Sidi Moumen, à Casablanca, et nous intervenons aussi dans d'autres villes du Maroc. " +
-         "Indiquez-nous l'adresse de votre site : nous étudions avec vous l'organisation de l'intervention."
+      r: "Basés à Sidi Moumen, à Casablanca, nous intervenons aussi dans d'autres villes du Maroc. " +
+         "Communiquez-nous l'adresse de votre site : nous étudions avec vous l'organisation de l'intervention."
     },
     {
       q: "Proposez-vous des prestations ponctuelles ou régulières ?",
-      r: "Les deux. Le gardiennage peut être ponctuel ou régulier. Le nettoyage de bureaux et de locaux suit des passages planifiés. " +
-         "Le nettoyage de fin de chantier est une intervention de remise en état après travaux."
+      r: "Les deux. Le gardiennage s'organise ponctuellement ou dans la durée. Le nettoyage de bureaux et de locaux suit des passages planifiés. " +
+         "Le nettoyage de fin de chantier est une remise en état après travaux."
     },
     {
       q: "Comment est préparé le devis ?",
-      r: "Indiquez le service recherché, l'adresse du site et la fréquence souhaitée. " +
-         "Nous vous répondons sous 24 h avec un devis gratuit et détaillé, qui précise le périmètre et le prix. Le délai court à partir de la réception des informations nécessaires."
+      r: "Trois informations suffisent : le service recherché, l'adresse du site et la fréquence souhaitée. " +
+         "Vous recevez sous 24 h un devis gratuit et détaillé, qui précise le périmètre et le prix. Le délai court dès réception de ces informations."
     },
     {
       q: "Comment se passe le suivi ?",
-      r: "Un interlocuteur identifié connaît votre site et vos contraintes. " +
-         "Le gardiennage donne lieu à des comptes rendus d'intervention."
+      r: "Vous échangez avec un interlocuteur dédié, qui connaît votre site et vos contraintes. " +
+         "Pour le gardiennage, vous recevez des comptes rendus d'intervention."
     },
     {
       q: "En quoi consiste le nettoyage de fin de chantier ?",
-      r: "C'est le nettoyage après travaux : élimination des poussières, nettoyage des vitres, des sols et des surfaces, " +
+      r: "C'est la remise en état après travaux : dépoussiérage, nettoyage des vitres, des sols et des surfaces, " +
          "avant la livraison des locaux."
     }
   ],

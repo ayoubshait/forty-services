@@ -221,7 +221,7 @@
 <section id="faq" class="fond-gris">
   <div class="conteneur">
     <div class="tete-section">
-      <span class="sur-titre">FAQ</span>
+      <span class="sur-titre">Questions fréquentes</span>
       <h2>Vos questions sur le gardiennage et le nettoyage</h2>
     </div>
     <div class="faq">
@@ -243,13 +243,13 @@
         <div class="tete-section">
           <span class="sur-titre">Contact</span>
           <h2>Votre site a ses exigences. Parlons-en.</h2>
-          <p>Vous recherchez une prestation de surveillance, de gardiennage ou de nettoyage, à Casablanca ou dans une autre ville du Maroc ? Précisez votre besoin : nous étudierons avec vous l'organisation adaptée à votre site.</p>
+          <p>Surveillance, gardiennage ou nettoyage, à Casablanca ou dans une autre ville du Maroc : décrivez-nous votre besoin, nous étudions avec vous l'organisation adaptée à votre site.</p>
         </div>
 
         <div class="contact-lignes">
           <div>
             <%- include('partials/icones', { icone: 'personne', taille: 19, epais: 2 }) %>
-            <span><span class="etiquette">Votre interlocuteur</span><%= site.gerant %>, gérant : <%= site.experienceMetier %> ans d'expérience en surveillance</span>
+            <span><span class="etiquette">Votre interlocuteur</span><%= site.gerant %>, gérant, <%= site.experienceMetier %> ans d'expérience en surveillance</span>
           </div>
           <div>
             <%- include('partials/icones', { icone: 'telephone', taille: 19, epais: 2 }) %>
@@ -280,7 +280,7 @@
 
       <div class="panneau-devis revele">
         <h3>Devis gratuit sous <%- site.delaiDevis.replace(" ", "&nbsp;") %></h3>
-        <p>Sans engagement. Le délai court à partir de la réception des informations nécessaires.</p>
+        <p>Sans engagement. Le délai court dès réception des informations nécessaires.</p>
         <a class="btn btn-wa-panneau" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 20 }) %>
           Demander un devis
