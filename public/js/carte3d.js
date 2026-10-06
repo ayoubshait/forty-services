@@ -10,7 +10,7 @@
   var recto = carte.querySelector('.carte3d-recto');
   var verso = carte.querySelector('.carte3d-verso');
   carte.classList.add('carte3d-actif');
-  bouton.hidden = false;
+  window.__carte3dActive = true;
 
   // Seule la face visible reste atteignable (clavier, lecteurs d'écran, liens), sans masquer visuellement l'autre pendant le retournement
   function activer(face, actif) {

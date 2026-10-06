@@ -1151,9 +1151,10 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 }
 
 /* Sans JavaScript : les deux faces sont simplement empilées */
-.carte3d:not(.carte3d-actif) .carte3d-corps { aspect-ratio: auto; display: grid; gap: 16px; cursor: default; }
-.carte3d:not(.carte3d-actif) .carte3d-face { position: relative; aspect-ratio: 85 / 55; }
-.carte3d:not(.carte3d-actif) .carte3d-verso { transform: none; }
+html:not(.js) .carte3d-corps { aspect-ratio: auto; display: grid; gap: 16px; cursor: default; }
+html:not(.js) .carte3d-face { position: relative; aspect-ratio: 85 / 55; }
+html:not(.js) .carte3d-verso { transform: none; }
+html:not(.js) .carte3d-bouton { display: none; }
 .carte3d-bouton {
   margin-top: 16px; padding: 10px 18px; font: 700 0.92rem var(--police-texte);
   color: var(--marine); background: transparent; border: 1.5px solid var(--bordure); border-radius: 22px; cursor: pointer;

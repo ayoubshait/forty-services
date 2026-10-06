@@ -24,6 +24,11 @@
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="/css/style.css?v=<%= site.version %>">
+<script>
+// La carte prend sa forme interactive dès le premier affichage (pas de saut de mise en page) ; si son script ne démarre pas, les deux faces s'affichent l'une sous l'autre.
+document.documentElement.classList.add('js');
+setTimeout(function () { if (!window.__carte3dActive) document.documentElement.classList.remove('js'); }, 4000);
+</script>
 </head>
 <body class="page-legal">
 <a class="lien-evitement" href="#carte">Aller au contenu</a>

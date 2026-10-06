@@ -15,8 +15,11 @@ Exclus volontairement : `node_modules` (se réinstalle), `.git` (remplacé par l
 
 Procédure testée le 7 octobre 2026 dans une copie isolée du dépôt, avec de faux travaux comprenant une modification, un ajout, une suppression et un commit de fusion.
 
+**Attention : la commande `git restore` écrase les modifications locales des fichiers suivis.** Tout travail en cours qui n'est pas encore enregistré dans un commit serait perdu. Avant de l'exécuter, vérifiez avec `git status` qu'il ne reste rien à enregistrer. S'il reste des modifications, enregistrez-les d'abord dans un commit, ou mettez-les de côté avec `git stash`.
+
 ```bash
 cd C:\Users\shait\Downloads\fortyService
+git status
 git checkout main
 git restore --source=sauvegarde-2026-10-07-avant-seo --staged --worktree -- .
 git commit -m "Retour a la version du 2026-10-07 (avant SEO)"
