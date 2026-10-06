@@ -255,7 +255,11 @@
           <img src="/images/wallet/ajouter-google-wallet-fr.svg" alt="Ajouter à Google Wallet" width="203" height="56" loading="lazy">
         </a>
         <% } %>
-        <p class="wallet-note">iPhone : Cartes (Apple). Android : Google Wallet.</p>
+        <a class="wallet-contact" href="/wallet/forty-services.vcf" download="forty-services.vcf">
+          <%- include('partials/icones', { icone: 'personne', taille: 20, epais: 2 }) %>
+          Enregistrer dans mes contacts
+        </a>
+        <p class="wallet-note">iPhone : Cartes (Apple). Android : Google Wallet. La fiche de contact fonctionne sur tous les téléphones : un appui sur le numéro appelle, un appui sur le site l'ouvre.</p>
       </div>
     </div>
     <div class="wallet-visuel revele" style="--delai:0.1s;" aria-hidden="true">

@@ -1060,6 +1060,15 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 .wallet-actions .wallet-note { flex-basis: 100%; }
 .wallet-badge { display: inline-block; line-height: 0; border-radius: 10px; }
 .wallet-badge img { height: 56px; width: auto; display: block; }
+.wallet-contact {
+  display: inline-flex; align-items: center; gap: 10px;
+  min-height: 56px; padding: 0 22px;
+  border: 2px solid var(--marine); border-radius: 28px;
+  color: var(--marine); font-weight: 700; font-size: 1rem; text-decoration: none;
+  background: var(--blanc);
+}
+.wallet-contact svg { stroke: currentColor; flex-shrink: 0; }
+.wallet-contact:hover { background: var(--marine); color: var(--blanc); }
 .wallet-note { margin-top: 2px; font-size: 0.92rem; color: var(--gris-doux); }
 .wallet-visuel { display: flex; flex-direction: column; align-items: center; }
 .wallet-carte {

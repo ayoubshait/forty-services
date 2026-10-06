@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:SHAIT;Mustapha;;;
+FN:Mustapha SHAIT
+ORG:Forty Services
+TITLE:Gérant
+TEL;TYPE=CELL,VOICE:+212611624718
+EMAIL;TYPE=INTERNET,WORK:forty.services@gmail.com
+URL:https://fortyservices.ma/
+ADR;TYPE=WORK:;;Lot. Al Ward\, Rue 22\, Imm 4;Sidi Moumen;Casablanca;;Maroc
+NOTE:Gardiennage\, surveillance et nettoyage professionnel au Maroc
+END:VCARD
