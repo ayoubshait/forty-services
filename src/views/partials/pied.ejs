@@ -41,6 +41,11 @@
   <%- include('whatsapp-icone', { taille: 30 }) %>
 </a>
 
+<!-- Retour en haut : apparaît en bas de page -->
+<button type="button" class="haut-page" aria-label="Revenir en haut de la page" hidden>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
 <!-- Barre d'action mobile : appel + WhatsApp toujours sous le pouce -->
 <div class="barre-mobile">
   <a class="bm-appel" href="tel:<%= site.telephones[0].e164 %>">

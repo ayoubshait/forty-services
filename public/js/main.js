@@ -163,3 +163,25 @@ if ('IntersectionObserver' in window) {
   }, { threshold: 0.3 });
   obs.observe(grille);
 })();
+
+// Retour en haut : le bouton apparaît quand on arrive en bas de la page
+(function () {
+  var bouton = document.querySelector('.haut-page');
+  if (!bouton) return;
+  bouton.hidden = false;
+  var enAttente = false;
+  function maj() {
+    enAttente = false;
+    var reste = document.documentElement.scrollHeight - (window.scrollY + window.innerHeight);
+    var bas = reste < Math.max(900, window.innerHeight * 1.2) && window.scrollY > window.innerHeight;
+    bouton.classList.toggle('visible', bas);
+    bouton.tabIndex = bas ? 0 : -1;
+  }
+  window.addEventListener('scroll', function () { if (!enAttente) { enAttente = true; requestAnimationFrame(maj); } }, { passive: true });
+  window.addEventListener('resize', maj);
+  maj();
+  bouton.addEventListener('click', function () {
+    var reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({ top: 0, behavior: reduit ? 'auto' : 'smooth' });
+  });
+})();
