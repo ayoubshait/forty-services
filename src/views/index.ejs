@@ -235,6 +235,38 @@
   </div>
 </section>
 
+<!-- ══════════════ CARTE NUMÉRIQUE ══════════════ -->
+<section id="carte" class="fond-gris">
+  <div class="conteneur wallet-grille">
+    <div class="revele">
+      <div class="tete-section">
+        <span class="sur-titre">Carte numérique</span>
+        <h2>Gardez Forty Services dans votre téléphone</h2>
+        <p>Ajoutez notre carte à l'app Cartes de votre iPhone : nom du gérant, téléphone et accès direct à notre site par QR code.</p>
+      </div>
+      <div class="wallet-actions">
+        <% if (site.carteNumerique.apple) { %>
+        <a class="wallet-badge" href="<%= site.carteNumerique.apple %>" aria-label="Ajouter la carte Forty Services à l'app Cartes Apple">
+          <img src="/images/wallet/ajouter-cartes-apple-fr.svg" alt="Ajouter à l'app Cartes Apple" width="168" height="56" loading="lazy">
+        </a>
+        <% } %>
+        <p class="wallet-note">Compatible iPhone.<%= site.carteNumerique.google ? '' : ' Google Wallet (Android) : bientôt disponible.' %></p>
+      </div>
+    </div>
+    <div class="wallet-visuel revele" style="--delai:0.1s;" aria-hidden="true">
+      <div class="wallet-carte">
+        <div class="wallet-entete"><img src="/images/wallet/logo-carte.png" alt="" width="44" height="44" loading="lazy"><span>FORTY SERVICES</span></div>
+        <span class="wallet-etiquette">CARD</span>
+        <strong class="wallet-titre">Forty Services</strong>
+        <span class="wallet-etiquette">MUSTAPHA SHAIT · GÉRANT</span>
+        <span class="wallet-tel">+212 611 62 47 18</span>
+        <div class="wallet-qr"><img src="/images/wallet/qr.svg" alt="" width="132" height="132" loading="lazy"></div>
+      </div>
+      <p class="wallet-legende">Aperçu de la carte</p>
+    </div>
+  </div>
+</section>
+
 <!-- ══════════════ CONTACT ══════════════ -->
 <section class="contact" id="contact">
   <div class="conteneur">

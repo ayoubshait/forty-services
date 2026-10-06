@@ -32,7 +32,8 @@ entreprise.version = String(process.env.RENDER_GIT_COMMIT || Date.now().toString
 // Fichiers statiques : css/js appelés avec ?v=<version> = cache d'un an ; images et icônes = 1 jour ; le reste (sitemap, robots) = revalidé
 app.use(express.static(path.join(__dirname, '..', 'public'), {
   setHeaders: (res, fichier) => {
-    if (/\.(css|js)$/.test(fichier)) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+    if (/\.pkpass$/.test(fichier)) { res.setHeader('Content-Type', 'application/vnd.apple.pkpass'); res.setHeader('Cache-Control', 'no-cache'); }
+    else if (/\.(css|js)$/.test(fichier)) res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
     else if (/\.(webp|jpg|jpeg|png|svg)$/.test(fichier)) res.setHeader('Cache-Control', 'public, max-age=86400');
   }
 }));

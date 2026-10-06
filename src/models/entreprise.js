@@ -55,6 +55,8 @@ module.exports = {
     }
   ],
 
+  // Carte numérique : lien du pass Apple (fichier signé). Google Wallet : à activer quand le pass existera.
+  carteNumerique: { apple: '/wallet/forty-services.pkpass', google: '' },
   url: 'https://fortyservices.ma',   // adresse officielle (source unique : balises SEO, partage, données structurées) ; sitemap.xml et robots.txt la répètent
 
   telephones: [

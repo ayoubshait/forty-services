@@ -24,7 +24,7 @@
 html { scroll-behavior: smooth; }
 
 /* Les ancres s'arrêtent sous l'en-tête collant, pas derrière */
-#accueil, #services, #equipe, #faq, #engagements, #references, #deroulement, #contact {
+#accueil, #services, #equipe, #faq, #engagements, #references, #deroulement, #carte, #contact {
   scroll-margin-top: 78px;
 }
 
@@ -1053,3 +1053,33 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 .legal a { color: var(--marine); }
 .legal-maj { font-size: 0.86rem; margin-top: 34px; }
 .pied-bas a { color: #D3DEEE; }
+
+/* ---------- Carte numérique (Wallet) ---------- */
+.wallet-grille { display: grid; grid-template-columns: 1fr 0.8fr; gap: 56px; align-items: center; }
+.wallet-actions { margin-top: 28px; }
+.wallet-badge { display: inline-block; line-height: 0; border-radius: 10px; }
+.wallet-badge img { height: 56px; width: auto; display: block; }
+.wallet-note { margin-top: 14px; font-size: 0.92rem; color: var(--gris-doux); }
+.wallet-visuel { display: flex; flex-direction: column; align-items: center; }
+.wallet-carte {
+  width: min(100%, 320px);
+  background: #18181B;
+  color: #FFFFFF;
+  border-radius: 22px;
+  padding: 20px 20px 22px;
+  display: flex; flex-direction: column;
+  box-shadow: 0 26px 50px -22px rgba(20, 45, 84, 0.55);
+}
+.wallet-entete { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em; }
+.wallet-entete img { width: 44px; height: 44px; border-radius: 10px; }
+.wallet-etiquette { margin-top: 22px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: #A1A1AA; text-transform: uppercase; }
+.wallet-titre { font-family: var(--police-texte); font-size: 1.9rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
+.wallet-etiquette + .wallet-tel { margin-top: 2px; }
+.wallet-titre + .wallet-etiquette { margin-top: 10px; }
+.wallet-tel { font-size: 1.15rem; font-weight: 600; }
+.wallet-qr { margin-top: 20px; background: #FFFFFF; border-radius: 14px; padding: 14px; display: flex; justify-content: center; }
+.wallet-qr img { width: 132px; height: 132px; display: block; }
+.wallet-legende { margin-top: 12px; font-size: 0.82rem; color: var(--gris-doux); }
+@media (max-width: 920px) {
+  .wallet-grille { grid-template-columns: 1fr; gap: 36px; }
+}
