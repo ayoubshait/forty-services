@@ -1,0 +1,36 @@
+<div class="conteneur wallet-grille">
+    <div>
+      <div class="tete-section">
+        <span class="sur-titre">Carte numérique</span>
+        <<%= niveau %>>Votre contact Forty Services, toujours à portée de main.</<%= niveau %>>
+        <p>Retrouvez nos coordonnées et accédez à notre site depuis votre téléphone. Ajoutez notre carte à Apple Wallet ou Google Wallet.</p>
+      </div>
+      <div class="wallet-actions">
+        <% if (site.carteNumerique.apple) { %>
+        <a class="wallet-badge" href="<%= site.carteNumerique.apple %>" aria-label="Ajouter la carte Forty Services à l'app Cartes Apple">
+          <img src="/images/wallet/ajouter-cartes-apple-fr.svg" alt="Ajouter à l'app Cartes Apple" width="168" height="56">
+        </a>
+        <% } %>
+        <% if (site.carteNumerique.google) { %>
+        <a class="wallet-badge" href="<%= site.carteNumerique.google %>" rel="noopener" aria-label="Ajouter la carte Forty Services à Google Wallet">
+          <img src="/images/wallet/ajouter-google-wallet-fr.svg" alt="Ajouter à Google Wallet" width="203" height="56">
+        </a>
+        <% } %>
+        <a class="wallet-contact" href="/wallet/forty-services.vcf" download="forty-services.vcf">
+          <%- include('icones', { icone: 'personne', taille: 20, epais: 2 }) %>
+          Enregistrer dans mes contacts
+        </a>
+      </div>
+    </div>
+    <div class="wallet-visuel" aria-hidden="true">
+      <div class="wallet-carte">
+        <div class="wallet-entete"><img src="/images/wallet/logo-carte-anthracite.png" alt="" width="44" height="44"><span>FORTY SERVICES</span></div>
+        <span class="wallet-etiquette">CARD</span>
+        <strong class="wallet-titre">Forty Services</strong>
+        <span class="wallet-etiquette">MUSTAPHA SHAIT · GÉRANT · FORTYSERVICES.MA</span>
+        <span class="wallet-tel">+212 611 62 47 18</span>
+        <div class="wallet-qr"><img src="/images/wallet/qr.svg" alt="" width="132" height="132"></div>
+      </div>
+      <p class="wallet-legende">Aperçu de la carte</p>
+    </div>
+  </div>
