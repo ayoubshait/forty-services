@@ -55,8 +55,12 @@ module.exports = {
     }
   ],
 
-  // Carte numérique : lien du pass Apple (fichier signé). Google Wallet : à activer quand le pass existera.
-  carteNumerique: { apple: '/wallet/forty-services.pkpass', google: '' },
+  // Carte numérique : pass Apple (fichier signé) et lien Google Wallet. Version complète à l'identité Forty Services : voir wallet/PREREQUIS.md
+  carteNumerique: {
+    apple: '/wallet/forty-services.pkpass',
+    // Lien « Ajouter à Google Wallet » (pass de test signé par l'outil gratuit WalletWallet, émetteur tiers)
+    google: 'https://pay.google.com/gp/v/save/eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ3YWxsZXR3YWxsZXQtbG9jYWxAZ3Jvd3NwYWNlLXJvLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwiYXVkIjoiZ29vZ2xlIiwidHlwIjoic2F2ZXRvd2FsbGV0IiwiaWF0IjoxNzkxMjcyOTg5LCJvcmlnaW5zIjpbImh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImh0dHBzOi8vd2FsbGV0d2FsbGV0LWxvY2FsLmFsZW4ucm8iLCJodHRwczovL3dhbGxldHdhbGxldC5hbGVuLnJvIl0sInBheWxvYWQiOnsiZ2VuZXJpY0NsYXNzZXMiOlt7ImlkIjoiMzM4ODAwMDAwMDAyMzA4Mzc3MC53YWxsZXR3YWxsZXQtZ2VuZXJpYyJ9XSwiZ2VuZXJpY09iamVjdHMiOlt7ImlkIjoiMzM4ODAwMDAwMDAyMzA4Mzc3MC5mb3J0eS1zZXJ2aWNlcy02MjMzNGMwZS02OGI0LTRhZTUtODc5NC01OTcyNWFlMmEzYTgiLCJjbGFzc0lkIjoiMzM4ODAwMDAwMDAyMzA4Mzc3MC53YWxsZXR3YWxsZXQtZ2VuZXJpYyIsInN0YXRlIjoiQUNUSVZFIiwiYmFyY29kZSI6eyJ0eXBlIjoiUVJfQ09ERSIsInZhbHVlIjoiaHR0cHM6Ly9mb3J0eXNlcnZpY2VzLm1hLyIsImFsdGVybmF0ZVRleHQiOiJodHRwczovL2ZvcnR5c2VydmljZXMubWEvIn0sImNhcmRUaXRsZSI6eyJkZWZhdWx0VmFsdWUiOnsibGFuZ3VhZ2UiOiJlbi1VUyIsInZhbHVlIjoiRm9ydHkgU2VydmljZXMifX0sImhlYWRlciI6eyJkZWZhdWx0VmFsdWUiOnsibGFuZ3VhZ2UiOiJlbi1VUyIsInZhbHVlIjoiKzIxMiA2MTEgNjIgNDcgMTgifX0sInN1YmhlYWRlciI6eyJkZWZhdWx0VmFsdWUiOnsibGFuZ3VhZ2UiOiJlbi1VUyIsInZhbHVlIjoiTXVzdGFwaGEgU0hBSVQgwrcgR8OpcmFudCJ9fSwiaGV4QmFja2dyb3VuZENvbG9yIjoiIzFlNDBhZiJ9XX19.p_GBDSn9F8Se4Xn4mqlF9uoO90sPNOssXsWgSydT5XY_nweG-RQSnPI8EpfETQD8LQwB9PbuvJGjZ_ADXaiSuZT4eLIj0pf7HhITBD9PwQO-eldqxT_nfrwH33oaCZxDZgMIaqCKly8Etw5j3wfm3di1dLglZj6LRvBTmDYSjCOg90c2BNf5-eyO5Ym89IPS_1JL9ZNe9QbB75wePdEQHP6lJdxhT2ucUfROV4EbsphW7uk2aWZzXgXz75UZkW6kXNf0fvYphy2E8YCOiW7JMnHt4JWakiw92OOT5BjhkG80zNUQvO9rKZy2ox8FF_iWTGYAoKYdK3b0LnmBmQfcEg'
+  },
   url: 'https://fortyservices.ma',   // adresse officielle (source unique : balises SEO, partage, données structurées) ; sitemap.xml et robots.txt la répètent
 
   telephones: [
