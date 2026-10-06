@@ -4,8 +4,11 @@
 <%- include('partials/tete') %>
 </head>
 <body>
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
 
 <%- include('partials/entete') %>
+
+<main id="contenu">
 
 <!-- ══════════════ HÉROS ══════════════ -->
 <div class="heros" id="accueil">
@@ -267,7 +270,7 @@
           </div>
           <div>
             <%- include('partials/icones', { icone: 'horloge', taille: 19, epais: 2 }) %>
-            <span><span class="etiquette">Disponibilité</span><%= site.disponibilite %></span>
+            <span><span class="etiquette">Disponibilité et contact</span><%= site.disponibilite %></span>
           </div>
           <% if (site.horairesContact) { %>
           <div>
@@ -276,6 +279,7 @@
           </div>
           <% } %>
         </div>
+        <a class="contact-carte" href="#carte">Enregistrer nos coordonnées <span aria-hidden="true">→</span></a>
       </div>
 
       <div class="panneau-devis revele">
@@ -302,6 +306,7 @@
 <section id="carte" class="fond-gris">
   <%- include('partials/carte-numerique', { niveau: 'h2' }) %>
 </section>
+</main>
 
 <%- include('partials/pied') %>
 

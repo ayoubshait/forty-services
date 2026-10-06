@@ -11,7 +11,7 @@
   --gris-fond: #F4F7FA;
   --gris-texte: #33404F;
   --gris-doux: #5B6B7E;
-  --vert-wa: #2E9E5B;
+  --vert-wa: #217F47;   /* contraste 5,0:1 avec le texte blanc */
   --bordure: #DEE5EE;
   --bleu-clair: #C9D6E8;
   --radius: 8px;
@@ -73,7 +73,7 @@ a:focus-visible, button:focus-visible {
 }
 .btn:hover { filter: brightness(1.07); }
 .btn:active { transform: translateY(1px); }
-.btn-devis { background: var(--cyan); color: var(--blanc); }
+.btn-devis { background: var(--cyan); color: var(--marine-fonce); }
 .btn-appel { background: var(--marine); color: var(--blanc); }
 .btn-wa { background: var(--vert-wa); color: var(--blanc); }
 .btn-contour { background: var(--blanc); color: var(--marine); border: 1.5px solid var(--bordure); }
@@ -302,8 +302,8 @@ nav a:hover { color: var(--blanc); }
 }
 .choix svg { flex-shrink: 0; }
 .choix:hover { color: var(--blanc); background: rgba(27, 58, 107, 0.9); }
-.choix.actif { background: var(--cyan); color: var(--blanc); }
-.choix.actif svg { stroke: var(--blanc); }
+.choix.actif { background: var(--cyan); color: var(--marine-fonce); }   /* marine sur cyan : contraste 5,1:1 */
+.choix.actif svg { stroke: var(--marine-fonce); }
 
 .scene-fiche {
   display: flex;
@@ -896,16 +896,17 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 .barre-mobile { display: none; }
 
 /* ---------- Apparition douce ---------- */
-.revele {
+/* Le contenu n'est masqué avant son apparition que si JavaScript fonctionne (classe « js » posée dans l'en-tête) */
+.js .revele {
   opacity: 0;
   transform: translateY(16px);
   transition: opacity 0.6s ease, transform 0.6s ease;
   transition-delay: var(--delai, 0s);
 }
-.revele.visible { opacity: 1; transform: none; }
+.js .revele.visible { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .revele { opacity: 1; transform: none; transition: none; }
+  .js .revele { opacity: 1; transform: none; transition: none; }
 }
 
 /* ═══════════════════════════════════════════════════════
@@ -1109,11 +1110,11 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 .recto-symbole { width: 100%; height: auto; display: block; justify-self: center; filter: drop-shadow(0 6px 10px rgba(5, 15, 34, 0.45)); }
 .recto-texte { display: flex; flex-direction: column; gap: 1.2cqw; }
 .recto-nom { font-family: var(--police-titre); font-weight: 800; font-size: 8.4cqw; line-height: 1.02; letter-spacing: 0.08em; }
-.recto-forme { font-size: 3.2cqw; font-weight: 700; letter-spacing: 0.3em; color: #6CC4F0; }
+.recto-forme { font-size: max(10px, 3.2cqw); font-weight: 700; letter-spacing: 0.3em; color: #6CC4F0; }
 .recto-services {
   position: absolute; left: 6cqw; right: 6cqw; bottom: 5cqw; margin: 0;
   padding-top: 3cqw; border-top: 1px solid rgba(108, 196, 240, 0.35);
-  font-size: 3.6cqw; letter-spacing: 0.05em; color: #C9D6E8; text-align: center;
+  font-size: max(11.5px, 3.6cqw); letter-spacing: 0.05em; color: #C9D6E8; text-align: center;
 }
 /* Verso : clair, coordonnées et QR */
 .carte3d-verso {
@@ -1124,13 +1125,20 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 }
 .verso-texte { display: flex; flex-direction: column; min-width: 0; }
 .verso-nom { font-family: var(--police-titre); font-weight: 800; font-size: 6.4cqw; line-height: 1.1; letter-spacing: -0.01em; }
-.verso-role { margin-top: 1.2cqw; font-size: 3cqw; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
-.verso-liens { list-style: none; margin: 4cqw 0 0; padding: 0; display: grid; gap: 1.6cqw; font-size: 3.8cqw; }
+.verso-role { margin-top: 1.2cqw; font-size: max(10.5px, 3cqw); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+.verso-liens { list-style: none; margin: 4cqw 0 0; padding: 0; display: grid; gap: 1.6cqw; font-size: max(12.5px, 3.8cqw); }
 .verso-liens a { color: var(--marine); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(41, 168, 223, 0.55); word-break: break-word; }
 .verso-liens a:hover { color: var(--cyan); }
 .verso-scan { display: flex; flex-direction: column; align-items: center; gap: 1.6cqw; }
 .verso-qr { width: 100%; height: auto; display: block; border-radius: 6px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--bordure); }
-.verso-scan-texte { font-size: 3.1cqw; line-height: 1.25; text-align: center; color: var(--gris-doux); font-weight: 600; }
+.verso-scan-texte { font-size: max(10.5px, 3.1cqw); line-height: 1.25; text-align: center; color: var(--gris-doux); font-weight: 600; }
+
+/* Petits écrans : la carte gagne en hauteur et le QR se réduit, au lieu de rapetisser tous les textes */
+@container (max-width: 340px) {
+  .carte3d-corps { aspect-ratio: 85 / 62; }
+  .carte3d-verso { grid-template-columns: 1fr 24cqw; gap: 3cqw; padding: 5cqw; }
+  .verso-liens { margin-top: 3cqw; }
+}
 
 /* Sans JavaScript : les deux faces sont simplement empilées */
 .carte3d:not(.carte3d-actif) .carte3d-corps { aspect-ratio: auto; display: grid; gap: 16px; cursor: default; }
@@ -1147,3 +1155,13 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 @media (max-width: 920px) {
   .wallet-grille { grid-template-columns: 1fr; gap: 36px; }
 }
+
+/* ---------- Accessibilité : lien d'évitement ---------- */
+.lien-evitement {
+  position: absolute; left: 12px; top: -60px; z-index: 1000;
+  background: var(--blanc); color: var(--marine); font-weight: 700; text-decoration: none;
+  padding: 10px 16px; border-radius: 8px; box-shadow: 0 6px 18px rgba(14, 35, 71, 0.25);
+}
+.lien-evitement:focus { top: 12px; }
+.contact-carte { display: inline-flex; align-items: center; gap: 8px; margin-top: 22px; color: var(--blanc); font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(41, 168, 223, 0.7); padding-bottom: 2px; }
+.contact-carte:hover { color: var(--cyan); }

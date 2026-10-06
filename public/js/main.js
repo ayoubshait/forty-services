@@ -115,6 +115,7 @@ if (window.matchMedia('(hover: hover) and (pointer: fine) and (prefers-reduced-m
 }
 
 // Apparition douce au défilement
+window.__reveleActif = true;
 const revele = document.querySelectorAll('.revele');
 if ('IntersectionObserver' in window) {
   const obs = new IntersectionObserver((entries) => {

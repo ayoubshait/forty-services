@@ -6,12 +6,27 @@
 <title>Votre contact <%= site.nom %></title>
 <meta name="description" content="Coordonnées de <%= site.nom %> : carte pour Apple Wallet et Google Wallet, fiche de contact.">
 <meta name="robots" content="noindex, nofollow">
+<meta property="og:title" content="Votre contact <%= site.nom %>">
+<meta property="og:description" content="Coordonnées de <%= site.nom %> : carte interactive, Apple Wallet, Google Wallet et fiche de contact.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_MA">
+<meta property="og:url" content="<%= site.url %>/carte">
+<meta property="og:site_name" content="<%= site.nom %>">
+<meta property="og:image" content="<%= site.url %>/images/partage-carte.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Carte interactive <%= site.nom %>">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Votre contact <%= site.nom %>">
+<meta name="twitter:description" content="Coordonnées de <%= site.nom %> : carte interactive, Apple Wallet, Google Wallet et fiche de contact.">
+<meta name="twitter:image" content="<%= site.url %>/images/partage-carte.jpg">
 <meta name="theme-color" content="#1B3A6B">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="/css/style.css?v=<%= site.version %>">
 </head>
 <body class="page-legal">
+<a class="lien-evitement" href="#carte">Aller au contenu</a>
 <header class="legal-entete">
   <div class="conteneur barre">
     <a class="logo" href="/" aria-label="<%= site.nom %> : retour à l'accueil">

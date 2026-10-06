@@ -10,7 +10,7 @@ module.exports = {
   adresse: 'Lot. Al Ward, Rue 22, Imm 4, Sidi Moumen, Casablanca',
   // Zone annoncée : « Casablanca et les autres villes du Maroc » (formulation validée par le dirigeant : ancrage local sans se limiter à une ville)
   zone: 'Casablanca et les autres villes du Maroc',
-  gerant: 'Mustapha Shait',
+  gerant: 'Mustapha SHAIT',
   experienceGerant: 13,   // années à la tête de Forty Services
   experienceMetier: 26,   // années d'expérience du dirigeant dans la surveillance
   email: 'forty.services@gmail.com',
@@ -40,8 +40,9 @@ module.exports = {
     },
     {
       q: "Comment est préparé le devis ?",
-      r: "Trois informations suffisent : le service recherché, l'adresse du site et la fréquence souhaitée. " +
-         "Vous recevez sous 24 h un devis gratuit et détaillé, qui précise le périmètre et le prix. Le délai court dès réception de ces informations."
+      r: "Pour commencer, indiquez le service recherché, l'adresse du site et la fréquence souhaitée. " +
+         "Selon la prestation, nous échangeons sur votre organisation et visitons le site si nécessaire. " +
+         "Vous recevez ensuite un devis gratuit et détaillé, sous 24 h après réception des informations nécessaires."
     },
     {
       q: "Comment se passe le suivi ?",
@@ -74,7 +75,7 @@ module.exports = {
 
   disponibilite: '24 h/24 et 7 j/7',
   delaiDevis: '24 h',   // devis gratuit : délai à compter de la réception des informations nécessaires
-  horairesContact: '',   // à renseigner quand ils seront confirmés (ex. « du lundi au samedi, de 8 h à 18 h ») : la ligne apparaît alors dans le contact
+  horairesContact: '',   // le contact est joignable 24 h/24 (confirmé par le dirigeant) : déjà couvert par la ligne « Disponibilité et contact » ; ne renseigner que si des horaires distincts apparaissent
 
   seo: {
     titre: 'Gardiennage et nettoyage professionnel au Maroc | Forty Services',
