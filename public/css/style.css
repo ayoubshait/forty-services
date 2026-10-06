@@ -1064,7 +1064,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 .wallet-visuel { display: flex; flex-direction: column; align-items: center; }
 .wallet-carte {
   width: min(100%, 320px);
-  background: rgb(30, 64, 175);
+  background: #18181B;
   color: #FFFFFF;
   border-radius: 22px;
   padding: 20px 20px 22px;
@@ -1073,7 +1073,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 }
 .wallet-entete { display: flex; align-items: center; gap: 12px; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em; }
 .wallet-entete img { width: 44px; height: 44px; }
-.wallet-etiquette { margin-top: 22px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: #BFDBFE; text-transform: uppercase; }
+.wallet-etiquette { margin-top: 22px; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; color: #A1A1AA; text-transform: uppercase; }
 .wallet-titre { font-family: var(--police-texte); font-size: 1.9rem; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; }
 .wallet-etiquette + .wallet-tel { margin-top: 2px; }
 .wallet-titre + .wallet-etiquette { margin-top: 10px; }
