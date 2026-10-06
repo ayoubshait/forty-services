@@ -2,6 +2,8 @@
 // Une page par prestation. On n'y écrit que des informations déjà validées par l'entreprise.
 // Les points encore à confirmer sont listés dans docs/seo/02-informations-manquantes.md : rien n'en est publié ici.
 // L'ordre suit celui de `services` dans entreprise.js (même index = même scène, même icône).
+// `sites` : liste courte des lieux concernés ; `sitesTexte` : court paragraphe à la place de la liste, quand une liste n'apporterait rien.
+// `prestations` : liste compacte (une ligne par point), sans carte ni phrase de remplissage.
 
 module.exports = [
   {
@@ -10,18 +12,14 @@ module.exports = [
     h1: 'Surveillance de sites professionnels au Maroc',
     seoTitre: 'Surveillance de sites professionnels au Maroc | Forty Services',
     seoDescription: "Contrôle des accès et rondes pour vos sites professionnels, commerces et événements, à Casablanca et dans les autres villes du Maroc. Demandez un devis.",
-    intro: "Vous devez savoir qui entre sur votre site et garder vos installations sous surveillance. Nos agents contrôlent les accès et effectuent des rondes, selon les besoins définis avec vous.",
+    intro: "Contrôlez les accès à votre site et renforcez la vigilance sur vos installations. Nos agents assurent ce contrôle et effectuent des rondes, selon les besoins définis avec vous.",
     sitesTitre: 'Pour quels sites ?',
-    sites: [
-      { titre: 'Sites professionnels', texte: 'Vos bâtiments et vos installations.' },
-      { titre: 'Commerces', texte: 'Vos points de vente et leurs accès.' },
-      { titre: 'Événements', texte: 'Une présence le temps de votre événement.' }
-    ],
+    sites: ['Sites professionnels', 'Commerces', 'Événements'],
     prestationsTitre: 'Ce que comprend la surveillance',
     prestations: [
-      { titre: 'Contrôle des accès', texte: 'Les entrées de votre site sont contrôlées par un agent.' },
-      { titre: 'Rondes', texte: 'Les agents parcourent le site pour renforcer la vigilance.' },
-      { titre: 'Prévention des risques', texte: 'La présence des agents contribue à prévenir les risques, selon les besoins définis pour votre site.' }
+      'Contrôle des accès à votre site.',
+      'Rondes pour renforcer la vigilance.',
+      "Présence d'agents, selon les besoins définis pour votre site."
     ],
     etapes: [
       "Indiquez l'adresse du site, sa nature (site professionnel, commerce ou événement) et la fréquence souhaitée.",
@@ -43,18 +41,14 @@ module.exports = [
     h1: 'Gardiennage de locaux et de chantiers au Maroc',
     seoTitre: 'Gardiennage de locaux et de chantiers au Maroc | Forty Services',
     seoDescription: "Une présence ponctuelle ou régulière sur vos bâtiments, entrepôts et chantiers, avec des comptes rendus d'intervention. Devis gratuit sous 24 h.",
-    intro: "Un bâtiment, un entrepôt ou un chantier ne doit pas rester sans présence. Nous organisons le gardiennage de vos lieux, de façon ponctuelle ou régulière, en tenant compte de vos contraintes.",
+    intro: "Organisez une présence sur vos locaux, entrepôts et chantiers, ponctuellement ou dans la durée. La prestation tient compte de vos contraintes et comprend des comptes rendus d'intervention.",
     sitesTitre: 'Pour quels lieux ?',
-    sites: [
-      { titre: 'Bâtiments et locaux', texte: 'Une présence sur vos locaux professionnels.' },
-      { titre: 'Entrepôts', texte: 'Vos lieux de stockage gardés.' },
-      { titre: 'Chantiers', texte: 'Une présence sur votre chantier.' }
-    ],
+    sites: ['Bâtiments et locaux professionnels', 'Entrepôts et espaces de stockage', 'Chantiers'],
     prestationsTitre: 'Ce que comprend le gardiennage',
     prestations: [
-      { titre: 'Une présence sur place', texte: 'Un agent est présent sur le lieu à garder.' },
-      { titre: 'Ponctuel ou régulier', texte: 'Pour un besoin limité dans le temps ou pour une présence installée dans la durée.' },
-      { titre: "Comptes rendus d'intervention", texte: 'Vous êtes informé du déroulement du gardiennage.' }
+      "Présence d'un agent sur le lieu à garder.",
+      'Gardiennage ponctuel ou régulier.',
+      "Comptes rendus d'intervention."
     ],
     etapes: [
       "Indiquez l'adresse, le type de lieu (bâtiment, entrepôt ou chantier) et si la présence doit être ponctuelle ou régulière.",
@@ -78,16 +72,12 @@ module.exports = [
     seoDescription: "Des passages planifiés pour entretenir vos bureaux, commerces et parties communes, avec des produits adaptés. Demandez un devis gratuit.",
     intro: "Des locaux propres comptent pour vos équipes comme pour vos visiteurs. Nous entretenons vos bureaux et vos locaux par des passages planifiés selon vos besoins.",
     sitesTitre: 'Pour quels locaux ?',
-    sites: [
-      { titre: 'Bureaux', texte: 'Les espaces de travail de vos équipes.' },
-      { titre: 'Commerces', texte: 'Les espaces où vous recevez vos clients.' },
-      { titre: 'Parties communes', texte: 'Les espaces partagés de vos immeubles.' }
-    ],
+    sites: ['Bureaux', 'Commerces', 'Parties communes'],
     prestationsTitre: "Ce que comprend l'entretien",
     prestations: [
-      { titre: 'Passages planifiés', texte: 'Le rythme des passages est fixé selon vos besoins.' },
-      { titre: 'Produits adaptés', texte: 'Les produits sont choisis selon la prestation à réaliser.' },
-      { titre: 'Résultat contrôlé', texte: "L'entretien réalisé est contrôlé." }
+      'Passages planifiés selon vos besoins.',
+      'Produits adaptés à la prestation.',
+      'Résultat contrôlé.'
     ],
     etapes: [
       "Indiquez les locaux à entretenir (bureaux, commerce ou parties communes), leur adresse et la fréquence souhaitée.",
@@ -109,18 +99,14 @@ module.exports = [
     h1: 'Nettoyage de fin de chantier au Maroc',
     seoTitre: 'Nettoyage de fin de chantier au Maroc | Forty Services',
     seoDescription: "Dépoussiérage, vitres, sols et surfaces : vos locaux remis en état après travaux, avant leur livraison. Devis gratuit sous 24 h.",
-    intro: "Les travaux sont terminés, mais vos locaux ne sont pas encore prêts à être livrés. Nous les remettons en état : dépoussiérage et nettoyage des vitres, des sols et des surfaces.",
+    intro: "Préparez la livraison de vos locaux avec un nettoyage après travaux. Nous les remettons en état : dépoussiérage et nettoyage des vitres, des sols et des surfaces.",
     sitesTitre: 'À quel moment ?',
-    sites: [
-      { titre: 'Après les travaux', texte: "L'intervention a lieu une fois le chantier terminé." },
-      { titre: 'Avant la livraison', texte: 'Vos locaux sont nettoyés avant leur remise.' },
-      { titre: 'Selon votre chantier', texte: 'La remise en état est définie selon les besoins du chantier.' }
-    ],
+    sitesTexte: "L'intervention a lieu après les travaux et avant la livraison de vos locaux. La remise en état est définie selon les besoins du chantier.",
     prestationsTitre: 'Ce que comprend la remise en état',
     prestations: [
-      { titre: 'Dépoussiérage', texte: 'Les poussières laissées par les travaux sont éliminées.' },
-      { titre: 'Vitres', texte: 'Les vitres sont nettoyées.' },
-      { titre: 'Sols et surfaces', texte: 'Les sols et les surfaces sont nettoyés avant la livraison.' }
+      'Dépoussiérage après travaux.',
+      'Nettoyage des vitres.',
+      'Nettoyage des sols et des surfaces.'
     ],
     etapes: [
       "Indiquez l'adresse du chantier et la date de livraison prévue.",

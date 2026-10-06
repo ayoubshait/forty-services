@@ -37,47 +37,32 @@
   </div>
 </div>
 
-<!-- ══════════════ SITES CONCERNÉS ══════════════ -->
+<!-- ══════════════ SITES CONCERNÉS ET PRESTATION ══════════════ -->
 <section>
-  <div class="conteneur">
-    <div class="tete-section">
+  <div class="conteneur svc-duo">
+    <div>
       <span class="sur-titre"><%= page.nom %></span>
       <h2><%= page.sitesTitre %></h2>
+      <% if (page.sitesTexte) { %>
+      <p class="svc-texte"><%= page.sitesTexte %></p>
+      <% } else { %>
+      <ul class="svc-points">
+        <% page.sites.forEach(function (lieu) { %><li><%= lieu %></li><% }); %>
+      </ul>
+      <% } %>
     </div>
-    <ul class="svc-cartes">
-      <% page.sites.forEach(function (bloc) { %>
-      <li class="svc-carte">
-        <h3><%= bloc.titre %></h3>
-        <p><%= bloc.texte %></p>
-      </li>
-      <% }); %>
-    </ul>
-  </div>
-</section>
-
-<!-- ══════════════ PRESTATIONS ══════════════ -->
-<section class="fond-gris">
-  <div class="conteneur">
-    <div class="tete-section">
+    <div>
       <span class="sur-titre">La prestation</span>
       <h2><%= page.prestationsTitre %></h2>
+      <ul class="svc-points">
+        <% page.prestations.forEach(function (point) { %><li><%= point %></li><% }); %>
+      </ul>
     </div>
-    <ul class="svc-liste">
-      <% page.prestations.forEach(function (bloc) { %>
-      <li>
-        <%- include('partials/icones', { icone: service.icone, taille: 24, epais: 1.9 }) %>
-        <div>
-          <h3><%= bloc.titre %></h3>
-          <p><%= bloc.texte %></p>
-        </div>
-      </li>
-      <% }); %>
-    </ul>
   </div>
 </section>
 
 <!-- ══════════════ ORGANISATION ══════════════ -->
-<section>
+<section class="fond-gris">
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Organisation</span>
@@ -92,7 +77,7 @@
 </section>
 
 <!-- ══════════════ ENGAGEMENTS ══════════════ -->
-<section class="fond-gris">
+<section>
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Nos engagements</span>
@@ -114,7 +99,7 @@
 
 <% if (references.length) { %>
 <!-- ══════════════ RÉFÉRENCES ══════════════ -->
-<section>
+<section class="fond-gris">
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Références</span>
@@ -130,7 +115,7 @@
 <% } %>
 
 <!-- ══════════════ QUESTIONS FRÉQUENTES ══════════════ -->
-<section class="<%= references.length ? 'fond-gris' : '' %>">
+<section class="<%= references.length ? '' : 'fond-gris' %>">
   <div class="conteneur">
     <div class="tete-section">
       <span class="sur-titre">Questions fréquentes</span>
