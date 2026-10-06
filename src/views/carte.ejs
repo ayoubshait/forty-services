@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Votre contact <%= site.nom %></title>
+<meta name="description" content="Coordonnées de <%= site.nom %> : carte pour Apple Wallet et Google Wallet, fiche de contact.">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#1B3A6B">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/css/style.css?v=<%= site.version %>">
+</head>
+<body class="page-legal">
+<header class="legal-entete">
+  <div class="conteneur barre">
+    <a class="logo" href="/" aria-label="<%= site.nom %> : retour à l'accueil">
+      <%- include('partials/marque', { largeur: 28, couleurTrait: '#FFFFFF' }) %>
+      <span class="logo-texte">FORTY<br><span>SERVICES</span></span>
+    </a>
+    <a class="legal-retour" href="/">Retour à l'accueil</a>
+  </div>
+</header>
+
+<main id="carte" class="fond-gris wallet-page">
+  <div class="conteneur wallet-grille">
+    <div>
+      <div class="tete-section">
+        <span class="sur-titre">Carte numérique</span>
+        <h1>Votre contact Forty Services, toujours à portée de main.</h1>
+        <p>Retrouvez nos coordonnées et accédez à notre site depuis votre téléphone. Ajoutez notre carte à Apple Wallet ou Google Wallet.</p>
+      </div>
+      <div class="wallet-actions">
+        <% if (site.carteNumerique.apple) { %>
+        <a class="wallet-badge" href="<%= site.carteNumerique.apple %>" aria-label="Ajouter la carte Forty Services à l'app Cartes Apple">
+          <img src="/images/wallet/ajouter-cartes-apple-fr.svg" alt="Ajouter à l'app Cartes Apple" width="168" height="56">
+        </a>
+        <% } %>
+        <% if (site.carteNumerique.google) { %>
+        <a class="wallet-badge" href="<%= site.carteNumerique.google %>" rel="noopener" aria-label="Ajouter la carte Forty Services à Google Wallet">
+          <img src="/images/wallet/ajouter-google-wallet-fr.svg" alt="Ajouter à Google Wallet" width="203" height="56">
+        </a>
+        <% } %>
+        <a class="wallet-contact" href="/wallet/forty-services.vcf" download="forty-services.vcf">
+          <%- include('partials/icones', { icone: 'personne', taille: 20, epais: 2 }) %>
+          Enregistrer dans mes contacts
+        </a>
+      </div>
+    </div>
+    <div class="wallet-visuel" aria-hidden="true">
+      <div class="wallet-carte">
+        <div class="wallet-entete"><img src="/images/wallet/logo-carte-anthracite.png" alt="" width="44" height="44"><span>FORTY SERVICES</span></div>
+        <span class="wallet-etiquette">CARD</span>
+        <strong class="wallet-titre">Forty Services</strong>
+        <span class="wallet-etiquette">MUSTAPHA SHAIT · GÉRANT · FORTYSERVICES.MA</span>
+        <span class="wallet-tel">+212 611 62 47 18</span>
+        <div class="wallet-qr"><img src="/images/wallet/qr.svg" alt="" width="132" height="132"></div>
+      </div>
+      <p class="wallet-legende">Aperçu de la carte (iPhone ; l'affichage Android diffère légèrement)</p>
+    </div>
+  </div>
+</main>
+</body>
+</html>

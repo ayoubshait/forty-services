@@ -235,47 +235,6 @@
   </div>
 </section>
 
-<!-- ══════════════ CARTE NUMÉRIQUE ══════════════ -->
-<section id="carte" class="fond-gris">
-  <div class="conteneur wallet-grille">
-    <div class="revele">
-      <div class="tete-section">
-        <span class="sur-titre">Carte numérique</span>
-        <h2>Gardez Forty Services dans votre téléphone</h2>
-        <p>Ajoutez notre carte à votre téléphone, dans Cartes sur iPhone ou dans Google Wallet sur Android : nom du gérant, téléphone et accès direct à notre site par QR code.</p>
-      </div>
-      <div class="wallet-actions">
-        <% if (site.carteNumerique.apple) { %>
-        <a class="wallet-badge" href="<%= site.carteNumerique.apple %>" aria-label="Ajouter la carte Forty Services à l'app Cartes Apple">
-          <img src="/images/wallet/ajouter-cartes-apple-fr.svg" alt="Ajouter à l'app Cartes Apple" width="168" height="56" loading="lazy">
-        </a>
-        <% } %>
-        <% if (site.carteNumerique.google) { %>
-        <a class="wallet-badge" href="<%= site.carteNumerique.google %>" rel="noopener" aria-label="Ajouter la carte Forty Services à Google Wallet">
-          <img src="/images/wallet/ajouter-google-wallet-fr.svg" alt="Ajouter à Google Wallet" width="203" height="56" loading="lazy">
-        </a>
-        <% } %>
-        <a class="wallet-contact" href="/wallet/forty-services.vcf" download="forty-services.vcf">
-          <%- include('partials/icones', { icone: 'personne', taille: 20, epais: 2 }) %>
-          Enregistrer dans mes contacts
-        </a>
-        <p class="wallet-note">iPhone : Cartes (Apple). Android : Google Wallet. La fiche de contact fonctionne sur tous les téléphones : un appui sur le numéro appelle, un appui sur le site l'ouvre.</p>
-      </div>
-    </div>
-    <div class="wallet-visuel revele" style="--delai:0.1s;" aria-hidden="true">
-      <div class="wallet-carte">
-        <div class="wallet-entete"><img src="/images/wallet/logo-carte-anthracite.png" alt="" width="44" height="44" loading="lazy"><span>FORTY SERVICES</span></div>
-        <span class="wallet-etiquette">CARD</span>
-        <strong class="wallet-titre">Forty Services</strong>
-        <span class="wallet-etiquette">MUSTAPHA SHAIT · GÉRANT · FORTYSERVICES.MA</span>
-        <span class="wallet-tel">+212 611 62 47 18</span>
-        <div class="wallet-qr"><img src="/images/wallet/qr.svg" alt="" width="132" height="132" loading="lazy"></div>
-      </div>
-      <p class="wallet-legende">Aperçu de la carte (iPhone ; l'affichage Android diffère légèrement)</p>
-    </div>
-  </div>
-</section>
-
 <!-- ══════════════ CONTACT ══════════════ -->
 <section class="contact" id="contact">
   <div class="conteneur">

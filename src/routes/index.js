@@ -6,5 +6,7 @@ const router = express.Router();
 
 router.get('/', pagesController.accueil);
 router.get('/mentions-legales', pagesController.mentionsLegales);
+// Page de test de la carte numérique : accessible par son lien, non référencée (noindex), absente de la page d'accueil et du plan du site
+router.get('/carte', pagesController.carte);
 
 module.exports = router;

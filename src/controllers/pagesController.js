@@ -22,3 +22,10 @@ exports.accueil = (req, res, next) => {
 exports.mentionsLegales = (req, res) => {
   res.render('mentions-legales', { site: entreprise });
 };
+
+exports.carte = (req, res, next) => {
+  res.render('carte', { site: entreprise }, (erreur, html) => {
+    if (erreur) return next(erreur);
+    res.send(typographie(html));
+  });
+};
