@@ -12,7 +12,7 @@
         <h4>Services</h4>
         <ul>
           <% site.services.forEach(function (service) { %>
-          <li><a href="#services"><%= service.titre %></a></li>
+          <li><a href="/<%= service.slug %>"><%= service.titre %></a></li>
           <% }); %>
         </ul>
       </div>
@@ -37,7 +37,9 @@
   </div>
 </footer>
 
-<a class="wa-flottant" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>" aria-label="Nous contacter sur WhatsApp">
+<% /* Sur une page de service, le devis est prérempli avec ce service ; ailleurs, message général */
+   var lienWa = locals.lienDevis || ('https://wa.me/' + site.whatsapp + '?text=' + encodeURIComponent(site.whatsappMessage)); %>
+<a class="wa-flottant" href="<%= lienWa %>" aria-label="Nous contacter sur WhatsApp">
   <%- include('whatsapp-icone', { taille: 30 }) %>
 </a>
 
@@ -52,7 +54,7 @@
     <%- include('icones', { icone: 'telephone', taille: 19, stroke: 'currentColor', epais: 2 }) %>
     Appeler
   </a>
-  <a class="bm-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
+  <a class="bm-wa" href="<%= lienWa %>">
     <%- include('whatsapp-icone', { taille: 19 }) %>
     Demander un devis
   </a>

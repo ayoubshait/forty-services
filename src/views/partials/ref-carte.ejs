@@ -1,0 +1,9 @@
+<li class="ref-carte">
+  <% if (client.logo) { %>
+  <span class="ref-zone<%= client.nomDansLogo ? ' ref-zone--libre' : '' %>"><% if (client.logoFond === 'sombre') { %><span class="ref-cartouche"><% } %><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" width="<%= client.logoLargeur %>" height="<%= client.logoHauteurFichier %>" style="--h: <%= client.logoHauteur || 48 %>px"><% if (client.logoFond === 'sombre') { %></span><% } %></span>
+  <<%= niveau %> class="ref-nom<%= client.nomDansLogo ? ' sr-only' : '' %>"><%= client.nom %></<%= niveau %>>
+  <% } else { %>
+  <div class="ref-zone ref-zone--libre"><<%= niveau %> class="ref-wordmark"><%= client.nom %></<%= niveau %>></div>
+  <% } %>
+  <p class="ref-prestations"><span class="sr-only">Prestations : </span><%= client.prestations.join(' · ') %></p>
+</li>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<%- include('partials/tete') %>
+</head>
+<body class="page-service">
+<a class="lien-evitement" href="#contenu">Aller au contenu</a>
+
+<%- include('partials/entete') %>
+
+<main id="contenu">
+
+<!-- ══════════════ EN-TÊTE DE LA PRESTATION ══════════════ -->
+<div class="svc-tete">
+  <div class="conteneur svc-tete-grille">
+    <div class="svc-tete-texte">
+      <div class="fil" role="navigation" aria-label="Fil d'Ariane">
+        <a href="/">Accueil</a>
+        <span aria-hidden="true">›</span>
+        <span aria-current="page"><%= page.nom %></span>
+      </div>
+      <h1><%= page.h1 %></h1>
+      <p class="svc-intro"><%= page.intro %></p>
+      <div class="heros-actions">
+        <a class="btn btn-wa" href="<%= lienDevis %>">
+          <%- include('partials/whatsapp-icone', { taille: 19 }) %>
+          Demander un devis
+        </a>
+        <a class="btn btn-appel-clair" href="tel:<%= site.telephones[0].e164 %>">
+          <%- include('partials/icones', { icone: 'telephone', taille: 18, stroke: 'currentColor', epais: 2 }) %>
+          <%= site.telephones[0].affiche %>
+        </a>
+      </div>
+      <p class="svc-rassure">Devis gratuit sous <%= site.delaiDevis %> après réception des informations nécessaires.</p>
+    </div>
+    <img class="svc-visuel" src="/images/scene-<%= index %>.webp" alt="" width="800" height="600">
+  </div>
+</div>
+
+<!-- ══════════════ SITES CONCERNÉS ══════════════ -->
+<section>
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre"><%= page.nom %></span>
+      <h2><%= page.sitesTitre %></h2>
+    </div>
+    <ul class="svc-cartes">
+      <% page.sites.forEach(function (bloc) { %>
+      <li class="svc-carte">
+        <h3><%= bloc.titre %></h3>
+        <p><%= bloc.texte %></p>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════ PRESTATIONS ══════════════ -->
+<section class="fond-gris">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">La prestation</span>
+      <h2><%= page.prestationsTitre %></h2>
+    </div>
+    <ul class="svc-liste">
+      <% page.prestations.forEach(function (bloc) { %>
+      <li>
+        <%- include('partials/icones', { icone: service.icone, taille: 24, epais: 1.9 }) %>
+        <div>
+          <h3><%= bloc.titre %></h3>
+          <p><%= bloc.texte %></p>
+        </div>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════ ORGANISATION ══════════════ -->
+<section>
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Organisation</span>
+      <h2>De votre demande à l'intervention</h2>
+    </div>
+    <ol class="svc-etapes">
+      <% page.etapes.forEach(function (etape, i) { %>
+      <li><span class="svc-numero" aria-hidden="true"><%= i + 1 %></span><p><%= etape %></p></li>
+      <% }); %>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════ ENGAGEMENTS ══════════════ -->
+<section class="fond-gris">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Nos engagements</span>
+      <h2>Ce sur quoi vous pouvez compter</h2>
+    </div>
+    <div class="grille-engagements grille-engagements--trois">
+      <% engagements.forEach(function (engagement) { %>
+      <div class="engagement">
+        <%- include('partials/icones', { icone: engagement.icone, taille: 27 }) %>
+        <div>
+          <h3><%= engagement.titre %></h3>
+          <p><%= engagement.description %></p>
+        </div>
+      </div>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<% if (references.length) { %>
+<!-- ══════════════ RÉFÉRENCES ══════════════ -->
+<section>
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Références</span>
+      <h2>Ils nous ont confié cette prestation</h2>
+    </div>
+    <ul class="grille-ref-cartes grille-ref-cartes--<%= references.length %>">
+      <% references.forEach(function (client) { %>
+      <%- include('partials/ref-carte', { client: client, niveau: 'h3' }) %>
+      <% }); %>
+    </ul>
+  </div>
+</section>
+<% } %>
+
+<!-- ══════════════ QUESTIONS FRÉQUENTES ══════════════ -->
+<section class="<%= references.length ? 'fond-gris' : '' %>">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Questions fréquentes</span>
+      <h2>Vos questions sur cette prestation</h2>
+    </div>
+    <div class="faq">
+      <% page.faq.forEach(function (item) { %>
+      <details>
+        <summary><%= item.q %></summary>
+        <p><%= item.r %></p>
+      </details>
+      <% }); %>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ CONTACT ══════════════ -->
+<section class="contact" id="contact">
+  <div class="conteneur">
+    <div class="contact-grille">
+      <div>
+        <div class="tete-section">
+          <span class="sur-titre">Contact</span>
+          <h2>Parlons de votre besoin.</h2>
+          <p>À Casablanca et dans les autres villes du Maroc. Décrivez-nous votre site : nous étudions avec vous l'organisation adaptée.</p>
+        </div>
+        <div class="contact-lignes">
+          <div>
+            <%- include('partials/icones', { icone: 'telephone', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">Téléphone</span>
+              <% site.telephones.forEach(function (tel, i) { %><a href="tel:<%= tel.e164 %>"><%= tel.affiche %></a><%= i < site.telephones.length - 1 ? ' · ' : '' %><% }); %>
+            </span>
+          </div>
+          <div>
+            <%- include('partials/icones', { icone: 'email', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">E-mail</span><a href="mailto:<%= site.email %>?subject=<%= encodeURIComponent('Demande de devis : ' + service.titre) %>"><%= site.email %></a></span>
+          </div>
+          <div>
+            <%- include('partials/icones', { icone: 'horloge', taille: 19, epais: 2 }) %>
+            <span><span class="etiquette">Disponibilité et contact</span><%= site.disponibilite %></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panneau-devis">
+        <h3>Devis gratuit sous <%- site.delaiDevis.replace(" ", "&nbsp;") %></h3>
+        <p>Sans engagement. Le délai court dès réception des informations nécessaires.</p>
+        <a class="btn btn-wa-panneau" href="<%= lienDevis %>">
+          <%- include('partials/whatsapp-icone', { taille: 20 }) %>
+          Demander un devis
+        </a>
+        <a class="btn btn-appel" href="tel:<%= site.telephones[0].e164 %>">
+          <%- include('partials/icones', { icone: 'telephone', taille: 18, stroke: 'currentColor', epais: 2 }) %>
+          <%= site.telephones[0].affiche %>
+        </a>
+        <a class="btn btn-contour" href="mailto:<%= site.email %>?subject=<%= encodeURIComponent('Demande de devis : ' + service.titre) %>">
+          <%- include('partials/icones', { icone: 'email', taille: 18, stroke: 'currentColor', epais: 2 }) %>
+          Écrire un e-mail
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ AUTRES PRESTATIONS ══════════════ -->
+<section class="fond-gris">
+  <div class="conteneur">
+    <div class="tete-section">
+      <span class="sur-titre">Nos autres prestations</span>
+      <h2>Découvrez nos autres prestations</h2>
+    </div>
+    <ul class="svc-autres">
+      <% autres.forEach(function (autre) { %>
+      <li>
+        <a href="/<%= autre.slug %>">
+          <%- include('partials/icones', { icone: autre.icone, taille: 24, epais: 1.9 }) %>
+          <span class="svc-autre-texte"><strong><%= autre.visible %></strong><span><%= autre.points.join(' · ') %></span></span>
+          <span class="svc-fleche" aria-hidden="true">→</span>
+        </a>
+      </li>
+      <% }); %>
+    </ul>
+    <p class="svc-retour"><a href="/">Retour à l'accueil</a></p>
+  </div>
+</section>
+
+</main>
+
+<%- include('partials/pied') %>
+
+</body>
+</html>

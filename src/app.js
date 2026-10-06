@@ -26,6 +26,18 @@ app.use((req, res, next) => {
   next();
 });
 
+// Une seule adresse par page : « /page/ » redirige vers « /page » (évite les doublons dans les moteurs de recherche)
+app.use((req, res, next) => {
+  if (req.path.length > 1 && req.path.endsWith('/')) {
+    const suite = req.originalUrl.slice(req.path.length);
+    return res.redirect(301, req.path.replace(/\/+$/, '') + suite);
+  }
+  next();
+});
+
+// Les navigateurs et les robots demandent /favicon.ico : on les envoie vers l'icône du site
+app.get('/favicon.ico', (req, res) => res.redirect(301, '/favicon.svg'));
+
 // Version des fichiers : change à chaque déploiement (empreinte du commit chez Render), ce qui permet un cache long sur les css/js
 entreprise.version = String(process.env.RENDER_GIT_COMMIT || Date.now().toString(36)).slice(0, 12);
 

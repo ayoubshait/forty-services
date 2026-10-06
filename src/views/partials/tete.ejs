@@ -1,75 +1,112 @@
+<%
+  // Métadonnées : celles de la page si elle en fournit (locals.meta), sinon celles de l'accueil
+  var m = locals.meta || {};
+  var estAccueil = !locals.meta;
+  var metaTitre = m.titre || site.seo.titre;
+  var metaDescription = m.description || site.seo.description;
+  var metaUrl = site.url + (m.chemin || '/');
+  var metaImage = site.url + (m.image || '/images/partage-4.jpg');
+  var metaImageAlt = m.imageAlt || (site.nom + ' : gardiennage et nettoyage professionnel au Maroc');
+  var idEntreprise = site.url + '/#entreprise';
+%>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title><%= site.seo.titre %></title>
-<meta name="description" content="<%= site.seo.description %>">
+<title><%= metaTitre %></title>
+<meta name="description" content="<%= metaDescription %>">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="<%= site.url %>/">
+<link rel="canonical" href="<%= metaUrl %>">
 <meta name="theme-color" content="#1B3A6B">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap">
 <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<% if (estAccueil) { %>
 <link rel="preload" href="/images/scene-0.webp" as="image" type="image/webp" fetchpriority="high">
 <link rel="preload" href="/js/scene3d.js?v=<%= site.version %>" as="script" media="(min-width: 921px)">
 <link rel="preload" href="/js/batiment3d.js?v=<%= site.version %>" as="script" media="(min-width: 921px)">
 <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" as="script" media="(min-width: 921px)">
+<% } %>
 <link rel="stylesheet" href="/css/style.css?v=<%= site.version %>">
 <script>
 // Les blocs « revele » ne sont masqués avant animation que si JavaScript tourne ; si le script principal ne démarre pas, tout redevient visible.
 document.documentElement.classList.add('js');
 setTimeout(function () { if (!window.__reveleActif) document.documentElement.classList.remove('js'); }, 4000);
 </script>
-<meta property="og:title" content="<%= site.seo.titre %>">
-<meta property="og:description" content="<%= site.seo.description %>">
+<meta property="og:title" content="<%= metaTitre %>">
+<meta property="og:description" content="<%= metaDescription %>">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="fr_MA">
-<meta property="og:url" content="<%= site.url %>/">
+<meta property="og:url" content="<%= metaUrl %>">
 <meta property="og:site_name" content="<%= site.nom %>">
-<meta property="og:image" content="<%= site.url %>/images/partage-4.jpg">
+<meta property="og:image" content="<%= metaImage %>">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="<%= site.nom %> : gardiennage et nettoyage professionnel au Maroc">
+<meta property="og:image:alt" content="<%= metaImageAlt %>">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="<%= site.seo.titre %>">
-<meta name="twitter:description" content="<%= site.seo.description %>">
-<meta name="twitter:image" content="<%= site.url %>/images/partage-4.jpg">
-<script type="application/ld+json">
-<%- JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "LocalBusiness",
-  "name": site.nom,
-  "url": site.url + "/",
-  "description": site.seo.description,
-  "image": site.url + "/images/partage-4.jpg",
-  "logo": site.url + "/favicon.svg",
-  "telephone": site.telephones[0].e164,
-  "email": site.email,
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Lot. Al Ward, Rue 22, Imm 4, " + site.quartier,
-    "addressLocality": site.ville,
-    "addressCountry": "MA"
-  },
-  "areaServed": { "@type": "Country", "name": "Maroc" },
-  "foundingDate": String(site.anneeCreation),
-  "openingHours": "Mo-Su 00:00-24:00",
-  "founder": { "@type": "Person", "name": site.gerant },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Prestations de " + site.nom,
-    "itemListElement": site.services.map(function (s) {
-      return { "@type": "Offer", "itemOffered": { "@type": "Service", "name": s.titre, "description": s.description } };
-    })
+<meta name="twitter:title" content="<%= metaTitre %>">
+<meta name="twitter:description" content="<%= metaDescription %>">
+<meta name="twitter:image" content="<%= metaImage %>">
+<%
+  // Données structurées. L'entreprise porte un identifiant stable (@id) : chaque prestation s'y rattache.
+  var entreprise = {
+    "@type": "LocalBusiness",
+    "@id": idEntreprise,
+    "name": site.nom,
+    "url": site.url + "/",
+    "description": site.seo.description,
+    "image": site.url + "/images/partage-4.jpg",
+    "logo": site.url + "/favicon.svg",
+    "telephone": site.telephones[0].e164,
+    "email": site.email,
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Lot. Al Ward, Rue 22, Imm 4, " + site.quartier,
+      "addressLocality": site.ville,
+      "addressCountry": "MA"
+    },
+    "areaServed": { "@type": "Country", "name": "Maroc" },
+    "foundingDate": String(site.anneeCreation),
+    "openingHours": "Mo-Su 00:00-24:00",
+    "founder": { "@type": "Person", "name": site.gerant },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Prestations de " + site.nom,
+      "itemListElement": site.services.map(function (s) {
+        return { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": site.url + "/" + s.slug + "#service", "name": s.titre, "description": s.courte, "url": site.url + "/" + s.slug } };
+      })
+    }
+  };
+  var graphe = [entreprise];
+  var questions = estAccueil ? site.faq : (m.faq || []);
+  if (m.service) {
+    graphe.push({
+      "@type": "Service",
+      "@id": metaUrl + "#service",
+      "name": m.service.nom,
+      "serviceType": m.service.nom,
+      "description": m.service.description,
+      "url": metaUrl,
+      "provider": { "@id": idEntreprise },
+      "areaServed": { "@type": "Country", "name": "Maroc" }
+    });
+    graphe.push({
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Accueil", "item": site.url + "/" },
+        { "@type": "ListItem", "position": 2, "name": m.service.nom, "item": metaUrl }
+      ]
+    });
   }
-}, null, 2) %>
-</script>
+  if (questions.length) {
+    graphe.push({
+      "@type": "FAQPage",
+      "mainEntity": questions.map(function (f) {
+        return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.r } };
+      })
+    });
+  }
+%>
 <script type="application/ld+json">
-<%- JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": site.faq.map(function (f) {
-    return { "@type": "Question", "name": f.q, "acceptedAnswer": { "@type": "Answer", "text": f.r } };
-  })
-}) %>
+<%- JSON.stringify({ "@context": "https://schema.org", "@graph": graphe }, null, 2) %>
 </script>

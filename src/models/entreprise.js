@@ -18,7 +18,7 @@ module.exports = {
   // Présentation factuelle de l'entreprise (utilisée dans la section équipe)
   presentation: [
     "Depuis 2013, Forty Services accompagne les professionnels à Casablanca et dans d'autres villes du Maroc dans la surveillance, le gardiennage et la propreté de leurs locaux.",
-    "Basée à Sidi Moumen, à Casablanca, l'entreprise est dirigée par Mustapha Shait, qui compte 26 ans d'expérience en surveillance."
+    "Basée à Sidi Moumen, à Casablanca, l'entreprise est dirigée par Mustapha SHAIT, qui compte 26 ans d'expérience en surveillance."
   ],
 
   // Informations légales (affichées dans le pied de page seulement si elles sont renseignées)
@@ -99,9 +99,9 @@ module.exports = {
   // Sans logo, seul le nom du client s'affiche.
   // Attention : on indique les prestations réalisées, sans préciser si le contrat est en cours (à ne pas affirmer sans confirmation).
   referencesPhares: [
-    { nom: 'Consulat de la République de Slovénie', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair', logoHauteur: 40 },
-    { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith-mauve.svg', logoFond: 'clair', logoHauteur: 68, nomDansLogo: true },
-    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance'], logo: '/images/clients/melliber.png', logoFond: 'sombre', logoHauteur: 48 },
+    { nom: 'Consulat de la République de Slovénie', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair', logoHauteur: 40, logoLargeur: 199, logoHauteurFichier: 49 },
+    { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith-mauve.svg', logoFond: 'clair', logoHauteur: 68, nomDansLogo: true, logoLargeur: 230, logoHauteurFichier: 120 },
+    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance'], logo: '/images/clients/melliber.png', logoFond: 'sombre', logoHauteur: 48, logoLargeur: 300, logoHauteurFichier: 234 },
     { nom: 'DNA Maroc', prestations: ['Surveillance', 'Gardiennage'] }
   ],
   // Autres références (liste compacte) : ne pas y répéter les clients ci-dessus
@@ -124,6 +124,7 @@ module.exports = {
   services: [
     {
       titre: 'Surveillance de sites',
+      slug: 'surveillance',   // adresse de la page dédiée : /surveillance
       court: 'Surveillance',
       visible: 'Surveillance de sites',
       points: ["Contrôle des accès", "Rondes", "Sites, commerces, événements"],
@@ -133,6 +134,7 @@ module.exports = {
     },
     {
       titre: 'Gardiennage de locaux et de chantiers',
+      slug: 'gardiennage',   // adresse de la page dédiée : /gardiennage
       court: 'Gardiennage',
       visible: 'Gardiennage',
       points: ["Locaux, entrepôts, chantiers", "Ponctuel ou régulier", "Comptes rendus d'intervention"],
@@ -142,6 +144,7 @@ module.exports = {
     },
     {
       titre: 'Nettoyage professionnel de bureaux et de locaux',
+      slug: 'nettoyage-locaux',   // adresse de la page dédiée : /nettoyage-locaux
       court: 'Nettoyage de locaux',
       visible: 'Nettoyage de locaux',
       points: ["Bureaux, commerces, parties communes", "Passages planifiés", "Produits adaptés"],
@@ -151,6 +154,7 @@ module.exports = {
     },
     {
       titre: 'Nettoyage de fin de chantier',
+      slug: 'nettoyage-fin-chantier',   // adresse de la page dédiée : /nettoyage-fin-chantier
       court: 'Fin de chantier',
       visible: 'Nettoyage de fin de chantier',
       points: ["Dépoussiérage", "Vitres, sols, surfaces", "Avant la livraison"],

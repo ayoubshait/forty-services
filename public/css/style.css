@@ -590,6 +590,9 @@ section { padding: 84px 0; }
   transition: color 0.15s ease;
 }
 .carte .lien-wa svg { color: var(--vert-wa); }
+/* Lien secondaire vers la page de la prestation */
+.carte .lien-page { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 0.9rem; font-weight: 600; color: var(--gris-doux); text-decoration: none; }
+.carte .lien-page:hover { color: var(--marine); text-decoration: underline; text-underline-offset: 3px; }
 .carte .lien-wa:hover { color: var(--vert-wa); text-decoration: underline; text-underline-offset: 3px; }
 
 /* ---------- Équipe ---------- */
@@ -1190,3 +1193,80 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
   .haut-page { right: 14px; bottom: calc(58px + 14px + env(safe-area-inset-bottom, 0px)); width: 46px; height: 46px; }   /* au-dessus de la barre fixe */
 }
 @media (prefers-reduced-motion: reduce) { .haut-page { transition: none; } }
+
+/* ═══════════════════════════════════════════════════════
+   Pages de services
+   ═══════════════════════════════════════════════════════ */
+.svc-tete {
+  background-color: var(--marine);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    radial-gradient(ellipse 60% 90% at 88% 10%, rgba(41, 168, 223, 0.22), transparent 65%);
+  background-size: 56px 56px, 56px 56px, auto;
+  color: var(--blanc);
+  padding: 44px 0 56px;
+}
+.svc-tete-grille { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+.fil { display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.9rem; color: var(--bleu-clair); margin-bottom: 18px; }
+.fil a { color: var(--bleu-clair); text-decoration: none; border-bottom: 1px solid rgba(201, 214, 232, 0.45); }
+.fil a:hover { color: var(--blanc); }
+.fil [aria-current] { color: var(--blanc); font-weight: 600; }
+.svc-tete h1 { color: var(--blanc); font-size: clamp(1.9rem, 3.8vw, 2.9rem); }
+.svc-intro { margin-top: 18px; font-size: 1.08rem; line-height: 1.6; color: #E4ECF7; max-width: 560px; }
+.svc-tete .heros-actions { margin-top: 26px; }
+.svc-rassure { margin-top: 16px; font-size: 0.92rem; color: var(--bleu-clair); }
+.svc-visuel { width: 100%; height: auto; display: block; max-width: 520px; justify-self: center; }
+
+.svc-cartes { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+.svc-carte { background: var(--blanc); border: 1px solid var(--bordure); border-radius: var(--radius); padding: 24px 22px; border-top: 3px solid var(--cyan); }
+.svc-carte h3 { margin-bottom: 8px; }
+.svc-carte p { font-size: 0.97rem; color: var(--gris-doux); }
+
+.svc-liste { list-style: none; display: grid; gap: 14px; margin-top: 40px; max-width: 860px; }
+.svc-liste li { display: flex; gap: 16px; align-items: flex-start; background: var(--blanc); border: 1px solid var(--bordure); border-radius: var(--radius); padding: 20px 22px; }
+.svc-liste svg { flex-shrink: 0; margin-top: 3px; }
+.svc-liste h3 { font-size: 1.06rem; margin-bottom: 4px; }
+.svc-liste p { font-size: 0.97rem; color: var(--gris-doux); }
+
+.svc-etapes { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 40px; }
+.svc-etapes li { position: relative; padding-top: 4px; }
+.svc-numero { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; background: var(--marine); color: var(--blanc); font-family: var(--police-titre); font-weight: 800; margin-bottom: 14px; }
+.svc-etapes p { font-size: 0.97rem; color: var(--gris-texte); }
+
+.grille-engagements--trois { grid-template-columns: repeat(3, 1fr); }
+.grille-ref-cartes--1 { grid-template-columns: minmax(0, 300px); }
+.grille-ref-cartes--2 { grid-template-columns: repeat(2, minmax(0, 300px)); }
+.grille-ref-cartes--3 { grid-template-columns: repeat(3, minmax(0, 300px)); }
+
+.svc-autres { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 36px; }
+.svc-autres a { display: flex; align-items: flex-start; gap: 14px; height: 100%; background: var(--blanc); border: 1px solid var(--bordure); border-radius: var(--radius); padding: 20px; text-decoration: none; color: var(--gris-doux); transition: border-color 0.18s ease; }
+.svc-autres a:hover { border-color: var(--cyan); }
+.svc-autres svg { flex-shrink: 0; margin-top: 2px; }
+.svc-autre-texte { display: flex; flex-direction: column; gap: 4px; flex: 1; font-size: 0.92rem; line-height: 1.4; }
+.svc-autre-texte strong { color: var(--marine); font-family: var(--police-titre); font-size: 1.05rem; }
+.svc-fleche { color: var(--cyan); font-weight: 700; }
+.svc-retour { margin-top: 26px; }
+.svc-retour a { color: var(--marine); font-weight: 700; }
+
+@media (max-width: 920px) {
+  .svc-tete-grille { grid-template-columns: 1fr; gap: 24px; }
+  .svc-visuel { max-width: 360px; order: -1; }
+  .svc-cartes, .svc-autres, .grille-engagements--trois { grid-template-columns: 1fr; }
+  .svc-etapes { grid-template-columns: repeat(2, 1fr); }
+  .grille-ref-cartes--3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .svc-tete { padding: 26px 0 36px; }
+  .svc-visuel { max-width: 250px; }
+  .svc-intro { font-size: 1rem; }
+  .svc-cartes, .svc-liste, .svc-etapes, .svc-autres { margin-top: 26px; }
+  .svc-etapes { grid-template-columns: 1fr; gap: 16px; }
+  .svc-etapes li { display: flex; gap: 14px; align-items: flex-start; }
+  .svc-numero { flex-shrink: 0; margin-bottom: 0; width: 36px; height: 36px; }
+  .svc-liste li { padding: 16px; }
+  .grille-ref-cartes--2, .grille-ref-cartes--3 { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 359px) {
+  .grille-ref-cartes--2, .grille-ref-cartes--3 { grid-template-columns: 1fr; }
+}

@@ -113,6 +113,7 @@
           <%- include('partials/whatsapp-icone', { taille: 15, fill: 'currentColor' }) %>
           Demander un devis
         </a>
+        <a class="lien-page" href="/<%= service.slug %>">Découvrir la prestation <span aria-hidden="true">→</span><span class="sr-only"> : <%= service.titre %></span></a>
       </article>
       <% }); %>
     </div>
@@ -123,7 +124,7 @@
 <section id="equipe" class="fond-gris">
   <div class="conteneur equipe-grille">
     <figure class="equipe-photo revele">
-      <img src="<%= site.photos.equipe.src %>" alt="<%= site.photos.equipe.alt %>" loading="lazy">
+      <img src="<%= site.photos.equipe.src %>" alt="<%= site.photos.equipe.alt %>" width="930" height="1691" loading="lazy">
     </figure>
     <div class="equipe-texte">
       <span class="sur-titre">Notre équipe</span>
@@ -178,15 +179,7 @@
 
     <ul class="grille-ref-cartes">
       <% site.referencesPhares.forEach(function (client) { %>
-      <li class="ref-carte">
-        <% if (client.logo) { %>
-        <span class="ref-zone<%= client.nomDansLogo ? ' ref-zone--libre' : '' %>"><% if (client.logoFond === 'sombre') { %><span class="ref-cartouche"><% } %><img src="<%= client.logo %>" alt="Logo <%= client.nom %>" style="--h: <%= client.logoHauteur || 48 %>px"><% if (client.logoFond === 'sombre') { %></span><% } %></span>
-        <h3 class="ref-nom<%= client.nomDansLogo ? ' sr-only' : '' %>"><%= client.nom %></h3>
-        <% } else { %>
-        <div class="ref-zone ref-zone--libre"><h3 class="ref-wordmark"><%= client.nom %></h3></div>
-        <% } %>
-        <p class="ref-prestations"><span class="sr-only">Prestations : </span><%= client.prestations.join(' · ') %></p>
-      </li>
+      <%- include('partials/ref-carte', { client: client, niveau: 'h3' }) %>
       <% }); %>
     </ul>
 

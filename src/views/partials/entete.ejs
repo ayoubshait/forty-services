@@ -1,15 +1,16 @@
+<% var base = locals.base || ''; %>
 <header>
   <div class="conteneur barre">
-    <a class="logo" href="#accueil" aria-label="<%= site.nom %> : retour à l'accueil">
+    <a class="logo" href="<%= base ? '/' : '#accueil' %>" aria-label="<%= site.nom %> : retour à l'accueil">
       <%- include('marque', { largeur: 28, couleurTrait: '#FFFFFF' }) %>
       <span class="logo-texte">FORTY<br><span>SERVICES</span></span>
     </a>
     <nav id="menu" aria-label="Navigation principale">
-      <a href="#services">Services</a>
-      <a href="#engagements">Engagements</a>
-      <a href="#references">Références</a>
-      <a href="#deroulement">Processus</a>
-      <a href="#contact">Contact</a>
+      <a href="<%= base %>#services">Services</a>
+      <a href="<%= base %>#engagements">Engagements</a>
+      <a href="<%= base %>#references">Références</a>
+      <a href="<%= base %>#deroulement">Processus</a>
+      <a href="<%= base %>#contact">Contact</a>
       <a class="nav-appel" href="tel:<%= site.telephones[0].e164 %>">Appeler&nbsp;: <%= site.telephones[0].affiche %></a>
     </nav>
     <a class="btn btn-appel-clair" href="tel:<%= site.telephones[0].e164 %>">
