@@ -7,7 +7,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "build:statique": "node scripts/build-statique.js",
+    "apercu:statique": "node scripts/apercu-statique.js",
+    "test:statique": "node scripts/test-statique.js"
   },
   "engines": {
     "node": ">=18"
