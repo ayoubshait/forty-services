@@ -56,6 +56,20 @@ Les règles de réécriture ne sont peut-être pas nécessaires (certains héber
 
 Source de ces deux tableaux : `scripts/regles-statique.js`.
 
+### Protection de la prévisualisation contre l'indexation
+
+Uniquement dans le tableau de bord du site statique (rien dans le dépôt, donc aucun effet sur le domaine officiel ni sur `robots.txt`) :
+
+| Path | Name | Value |
+|---|---|---|
+| `/` | `X-Robots-Tag` | `noindex, nofollow` |
+| `/*` | `X-Robots-Tag` | `noindex, nofollow` |
+| `/**/*` | `X-Robots-Tag` | `noindex, nofollow` |
+
+`robots.txt` reste celui du dépôt (`Allow: /`) : le test à froid reste donc possible. Les balises canoniques pointent déjà vers `https://fortyservices.ma`.
+
+**Ces trois lignes doivent être supprimées avant d'attacher le domaine officiel au site statique**, sinon le site officiel serait désindexé.
+
 ## À vérifier sur la prévisualisation Render (non vérifiable en local)
 
 1. `/surveillance` répond 200 (avec ou sans règle de réécriture) et `/surveillance/` renvoie vers `/surveillance`.
@@ -64,10 +78,39 @@ Source de ces deux tableaux : `scripts/regles-statique.js`.
 4. `/robots.txt` reste celui du dépôt après plus de 15 minutes sans visite.
 5. `/surveillance.html` : servi en double ou non (la balise canonique pointe de toute façon vers l'adresse propre).
 
-## Migration (plus tard, sur accord)
+## Migration (plus tard, sur accord explicite)
 
-1. Fusionner la branche dans `main` et régler le site statique sur `main`.
-2. Dans Render : retirer `fortyservices.ma` et `www.fortyservices.ma` du service web, les ajouter au site statique.
-3. DNS : l'enregistrement A de `fortyservices.ma` (216.24.57.1) est l'adresse générale de Render ; le CNAME de `www` pointe aujourd'hui vers `forty-services.onrender.com` et devra pointer vers le nom du site statique. Suivre les valeurs affichées par Render au moment de l'ajout.
-4. Garder le service web actuel (il continue de rediriger l'ancienne adresse onrender vers le domaine) jusqu'à vérification complète.
-5. Retour arrière : remettre les domaines sur le service web.
+Chez Render, un domaine personnalisé n'appartient qu'à un seul service à la fois, et c'est Render qui choisit le service selon le domaine demandé. Modifier le DNS seul ne suffit donc pas : il faut déplacer le domaine d'un service à l'autre dans le tableau de bord.
+
+### Avant
+
+1. Tous les points de la prévisualisation sont conformes.
+2. Fusionner `statique/pre-rendu` dans `main` ; régler la branche du site statique sur `main` ; attendre la fin de la génération.
+3. Supprimer les trois en-têtes `X-Robots-Tag` du site statique, puis vérifier sur son adresse onrender qu'ils ont disparu.
+4. Noter les valeurs DNS actuelles : A `fortyservices.ma` = `216.24.57.1` ; CNAME `www` = `forty-services.onrender.com`.
+5. La veille, si le gestionnaire DNS le permet, abaisser la durée de vie (TTL) du CNAME `www` à 300 secondes.
+6. Choisir une heure creuse : le site est indisponible entre les étapes 1 et 3 ci-dessous (quelques minutes si tout s'enchaîne).
+
+### Bascule
+
+1. Service web actuel > Settings > Custom Domains : supprimer `fortyservices.ma` et `www.fortyservices.ma`. Ne pas supprimer ni suspendre le service.
+2. Site statique > Settings > Custom Domains : ajouter `fortyservices.ma` (Render ajoute `www` avec lui).
+3. DNS : appliquer exactement ce que Render affiche. Attendu : l'enregistrement A de `fortyservices.ma` reste `216.24.57.1` ; le CNAME `www` passe à `<nom-du-site-statique>.onrender.com`.
+4. Cliquer sur « Verify » pour chaque domaine et attendre « Certificate Issued » : Render émet lui-même le certificat HTTPS (Let's Encrypt ou Google Trust Services), gratuitement. Tant que le certificat n'est pas émis, le navigateur affiche une alerte de sécurité.
+
+### Contrôles après bascule
+
+- `https://fortyservices.ma/` et les six autres pages : 200, cadenas valide.
+- `http://fortyservices.ma` renvoie vers `https://` ; `www` renvoie vers le domaine sans `www`.
+- Aucun en-tête `X-Robots-Tag` sur le domaine officiel ; `/carte` garde sa propre balise `noindex`, comme aujourd'hui.
+- `/robots.txt` (Allow), `/sitemap.xml`, `.pkpass` et `.vcf` avec leurs types, une adresse inconnue en 404.
+- Search Console : nouvelle exploration de `robots.txt`, puis inspection d'une page.
+
+### Retour arrière
+
+1. Site statique > Custom Domains : supprimer les deux domaines.
+2. Service web > Custom Domains : les rajouter, « Verify », attendre le certificat.
+3. DNS : remettre le CNAME `www` sur `forty-services.onrender.com` (A inchangé).
+4. Le code du service web n'a pas été modifié : il repart tel quel. La sauvegarde `sauvegarde-2026-10-07-avant-seo` reste disponible.
+
+Garder le service web au moins deux semaines après la bascule : il sert de retour arrière et continue de renvoyer l'ancienne adresse `forty-services.onrender.com` vers le domaine.
