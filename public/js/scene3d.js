@@ -392,57 +392,29 @@
     camera2 = new THREE.PerspectiveCamera(40, 1, 0.1, 50);
     camera2.position.set(0, 0.15, PETIT ? 4.9 : 5.7);
     eclairer(scene2);
-    // Normalisation : chaque modèle est rendu, sa silhouette réelle est mesurée en pixels (sur plusieurs instants de l'animation),
-    // puis il est mis à la même taille apparente et centré. Les quatre icônes ont ainsi le même poids visuel dans leur cadre.
-    var tanMoitie = Math.tan(THREE.MathUtils.degToRad(camera2.fov / 2));
-    var zProche = camera2.position.z, zLoin = zProche * 1.8;                 // mesure à distance : aucun modèle n'est rogné
-    var CIBLE = 2 * zProche * tanMoitie * 0.7;                               // taille moyenne visée, en unités du monde
-    var tmp = document.createElement('canvas'); tmp.width = tmp.height = T;
-    var ctxTmp = tmp.getContext('2d');
+    // Normalisation : chaque modèle est mis à la même taille apparente et centré, pour que les quatre icônes aient le même poids visuel.
+    // [échelle, décalage x, décalage y] par modèle, relevés une fois pour toutes (téléphone, puis ordinateur). Les mesurer à chaque visite
+    // demandait 24 rendus avec relecture des pixels : plusieurs secondes de calcul sur un téléphone modeste.
+    // Après modification d'un modèle : ouvrir la page avec « ?mesure3d » dans l'adresse et reporter ici window.F3D.normes.
+    var NORMES = PETIT
+      ? [[0.8323, 0.0239, 0.3340], [0.6305, 0.0090, 0.0904], [0.6779, -0.3400, 0.1069], [0.6049, -0.0433, 0.2861]]
+      : [[0.9804, 0.0183, 0.3844], [0.7326, 0.0137, 0.0958], [0.8102, -0.4387, 0.1361], [0.7060, -0.0527, 0.3164]];
+    var REMESURER = /[?&]mesure3d(?:[&=]|$)/.test(location.search);
     modeles2 = construire();
-    modeles2.forEach(function (m) {
+    modeles2.forEach(function (m, i) {
       m.pivot = new THREE.Group();
       m.pivot.add(m.g);
       m.pivot.visible = false;
       m.cadre = new THREE.Group();
       m.cadre.add(m.pivot);
+      if (!REMESURER) {
+        m.cadre.scale.setScalar(NORMES[i][0]);
+        m.cadre.position.set(NORMES[i][1], NORMES[i][2], 0);
+      }
       scene2.add(m.cadre);
     });
-    camera2.position.z = zLoin;
-    var unite = 2 * zLoin * tanMoitie / T;                                   // unités du monde par pixel, à distance
-
-    function mesurer(m) {
-      m.pivot.visible = true;
-      var x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1, sommeMax = 0, nb = 0;
-      [0, 1.5, 3, 4.5, 6, 7.5].forEach(function (t) {
-        m.anim(t);
-        rendu2.render(scene2, camera2);
-        ctxTmp.clearRect(0, 0, T, T);
-        ctxTmp.drawImage(rendu2.domElement, 0, 0, T, T);
-        var px = ctxTmp.getImageData(0, 0, T, T).data;
-        var a0 = 1e9, b0 = 1e9, a1 = -1, b1 = -1;
-        for (var y = 0; y < T; y++) {
-          for (var x = 0; x < T; x++) {
-            if (px[(y * T + x) * 4 + 3] > 40) {
-              if (x < a0) a0 = x; if (x > a1) a1 = x; if (y < b0) b0 = y; if (y > b1) b1 = y;
-            }
-          }
-        }
-        if (a1 < 0) return;
-        sommeMax += Math.max(a1 - a0 + 1, b1 - b0 + 1); nb++;                 // taille à cet instant
-        if (a0 < x0) x0 = a0; if (a1 > x1) x1 = a1; if (b0 < y0) y0 = b0; if (b1 > y1) y1 = b1;   // enveloppe de tout le mouvement
-      });
-      m.pivot.visible = false;
-      if (x1 < 0) return;
-      var maxi = (sommeMax / nb) * unite;                                      // taille moyenne (et non maximale)
-      var k = CIBLE / maxi;
-      var dx = ((x0 + x1) / 2 - T / 2) * unite, dy = -((y0 + y1) / 2 - T / 2) * unite;
-      m.cadre.scale.setScalar(k);
-      m.cadre.position.set(-dx * k, -dy * k, 0);
-    }
 
     function terminer() {
-      camera2.position.z = zProche;
       cartes.forEach(function (carte, i) {
         var tete = carte.querySelector('.carte-tete');
         if (!tete) return;
@@ -469,12 +441,60 @@
       pret2 = true;
     }
 
-    // une mesure par tâche : la page reste fluide pendant ce travail
-    var suite = 0;
-    (function etape() {
-      if (suite >= modeles2.length) { terminer(); return; }
-      mesurer(modeles2[suite++]);
-      setTimeout(etape, 0);
+    if (!REMESURER) { terminer(); return; }
+
+    // ── Relevé des constantes (développement uniquement, avec « ?mesure3d ») ──
+    // Chaque modèle est rendu, sa silhouette réelle est mesurée en pixels sur plusieurs instants de l'animation.
+    (function relever() {
+      var tanMoitie = Math.tan(THREE.MathUtils.degToRad(camera2.fov / 2));
+      var zProche = camera2.position.z, zLoin = zProche * 1.8;               // mesure à distance : aucun modèle n'est rogné
+      var CIBLE = 2 * zProche * tanMoitie * 0.7;                             // taille moyenne visée, en unités du monde
+      var tmp = document.createElement('canvas'); tmp.width = tmp.height = T;
+      var ctxTmp = tmp.getContext('2d');
+      camera2.position.z = zLoin;
+      var unite = 2 * zLoin * tanMoitie / T;                                 // unités du monde par pixel, à distance
+
+      function mesurer(m) {
+        m.pivot.visible = true;
+        var x0 = 1e9, y0 = 1e9, x1 = -1, y1 = -1, sommeMax = 0, nb = 0;
+        [0, 1.5, 3, 4.5, 6, 7.5].forEach(function (t) {
+          m.anim(t);
+          rendu2.render(scene2, camera2);
+          ctxTmp.clearRect(0, 0, T, T);
+          ctxTmp.drawImage(rendu2.domElement, 0, 0, T, T);
+          var px = ctxTmp.getImageData(0, 0, T, T).data;
+          var a0 = 1e9, b0 = 1e9, a1 = -1, b1 = -1;
+          for (var y = 0; y < T; y++) {
+            for (var x = 0; x < T; x++) {
+              if (px[(y * T + x) * 4 + 3] > 40) {
+                if (x < a0) a0 = x; if (x > a1) a1 = x; if (y < b0) b0 = y; if (y > b1) b1 = y;
+              }
+            }
+          }
+          if (a1 < 0) return;
+          sommeMax += Math.max(a1 - a0 + 1, b1 - b0 + 1); nb++;                 // taille à cet instant
+          if (a0 < x0) x0 = a0; if (a1 > x1) x1 = a1; if (b0 < y0) y0 = b0; if (b1 > y1) y1 = b1;   // enveloppe de tout le mouvement
+        });
+        m.pivot.visible = false;
+        if (x1 < 0) return;
+        var maxi = (sommeMax / nb) * unite;                                      // taille moyenne (et non maximale)
+        var k = CIBLE / maxi;
+        var dx = ((x0 + x1) / 2 - T / 2) * unite, dy = -((y0 + y1) / 2 - T / 2) * unite;
+        m.cadre.scale.setScalar(k);
+        m.cadre.position.set(-dx * k, -dy * k, 0);
+      }
+
+      var suite = 0;
+      (function etape() {
+        if (suite >= modeles2.length) {
+          camera2.position.z = zProche;
+          window.F3D.normes = modeles2.map(function (m) { return [m.cadre.scale.x, m.cadre.position.x, m.cadre.position.y].map(function (n) { return +n.toFixed(4); }); });
+          terminer();
+          return;
+        }
+        mesurer(modeles2[suite++]);
+        setTimeout(etape, 0);
+      })();
     })();
   }
 

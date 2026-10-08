@@ -10,6 +10,8 @@ Branche : `statique/pre-rendu` (non publiée). Rien n'est changé sur `main`, su
 - Les en-têtes `X-Robots-Tag` de prévisualisation ont été supprimés avant la bascule.
 - L'ancien service web `forty-services` (offre Free) est conservé, sans domaine : il sert de retour arrière et redirige `forty-services.onrender.com` vers le domaine.
 - Différence connue : `/page/` (barre finale) répond 200 au lieu de rediriger ; la balise canonique désigne l'adresse sans barre.
+  **Ne pas ajouter de règle de redirection pour la barre finale** : Render ignore la barre finale en comparant les adresses, la règle `/page/` vers `/page` s'applique donc aussi à `/page` et crée une boucle (constaté le 8 octobre sur les mentions légales, règle retirée).
+- En-têtes de cache ajoutés le 8 octobre : `/css/*` et `/js/*` en `public, max-age=31536000, immutable` (les adresses portent le numéro de version).
 
 ## Principe
 

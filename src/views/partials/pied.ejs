@@ -9,7 +9,7 @@
         <p>Depuis <%= site.anneeCreation %> : gardiennage, surveillance et nettoyage professionnel au Maroc.</p>
       </div>
       <div>
-        <h4>Services</h4>
+        <p class="pied-titre">Services</p>
         <ul>
           <% site.services.forEach(function (service) { %>
           <li><a href="/<%= service.slug %>"><%= service.titre %></a></li>
@@ -17,7 +17,7 @@
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <p class="pied-titre">Contact</p>
         <ul>
           <% site.telephones.forEach(function (tel) { %>
           <li><a href="tel:<%= tel.e164 %>"><%= tel.affiche %></a></li>

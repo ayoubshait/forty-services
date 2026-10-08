@@ -87,7 +87,10 @@ module.exports = {
   // Photos (fichiers dans public/images/)
   photos: {
     equipe: {
-      src: '/images/equipe.webp',
+      src: '/images/equipe-720.webp',                                    // versions allégées de equipe.webp (original conservé)
+      srcset: '/images/equipe-480.webp 480w, /images/equipe-720.webp 720w, /images/equipe-930.webp 930w',
+      sizes: '(max-width: 700px) calc(100vw - 40px), 480px',
+      largeur: 720, hauteur: 1309,
       alt: "L'équipe Forty Services devant un site client"
     }
   },
@@ -99,9 +102,9 @@ module.exports = {
   // Sans logo, seul le nom du client s'affiche.
   // Attention : on indique les prestations réalisées, sans préciser si le contrat est en cours (à ne pas affirmer sans confirmation).
   referencesPhares: [
-    { nom: 'Consulat de la République de Slovénie', prestations: ['Surveillance'], logo: '/images/clients/slovenie.png', logoFond: 'clair', logoHauteur: 40, logoLargeur: 199, logoHauteurFichier: 49 },
+    { nom: 'Consulat de la République de Slovénie', prestations: ['Surveillance'], logo: '/images/clients/slovenie.webp', logoFond: 'clair', logoHauteur: 40, logoLargeur: 199, logoHauteurFichier: 49 },
     { nom: 'AMITH', prestations: ['Nettoyage', 'Gardiennage'], logo: '/images/clients/amith-mauve.svg', logoFond: 'clair', logoHauteur: 68, nomDansLogo: true, logoLargeur: 230, logoHauteurFichier: 120 },
-    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance'], logo: '/images/clients/melliber.png', logoFond: 'sombre', logoHauteur: 48, logoLargeur: 300, logoHauteurFichier: 234 },
+    { nom: 'Melliber Appart Hôtel', prestations: ['Surveillance'], logo: '/images/clients/melliber.webp', logoFond: 'sombre', logoHauteur: 48, logoLargeur: 185, logoHauteurFichier: 144 },
     { nom: 'DNA Maroc', prestations: ['Surveillance', 'Gardiennage'] }
   ],
   // Autres références (liste compacte) : ne pas y répéter les clients ci-dessus

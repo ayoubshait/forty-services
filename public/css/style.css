@@ -7,6 +7,7 @@
   --marine: #1B3A6B;
   --marine-fonce: #142D54;
   --cyan: #29A8DF;
+  --cyan-texte: #17759F;   /* cyan assombri pour le petit texte sur fond clair : contraste 5,1:1 sur blanc, 4,8:1 sur gris */
   --blanc: #FFFFFF;
   --gris-fond: #F4F7FA;
   --gris-texte: #33404F;
@@ -478,7 +479,7 @@ section { padding: 84px 0; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  color: var(--cyan);
+  color: var(--cyan-texte);
   font-weight: 700;
   font-size: 0.85rem;
   letter-spacing: 2px;
@@ -826,6 +827,7 @@ section { padding: 84px 0; }
   border: 60px solid rgba(41, 168, 223, 0.07);
   pointer-events: none;
 }
+.contact .sur-titre { color: #4FBBEA; }                     /* cyan éclairci sur fond marine : contraste 5,2:1 (le cyan d'origine : 4,2:1) */
 .contact .sur-titre::before { background: var(--cyan); }
 .contact h2 { color: var(--blanc); }
 .contact .tete-section p { color: var(--bleu-clair); }
@@ -868,7 +870,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
   gap: 40px;
   padding: 52px 0 40px;
 }
-.pied-haut h4 { color: var(--blanc); font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
+.pied-haut .pied-titre { color: var(--blanc); font-weight: 700; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 16px; }
 .pied-haut ul { list-style: none; display: grid; gap: 9px; }
 .pied-haut a { color: #D3DEEE; text-decoration: none; }
 .pied-haut a:hover { color: var(--blanc); }
