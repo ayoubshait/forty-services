@@ -8,6 +8,7 @@
 module.exports = [
   {
     slug: 'surveillance',
+    faqTitre: 'Vos questions sur la surveillance de sites',
     nom: 'Surveillance de sites',
     h1: 'Surveillance de sites professionnels au Maroc',
     seoTitre: 'Surveillance de sites professionnels au Maroc | Forty Services',
@@ -37,10 +38,11 @@ module.exports = [
   },
   {
     slug: 'gardiennage',
+    faqTitre: 'Vos questions sur le gardiennage',
     nom: 'Gardiennage',
     h1: 'Gardiennage de locaux et de chantiers au Maroc',
     seoTitre: 'Gardiennage de locaux et de chantiers au Maroc | Forty Services',
-    seoDescription: "Une présence ponctuelle ou régulière sur vos bâtiments, entrepôts et chantiers, avec des comptes rendus d'intervention. Devis gratuit sous 24 h.",
+    seoDescription: "Gardiennage de locaux, entrepôts et chantiers à Casablanca et dans les autres villes du Maroc. Présence ponctuelle ou régulière. Devis gratuit sous 24 h.",
     intro: "Organisez une présence sur vos locaux, entrepôts et chantiers, ponctuellement ou dans la durée. La prestation tient compte de vos contraintes et comprend des comptes rendus d'intervention.",
     sitesTitre: 'Pour quels lieux ?',
     sites: ['Bâtiments et locaux professionnels', 'Entrepôts et espaces de stockage', 'Chantiers'],
@@ -66,10 +68,11 @@ module.exports = [
   },
   {
     slug: 'nettoyage-locaux',
+    faqTitre: 'Vos questions sur le nettoyage de locaux',
     nom: 'Nettoyage de locaux',
     h1: 'Nettoyage professionnel de bureaux et de locaux au Maroc',
     seoTitre: 'Nettoyage de bureaux et de locaux au Maroc | Forty Services',
-    seoDescription: "Des passages planifiés pour entretenir vos bureaux, commerces et parties communes, avec des produits adaptés. Demandez un devis gratuit.",
+    seoDescription: "Nettoyage de bureaux, commerces et parties communes à Casablanca et dans les autres villes du Maroc. Passages planifiés. Devis gratuit sous 24 h.",
     intro: "Des locaux propres comptent pour vos équipes comme pour vos visiteurs. Nous entretenons vos bureaux et vos locaux par des passages planifiés selon vos besoins.",
     sitesTitre: 'Pour quels locaux ?',
     sites: ['Bureaux', 'Commerces', 'Parties communes'],
@@ -95,10 +98,11 @@ module.exports = [
   },
   {
     slug: 'nettoyage-fin-chantier',
+    faqTitre: 'Vos questions sur le nettoyage de fin de chantier',
     nom: 'Nettoyage de fin de chantier',
     h1: 'Nettoyage de fin de chantier au Maroc',
     seoTitre: 'Nettoyage de fin de chantier au Maroc | Forty Services',
-    seoDescription: "Dépoussiérage, vitres, sols et surfaces : vos locaux remis en état après travaux, avant leur livraison. Devis gratuit sous 24 h.",
+    seoDescription: "Nettoyage de fin de chantier à Casablanca et dans les autres villes du Maroc : dépoussiérage, vitres, sols et surfaces avant livraison. Devis gratuit sous 24 h.",
     intro: "Préparez la livraison de vos locaux avec un nettoyage après travaux. Nous les remettons en état : dépoussiérage et nettoyage des vitres, des sols et des surfaces.",
     sitesTitre: 'À quel moment ?',
     sitesTexte: "L'intervention a lieu après les travaux et avant la livraison de vos locaux. La remise en état est définie selon les besoins du chantier.",

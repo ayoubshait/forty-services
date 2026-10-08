@@ -81,7 +81,7 @@ module.exports = {
     titre: 'Gardiennage et nettoyage professionnel au Maroc | Forty Services',
     description:
       'Gardiennage, surveillance et nettoyage professionnel à Casablanca et dans les autres villes du Maroc. ' +
-      'Forty Services accompagne vos sites depuis 2013. Demandez votre devis.'
+      'Depuis 2013. Devis gratuit sous 24 h.'
   },
 
   // Photos (fichiers dans public/images/)

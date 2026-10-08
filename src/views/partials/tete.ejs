@@ -52,6 +52,7 @@ setTimeout(function () { if (!window.__reveleActif) document.documentElement.cla
 <meta name="twitter:image" content="<%= metaImage %>">
 <%
   // Données structurées. L'entreprise porte un identifiant stable (@id) : chaque prestation s'y rattache.
+  var zoneDesservie = [{ "@type": "City", "name": site.ville }, { "@type": "Country", "name": "Maroc" }];
   var entreprise = {
     "@type": "LocalBusiness",
     "@id": idEntreprise,
@@ -68,7 +69,8 @@ setTimeout(function () { if (!window.__reveleActif) document.documentElement.cla
       "addressLocality": site.ville,
       "addressCountry": "MA"
     },
-    "areaServed": { "@type": "Country", "name": "Maroc" },
+    "areaServed": zoneDesservie,
+    "contactPoint": site.telephones.map(function (t) { return { "@type": "ContactPoint", "telephone": t.e164, "contactType": "customer service", "areaServed": "MA", "availableLanguage": "fr" }; }),
     "foundingDate": String(site.anneeCreation),
     "openingHours": "Mo-Su 00:00-24:00",
     "founder": { "@type": "Person", "name": site.gerant },
@@ -81,6 +83,7 @@ setTimeout(function () { if (!window.__reveleActif) document.documentElement.cla
     }
   };
   var graphe = [entreprise];
+  if (estAccueil) graphe.push({ "@type": "WebSite", "@id": site.url + "/#site", "url": site.url + "/", "name": site.nom, "inLanguage": "fr", "publisher": { "@id": idEntreprise } });
   var questions = estAccueil ? site.faq : (m.faq || []);
   if (m.service) {
     graphe.push({
@@ -91,7 +94,7 @@ setTimeout(function () { if (!window.__reveleActif) document.documentElement.cla
       "description": m.service.description,
       "url": metaUrl,
       "provider": { "@id": idEntreprise },
-      "areaServed": { "@type": "Country", "name": "Maroc" }
+      "areaServed": zoneDesservie
     });
     graphe.push({
       "@type": "BreadcrumbList",

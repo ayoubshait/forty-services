@@ -25,7 +25,7 @@
       <div class="heros-actions">
         <a class="btn btn-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 19 }) %>
-          Demander un devis
+          Demander un devis<span class="sr-only"> par WhatsApp</span>
         </a>
         <a class="btn btn-appel-clair" href="tel:<%= site.telephones[0].e164 %>">
           <%- include('partials/icones', { icone: 'telephone', taille: 18, stroke: 'currentColor', epais: 2 }) %>
@@ -53,7 +53,7 @@
         </div>
         <a class="sf-cta" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + site.services[0].titre + '.') %>">
           <%- include('partials/whatsapp-icone', { taille: 17 }) %>
-          Demander un devis
+          Demander un devis<span class="sr-only"> par WhatsApp</span>
         </a>
       </div>
     </aside>
@@ -104,14 +104,14 @@
           <div class="icone">
             <%- include('partials/icones', { icone: service.icone, taille: 28 }) %>
           </div>
-          <h3><%= service.visible %></h3>
+          <h3><a href="/<%= service.slug %>"><%= service.visible %></a></h3>
         </div>
         <ul class="carte-points">
           <% service.points.forEach(function (point) { %><li><%= point %></li><% }); %>
         </ul>
         <a class="lien-wa" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent('Bonjour, je souhaite un devis pour : ' + service.titre + '.') %>">
           <%- include('partials/whatsapp-icone', { taille: 15, fill: 'currentColor' }) %>
-          Demander un devis
+          Demander un devis<span class="sr-only"> pour : <%= service.titre %>, par WhatsApp</span>
         </a>
         <a class="lien-page" href="/<%= service.slug %>">Découvrir la prestation <span aria-hidden="true">→</span><span class="sr-only"> : <%= service.titre %></span></a>
       </article>
@@ -139,7 +139,7 @@
         </div>
         <div>
           <strong data-compte="<%= site.experienceMetier %>" data-suffixe=" ans"><%= site.experienceMetier %> ans</strong>
-          <span>d'expérience</span>
+          <span>d'expérience du dirigeant</span>
         </div>
       </div>
     </div>
@@ -282,7 +282,7 @@
         <p>Sans engagement. Le délai court dès réception des informations nécessaires.</p>
         <a class="btn btn-wa-panneau" href="https://wa.me/<%= site.whatsapp %>?text=<%= encodeURIComponent(site.whatsappMessage) %>">
           <%- include('partials/whatsapp-icone', { taille: 20 }) %>
-          Demander un devis
+          Demander un devis<span class="sr-only"> par WhatsApp</span>
         </a>
         <a class="btn btn-appel" href="tel:<%= site.telephones[0].e164 %>">
           <%- include('partials/icones', { icone: 'telephone', taille: 18, stroke: 'currentColor', epais: 2 }) %>

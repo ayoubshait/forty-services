@@ -20,6 +20,9 @@ if (boutonMenu && menu) {
       boutonMenu.setAttribute('aria-label', 'Ouvrir le menu');
     });
   });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('ouvert')) { boutonMenu.click(); boutonMenu.focus(); }
+  });
 }
 
 // Sélecteur de prestations (accueil) : fiche courte + pilotage de la scène 3D
@@ -53,9 +56,10 @@ if (boutonMenu && menu) {
     var accueil = document.getElementById('accueil');
     accueil.style.setProperty('--poster', 'url(/images/scene-' + i + '.webp)');
   }
+  // Sélection au clic (ou au clavier) seulement. Au survol, aller du 2e bouton vers « Demander un devis » faisait passer
+  // la souris sur les suivants : la fiche changeait, et le devis partait pour la dernière prestation survolée.
   choix.forEach(function (b, i) {
     b.addEventListener('click', function () { choisir(i); });
-    b.addEventListener('mouseenter', function () { choisir(i); });
   });
   // Scène 3D : seulement si le visiteur l'accepte et que l'appareil s'y prête — sinon simple sélecteur
   var hero = document.getElementById('accueil');

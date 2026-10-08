@@ -7,6 +7,7 @@
   --marine: #1B3A6B;
   --marine-fonce: #142D54;
   --cyan: #29A8DF;
+  --cyan-clair: #4FBBEA;   /* cyan éclairci pour le petit texte sur fond marine : contraste 5,2:1 (le cyan d'origine : 4,2:1) */
   --cyan-texte: #17759F;   /* cyan assombri pour le petit texte sur fond clair : contraste 5,1:1 sur blanc, 4,8:1 sur gris */
   --blanc: #FFFFFF;
   --gris-fond: #F4F7FA;
@@ -29,7 +30,7 @@ html { scroll-behavior: smooth; }
   scroll-margin-top: 78px;
 }
 
-html, body { overflow-x: hidden; }
+html, body { overflow-x: hidden; overflow-x: clip; }   /* clip : pas de conteneur de défilement, l'en-tête collant fonctionne (hidden reste le repli des anciens navigateurs) */
 
 body {
   font-family: var(--police-texte);
@@ -48,11 +49,14 @@ h3 { font-size: 1.18rem; font-weight: 700; letter-spacing: -0.01em; }
 a { color: var(--cyan); }
 
 /* Focus clavier bien visible */
-a:focus-visible, button:focus-visible {
-  outline: 3px solid var(--cyan);
+a:focus-visible, button:focus-visible, summary:focus-visible {
+  outline: 3px solid var(--marine);
   outline-offset: 3px;
   border-radius: 4px;
 }
+/* sur les fonds sombres, le contour reste cyan */
+header :focus-visible, .heros :focus-visible, .svc-tete :focus-visible, .contact :focus-visible, footer :focus-visible, .barre-mobile :focus-visible { outline-color: var(--cyan); }
+.panneau-devis :focus-visible { outline-color: var(--marine); }   /* panneau blanc placé dans la section contact */
 
 .conteneur { max-width: 1140px; margin: 0 auto; padding: 0 26px; }
 
@@ -143,10 +147,15 @@ nav a:hover { color: var(--blanc); }
   .barre .btn-appel-clair { display: none; }
   .nav-appel {
     display: block;
-    color: var(--cyan);
+    color: var(--cyan-clair);
     font-weight: 800;
     border-bottom: none;
   }
+  header { position: relative; }   /* relative, pas static : le menu déroulant s'y accroche */
+  html:not(.js) .bouton-menu { display: none; }
+  html:not(.js) .barre { flex-wrap: wrap; }
+  html:not(.js) nav { display: flex; position: static; flex-flow: row wrap; gap: 0 18px; width: 100%; padding: 0; border-top: 0; box-shadow: none; }
+  html:not(.js) nav a { border-bottom: 0; padding: 8px 0; }
 }
 
 /* ---------- Héros ---------- */
@@ -183,7 +192,7 @@ nav a:hover { color: var(--blanc); }
 .scene-cadre { animation-delay: 0.3s; }
 .heros-reassurance { animation-delay: 0.4s; }
 @media (prefers-reduced-motion: reduce) {
-  .heros h1, .heros-texte p, .heros-actions, .scene-cadre, .heros-reassurance { animation: none; }
+  .heros h1, .heros-texte p, .heros-actions, .scene-cadre, .heros-reassurance, .scene-fiche.maj .sf-texte { animation: none; }
 }
 .heros-grille {
   display: grid;
@@ -592,6 +601,8 @@ section { padding: 84px 0; }
 }
 .carte .lien-wa svg { color: var(--vert-wa); }
 /* Lien secondaire vers la page de la prestation */
+.carte h3 a { color: inherit; text-decoration: none; }
+.carte h3 a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 2px; }
 .carte .lien-page { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 0.9rem; font-weight: 600; color: var(--gris-doux); text-decoration: none; }
 .carte .lien-page:hover { color: var(--marine); text-decoration: underline; text-underline-offset: 3px; }
 .carte .lien-wa:hover { color: var(--vert-wa); text-decoration: underline; text-underline-offset: 3px; }
@@ -827,7 +838,7 @@ section { padding: 84px 0; }
   border: 60px solid rgba(41, 168, 223, 0.07);
   pointer-events: none;
 }
-.contact .sur-titre { color: #4FBBEA; }                     /* cyan éclairci sur fond marine : contraste 5,2:1 (le cyan d'origine : 4,2:1) */
+.contact .sur-titre { color: var(--cyan-clair); }
 .contact .sur-titre::before { background: var(--cyan); }
 .contact h2 { color: var(--blanc); }
 .contact .tete-section p { color: var(--bleu-clair); }
@@ -844,7 +855,7 @@ section { padding: 84px 0; }
 .contact-lignes svg { flex-shrink: 0; margin-top: 3px; }
 .contact-lignes a { color: var(--blanc); font-weight: 700; text-decoration: none; }
 .contact-lignes a:hover { color: var(--cyan); }
-.contact-lignes .etiquette { display: block; font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; color: #8FA5C4; font-weight: 700; margin-bottom: 2px; }
+.contact-lignes .etiquette { display: block; font-size: 0.82rem; letter-spacing: 1px; text-transform: uppercase; color: #A3B6D1; font-weight: 700; margin-bottom: 2px; }
 
 .panneau-devis {
   background: var(--blanc);
@@ -924,7 +935,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
    Optimisation mobile — écrans jusqu'à 700 px
    ═══════════════════════════════════════════════════════ */
 @media (max-width: 700px) {
-  .conteneur { padding: 0 18px; }
+  .conteneur { padding-left: 18px; padding-right: 18px; }
   section { padding: 48px 0; }
   h1 { font-size: 1.58rem; }
   .heros h1 { font-size: 1.55rem; }
@@ -937,7 +948,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 
   .heros-grille { padding-top: 26px; padding-bottom: 4px; gap: 0; }
   .heros-texte p { font-size: 0.98rem; margin: 12px 0 18px; }
-  .heros-texte .heros-accroche { font-size: 1.12rem; margin: 10px 0 0; }
+  .heros-texte .heros-accroche { font-size: 1.12rem; margin: 10px 0 0; color: var(--cyan-clair); }   /* petit texte : contraste 5,2:1 */
   .heros-texte .heros-intro { font-size: 0.96rem; margin: 8px 0 16px; }
   .heros-actions { gap: 10px; }
   .heros-actions .btn { width: 100%; }
@@ -1033,7 +1044,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
   .heros-texte .heros-intro { font-size: 0.9rem; }
   .barre-mobile a { font-size: 0.84rem; gap: 5px; padding: 0 4px; }
   .barre-mobile svg { width: 17px; height: 17px; }
-  .conteneur { padding: 0 14px; }
+  .conteneur { padding-left: 14px; padding-right: 14px; }   /* les côtés seulement : en-tête et héros gardent leurs marges verticales */
   .logo-texte { font-size: 1.02rem; }
   .equipe-stats { grid-template-columns: 1fr; }
 }
@@ -1137,7 +1148,7 @@ footer { background: var(--marine-fonce); color: #B9C8DD; font-size: 0.93rem; }
 }
 .verso-texte { display: flex; flex-direction: column; min-width: 0; }
 .verso-nom { font-family: var(--police-titre); font-weight: 800; font-size: 6.4cqw; line-height: 1.1; letter-spacing: -0.01em; }
-.verso-role { margin-top: 1.2cqw; font-size: max(10.5px, 3cqw); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan); }
+.verso-role { margin-top: 1.2cqw; font-size: max(10.5px, 3cqw); font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--cyan-texte); }
 .verso-liens { list-style: none; margin: 4cqw 0 0; padding: 0; display: grid; gap: 1.6cqw; font-size: max(12.5px, 3.8cqw); }
 .verso-liens a { color: var(--marine); text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(41, 168, 223, 0.55); word-break: break-word; }
 .verso-liens a:hover { color: var(--cyan); }
@@ -1271,6 +1282,7 @@ html:not(.js) .carte3d-bouton { display: none; }
   .svc-etapes li { display: flex; gap: 14px; align-items: flex-start; }
   .svc-numero { flex-shrink: 0; margin-bottom: 0; width: 36px; height: 36px; }
   .grille-ref-cartes--2, .grille-ref-cartes--3 { grid-template-columns: repeat(2, 1fr); }
+  .grille-ref-cartes--3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 @media (max-width: 359px) {
   .grille-ref-cartes--2, .grille-ref-cartes--3 { grid-template-columns: 1fr; }
