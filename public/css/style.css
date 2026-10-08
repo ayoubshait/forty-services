@@ -26,7 +26,7 @@
 html { scroll-behavior: smooth; }
 
 /* Les ancres s'arrêtent sous l'en-tête collant, pas derrière */
-#accueil, #services, #equipe, #faq, #engagements, #references, #deroulement, #carte, #contact {
+#accueil, #contenu, #services, #equipe, #faq, #engagements, #references, #deroulement, #carte, #contact {
   scroll-margin-top: 78px;
 }
 
@@ -55,7 +55,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-radius: 4px;
 }
 /* sur les fonds sombres, le contour reste cyan */
-header :focus-visible, .heros :focus-visible, .svc-tete :focus-visible, .contact :focus-visible, footer :focus-visible, .barre-mobile :focus-visible { outline-color: var(--cyan); }
+header :focus-visible, .heros :focus-visible, .svc-tete :focus-visible, .contact :focus-visible, footer :focus-visible, .barre-mobile :focus-visible,
+.page-404 :focus-visible, .lien-evitement:focus-visible, .wa-flottant:focus-visible, .haut-page:focus-visible { outline-color: var(--cyan); }
 .panneau-devis :focus-visible { outline-color: var(--marine); }   /* panneau blanc placé dans la section contact */
 
 .conteneur { max-width: 1140px; margin: 0 auto; padding: 0 26px; }
@@ -153,7 +154,7 @@ nav a:hover { color: var(--blanc); }
   }
   header { position: relative; }   /* relative, pas static : le menu déroulant s'y accroche */
   html:not(.js) .bouton-menu { display: none; }
-  html:not(.js) .barre { flex-wrap: wrap; }
+  html:not(.js) header:not(.legal-entete) .barre { flex-wrap: wrap; }
   html:not(.js) nav { display: flex; position: static; flex-flow: row wrap; gap: 0 18px; width: 100%; padding: 0; border-top: 0; box-shadow: none; }
   html:not(.js) nav a { border-bottom: 0; padding: 8px 0; }
 }
@@ -192,7 +193,7 @@ nav a:hover { color: var(--blanc); }
 .scene-cadre { animation-delay: 0.3s; }
 .heros-reassurance { animation-delay: 0.4s; }
 @media (prefers-reduced-motion: reduce) {
-  .heros h1, .heros-texte p, .heros-actions, .scene-cadre, .heros-reassurance, .scene-fiche.maj .sf-texte { animation: none; }
+  .heros h1, .heros-texte p, .heros-actions, .scene-cadre, .heros-reassurance, .heros .scene-fiche.maj .sf-texte { animation: none; }
 }
 .heros-grille {
   display: grid;
@@ -1268,6 +1269,7 @@ html:not(.js) .carte3d-bouton { display: none; }
   .svc-duo { gap: 40px; }
   .svc-etapes { grid-template-columns: repeat(2, 1fr); }
   .grille-ref-cartes--3 { grid-template-columns: repeat(2, 1fr); }
+  .grille-ref-cartes--3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }   /* la troisième carte ne reste pas seule à demi-largeur */
 }
 @media (max-width: 700px) {
   .page-service section { padding: 36px 0; }
@@ -1282,7 +1284,6 @@ html:not(.js) .carte3d-bouton { display: none; }
   .svc-etapes li { display: flex; gap: 14px; align-items: flex-start; }
   .svc-numero { flex-shrink: 0; margin-bottom: 0; width: 36px; height: 36px; }
   .grille-ref-cartes--2, .grille-ref-cartes--3 { grid-template-columns: repeat(2, 1fr); }
-  .grille-ref-cartes--3 > :last-child:nth-child(odd) { grid-column: 1 / -1; }
 }
 @media (max-width: 359px) {
   .grille-ref-cartes--2, .grille-ref-cartes--3 { grid-template-columns: 1fr; }

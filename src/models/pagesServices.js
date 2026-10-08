@@ -102,7 +102,7 @@ module.exports = [
     nom: 'Nettoyage de fin de chantier',
     h1: 'Nettoyage de fin de chantier au Maroc',
     seoTitre: 'Nettoyage de fin de chantier au Maroc | Forty Services',
-    seoDescription: "Nettoyage de fin de chantier à Casablanca et dans les autres villes du Maroc : dépoussiérage, vitres, sols et surfaces avant livraison. Devis gratuit sous 24 h.",
+    seoDescription: "Nettoyage de fin de chantier à Casablanca et dans les autres villes du Maroc : dépoussiérage, vitres, sols et surfaces. Devis gratuit sous 24 h.",
     intro: "Préparez la livraison de vos locaux avec un nettoyage après travaux. Nous les remettons en état : dépoussiérage et nettoyage des vitres, des sols et des surfaces.",
     sitesTitre: 'À quel moment ?',
     sitesTexte: "L'intervention a lieu après les travaux et avant la livraison de vos locaux. La remise en état est définie selon les besoins du chantier.",

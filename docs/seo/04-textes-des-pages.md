@@ -47,7 +47,7 @@ Généré à partir de `src/models/pagesServices.js` le 7 octobre 2026. Version 
 ## /gardiennage
 
 - **Titre SEO** (63 caractères) : Gardiennage de locaux et de chantiers au Maroc | Forty Services
-- **Méta-description** (144 caractères) : Gardiennage de locaux, entrepôts et chantiers à Casablanca et dans les autres villes du Maroc. Présence ponctuelle ou régulière. Devis gratuit sous 24 h.
+- **Méta-description** (153 caractères) : Gardiennage de locaux, entrepôts et chantiers à Casablanca et dans les autres villes du Maroc. Présence ponctuelle ou régulière. Devis gratuit sous 24 h.
 - **Adresse canonique** : https://fortyservices.ma/gardiennage
 - **Image de partage** : /images/partage-gardiennage.jpg
 
@@ -89,7 +89,7 @@ Généré à partir de `src/models/pagesServices.js` le 7 octobre 2026. Version 
 ## /nettoyage-locaux
 
 - **Titre SEO** (59 caractères) : Nettoyage de bureaux et de locaux au Maroc | Forty Services
-- **Méta-description** (136 caractères) : Nettoyage de bureaux, commerces et parties communes à Casablanca et dans les autres villes du Maroc. Passages planifiés. Devis gratuit sous 24 h.
+- **Méta-description** (145 caractères) : Nettoyage de bureaux, commerces et parties communes à Casablanca et dans les autres villes du Maroc. Passages planifiés. Devis gratuit sous 24 h.
 - **Adresse canonique** : https://fortyservices.ma/nettoyage-locaux
 - **Image de partage** : /images/partage-nettoyage-locaux.jpg
 
@@ -131,7 +131,7 @@ Généré à partir de `src/models/pagesServices.js` le 7 octobre 2026. Version 
 ## /nettoyage-fin-chantier
 
 - **Titre SEO** (54 caractères) : Nettoyage de fin de chantier au Maroc | Forty Services
-- **Méta-description** (128 caractères) : Nettoyage de fin de chantier à Casablanca et dans les autres villes du Maroc : dépoussiérage, vitres, sols et surfaces avant livraison. Devis gratuit sous 24 h.
+- **Méta-description** (144 caractères) : Nettoyage de fin de chantier à Casablanca et dans les autres villes du Maroc : dépoussiérage, vitres, sols et surfaces. Devis gratuit sous 24 h.
 - **Adresse canonique** : https://fortyservices.ma/nettoyage-fin-chantier
 - **Image de partage** : /images/partage-nettoyage-fin-chantier.jpg
 
