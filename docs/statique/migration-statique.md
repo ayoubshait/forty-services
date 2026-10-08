@@ -2,6 +2,15 @@
 
 Branche : `statique/pre-rendu` (non publiée). Rien n'est changé sur `main`, sur le service Render actuel, sur le domaine ni sur le DNS.
 
+## État au 8 octobre 2026 : bascule faite
+
+- `fortyservices.ma` et `www.fortyservices.ma` sont attachés au site statique Render `forty-services-static` (branche `main`), certificats émis. Coupure constatée : environ 2 minutes.
+- Le DNS n'a pas été modifié : Render a vérifié les deux domaines avec les enregistrements existants (A `216.24.57.1`, CNAME `www` vers `forty-services.onrender.com`).
+- Réglages réellement en place sur le site statique : un en-tête (`/wallet/*.pkpass` — `Content-Type` — `application/vnd.apple.pkpass`) et une redirection (`/favicon.ico` vers `/favicon.svg`). Render sert les adresses sans `.html` et la page 404 sans règle ; les règles de réécriture listées plus bas sont inutiles.
+- Les en-têtes `X-Robots-Tag` de prévisualisation ont été supprimés avant la bascule.
+- L'ancien service web `forty-services` (offre Free) est conservé, sans domaine : il sert de retour arrière et redirige `forty-services.onrender.com` vers le domaine.
+- Différence connue : `/page/` (barre finale) répond 200 au lieu de rediriger ; la balise canonique désigne l'adresse sans barre.
+
 ## Principe
 
 `npm run build:statique` démarre l'application Express actuelle en mémoire, lui demande chaque page et enregistre le HTML dans `dist/`, puis y copie `public/`. Le site continue donc de s'écrire comme aujourd'hui (EJS, modèles) ; seul l'hébergement change.
