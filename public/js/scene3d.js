@@ -396,9 +396,10 @@
     // [échelle, décalage x, décalage y] par modèle, relevés une fois pour toutes (téléphone, puis ordinateur). Les mesurer à chaque visite
     // demandait 24 rendus avec relecture des pixels : plusieurs secondes de calcul sur un téléphone modeste.
     // Après modification d'un modèle : ouvrir la page avec « ?mesure3d » dans l'adresse et reporter ici window.F3D.normes.
+    // Le 3e modèle (bulles et jet aléatoires) varie d'un relevé à l'autre : prendre la médiane de plusieurs relevés.
     var NORMES = PETIT
       ? [[0.8323, 0.0239, 0.3340], [0.6305, 0.0090, 0.0904], [0.6779, -0.3400, 0.1069], [0.6049, -0.0433, 0.2861]]
-      : [[0.9804, 0.0183, 0.3844], [0.7326, 0.0137, 0.0958], [0.8102, -0.4387, 0.1361], [0.7060, -0.0527, 0.3164]];
+      : [[0.9804, 0.0183, 0.3844], [0.7326, 0.0137, 0.0958], [0.787, -0.39, 0.132], [0.7060, -0.0527, 0.3164]];
     var REMESURER = /[?&]mesure3d(?:[&=]|$)/.test(location.search);
     modeles2 = construire();
     modeles2.forEach(function (m, i) {
@@ -407,7 +408,7 @@
       m.pivot.visible = false;
       m.cadre = new THREE.Group();
       m.cadre.add(m.pivot);
-      if (!REMESURER) {
+      if (!REMESURER && NORMES[i]) {
         m.cadre.scale.setScalar(NORMES[i][0]);
         m.cadre.position.set(NORMES[i][1], NORMES[i][2], 0);
       }
@@ -441,7 +442,18 @@
       pret2 = true;
     }
 
-    if (!REMESURER) { terminer(); return; }
+    if (!REMESURER) {
+      // Préchauffage : un rendu par modèle et par tâche, sans relecture des pixels. Les shaders sont ainsi compilés pendant
+      // un temps mort ; sinon ce travail tombait dans l'image où les cartes entrent à l'écran, et le défilement se figeait.
+      var aChauffer = 0;
+      (function chauffer() {
+        if (aChauffer >= modeles2.length) { terminer(); return; }
+        var mc = modeles2[aChauffer++];
+        mc.pivot.visible = true; mc.anim(0); rendu2.render(scene2, camera2); mc.pivot.visible = false;
+        setTimeout(chauffer, 0);
+      })();
+      return;
+    }
 
     // ── Relevé des constantes (développement uniquement, avec « ?mesure3d ») ──
     // Chaque modèle est rendu, sa silhouette réelle est mesurée en pixels sur plusieurs instants de l'animation.

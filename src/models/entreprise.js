@@ -89,7 +89,7 @@ module.exports = {
     equipe: {
       src: '/images/equipe-720.webp',                                    // versions allégées de equipe.webp (original conservé)
       srcset: '/images/equipe-480.webp 480w, /images/equipe-720.webp 720w, /images/equipe-930.webp 930w',
-      sizes: '(max-width: 700px) calc(100vw - 40px), 480px',
+      sizes: '(max-width: 700px) calc(100vw - 36px), (max-width: 920px) calc(100vw - 52px), 465px',
       largeur: 720, hauteur: 1309,
       alt: "L'équipe Forty Services devant un site client"
     }
