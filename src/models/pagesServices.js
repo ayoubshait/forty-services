@@ -9,15 +9,26 @@ module.exports = [
   {
     slug: 'surveillance',
     faqTitre: 'Vos questions sur la surveillance de sites',
-    // Photo de terrain (original conservé dans sources/images/terrain/). Légende neutre : aucun client ni lieu nommé.
-    photo: {
-      src: '/images/terrain-evenement-720.webp',
-      srcset: '/images/terrain-evenement-480.webp 480w, /images/terrain-evenement-720.webp 720w',
-      sizes: '(max-width: 700px) calc(100vw - 36px), 720px',
-      largeur: 720, hauteur: 380,
-      alt: "L'équipe Forty Services en costume, alignée devant une scène lors d'un événement",
-      legende: "Notre équipe lors d'un événement"
-    },
+    // Photos de terrain (originaux conservés dans sources/images/terrain/). Légendes neutres : aucun client ni lieu nommé.
+    // Côte à côte sur ordinateur : `sizes` donne la largeur réellement affichée (jamais plus que la taille du fichier).
+    photos: [
+      {
+        src: '/images/terrain-evenement-720.webp',
+        srcset: '/images/terrain-evenement-480.webp 480w, /images/terrain-evenement-720.webp 720w',
+        sizes: '(max-width: 700px) calc(100vw - 36px), (max-width: 1052px) calc(56vw - 40px), 548px',
+        largeur: 720, hauteur: 380,
+        alt: "L'équipe Forty Services en costume, alignée devant une scène lors d'un événement",
+        legende: "Notre équipe lors d'un événement"
+      },
+      {
+        src: '/images/terrain-entree-720.webp',
+        srcset: '/images/terrain-entree-480.webp 480w, /images/terrain-entree-720.webp 720w',
+        sizes: '(max-width: 700px) calc(100vw - 36px), (max-width: 1052px) calc(44vw - 32px), 434px',
+        largeur: 720, hauteur: 480,
+        alt: "Deux agents Forty Services en costume à l'entrée d'une salle",
+        legende: "Deux de nos agents à l'entrée d'une salle"
+      }
+    ],
     nom: 'Surveillance de sites',
     h1: 'Surveillance de sites professionnels au Maroc',
     seoTitre: 'Surveillance de sites professionnels au Maroc | Forty Services',

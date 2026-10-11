@@ -11,3 +11,6 @@ wallet/**/*.key
 wallet/**/*.cer
 wallet/**/*.pkpass
 wallet/**/service-account*.json
+
+# Photos de travail : originaux non floutés (tiers visibles), à ne jamais mettre dans le dépôt, qui est public
+photos-retouchees/

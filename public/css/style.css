@@ -1237,8 +1237,12 @@ html:not(.js) .carte3d-bouton { display: none; }
 /* Lieux concernés et contenu de la prestation : deux colonnes, listes compactes (pas de cartes de remplissage) */
 .svc-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; }
 .svc-duo h2 { font-size: clamp(1.4rem, 2.6vw, 1.9rem); margin-top: 10px; }
-/* Photo de terrain : jamais agrandie au-delà de sa taille réelle (720 px) */
-.svc-photo { margin: 48px auto 0; max-width: 720px; border: 1px solid var(--bordure); border-radius: 10px; overflow: hidden; background: var(--blanc); }
+/* Photos de terrain : jamais agrandies au-delà de leur taille réelle (720 px).
+   À deux, elles sont côte à côte à la même hauteur : chaque largeur suit le rapport largeur/hauteur de l'image. */
+.svc-photos { margin: 48px auto 0; max-width: 720px; }
+.svc-photos--duo { display: flex; gap: 20px; max-width: 1000px; }
+.svc-photos--duo .svc-photo { flex: var(--rapport, 1.5) 1 0; min-width: 0; }
+.svc-photo { margin: 0; border: 1px solid var(--bordure); border-radius: 10px; overflow: hidden; background: var(--blanc); }
 .svc-photo img { display: block; width: 100%; height: auto; }
 .svc-photo figcaption { padding: 10px 16px; font-size: 0.9rem; color: var(--gris-doux); border-top: 1px solid var(--bordure); }
 .svc-points { list-style: none; display: grid; gap: 12px; margin-top: 22px; font-size: 1.04rem; line-height: 1.4; color: var(--gris-texte); }
@@ -1280,7 +1284,9 @@ html:not(.js) .carte3d-bouton { display: none; }
   .svc-tete { padding: 22px 0 28px; }
   .svc-visuel { max-width: 230px; }
   .svc-duo { grid-template-columns: 1fr; gap: 30px; }
-  .svc-photo { margin-top: 30px; }
+  .svc-photos { margin-top: 30px; }
+  .svc-photos--duo { flex-direction: column; gap: 16px; }
+  .svc-photos--duo .svc-photo { flex: none; width: 100%; }
   .svc-points { margin-top: 16px; gap: 10px; font-size: 1rem; }
   .page-service .tete-section + * { margin-top: 22px; }
   .svc-intro { font-size: 1rem; }
