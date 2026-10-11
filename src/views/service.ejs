@@ -58,6 +58,14 @@
       </ul>
     </div>
   </div>
+  <% if (page.photo) { %>
+  <div class="conteneur">
+    <figure class="svc-photo">
+      <img src="<%= page.photo.src %>" srcset="<%= page.photo.srcset %>" sizes="<%= page.photo.sizes %>" alt="<%= page.photo.alt %>" width="<%= page.photo.largeur %>" height="<%= page.photo.hauteur %>" loading="lazy" decoding="async">
+      <figcaption><%= page.photo.legende %></figcaption>
+    </figure>
+  </div>
+  <% } %>
 </section>
 
 <!-- ══════════════ ORGANISATION ══════════════ -->
