@@ -953,7 +953,7 @@
   }
   function ajuster() {
     var w = vue.clientWidth, h = vue.clientHeight;
-    if (!w || !h) return;
+    if (arret || !w || !h) return;
     rendu.setSize(w, h, false);
     camera.aspect = w / h;
     if (w < 921) camera.clearViewOffset();
@@ -973,9 +973,50 @@
   var visible = true;
   F.visibilite(vue, function (v) { visible = v; });
 
+  /* Garde-fou : si l'appareil ne suit pas (images trop espacées une fois la scène lancée), on rend d'abord en
+     définition simple ; si cela ne suffit pas, on arrête la 3D et l'image fixe de la prestation reprend sa place.
+     Mesure : écart moyen entre deux images sur une fenêtre, après une mise en route, pour chaque scène affichée.
+     `?seuil3d=NN` (en millisecondes) permet de tester ce repli. */
+  var SEUIL = +((location.search.match(/[?&]seuil3d=(\d+)/) || [])[1] || 70);   // 70 ms d'écart moyen ≈ 14 images/s
+  var MISE_EN_ROUTE = 15, FENETRE = 40;
+  var suivi = { scene: -1, n: 0, somme: 0, avant: 0, fini: {} };
+  var arret = false;
+  function abandonner() {
+    arret = true;
+    canvas.classList.remove('pret');
+    cadre.classList.remove('scene-ok');
+    cadre.classList.add('sans-3d');
+    try {
+      var perte = rendu.getContext().getExtension('WEBGL_lose_context');
+      rendu.dispose();
+      if (perte) perte.loseContext();
+    } catch (e) {}
+  }
+  function surveiller(now) {
+    if (suivi.fini[courant]) return;
+    if (suivi.scene !== courant) { suivi.scene = courant; suivi.n = 0; suivi.somme = 0; suivi.avant = now; return; }
+    var ecart = now - suivi.avant;
+    suivi.avant = now;
+    if (ecart > 500) return;                              // retour d'onglet ou de défilement : pas une mesure
+    suivi.n++;
+    if (suivi.n <= MISE_EN_ROUTE) return;                 // construction de la scène et compilation : ignorées
+    suivi.somme += ecart;
+    if (suivi.n < MISE_EN_ROUTE + FENETRE) return;
+    var moyenne = suivi.somme / FENETRE;
+    if (moyenne <= SEUIL) { suivi.fini[courant] = true; return; }
+    if (rendu.getPixelRatio() > 1) {                      // premier palier : définition simple, puis nouvelle mesure
+      rendu.setPixelRatio(1);
+      ajuster();
+      suivi.n = 0; suivi.somme = 0;
+      return;
+    }
+    abandonner();
+  }
+
   var horloge = new THREE.Clock();
   var dernier = 0;
   function boucle(now) {
+    if (arret) return;
     requestAnimationFrame(boucle);
     if (!visible || document.hidden) return;
     if (PETIT && now - dernier < 30) return;
@@ -992,6 +1033,7 @@
     rendu.render(sc.o.scene, camera);
     // la 3D n'est annoncée prête (et l'image fixe n'est retirée) qu'une fois la première image réellement dessinée
     if (!prete) { prete = true; canvas.classList.add('pret'); cadre.classList.add('scene-ok'); window.dispatchEvent(new Event('accueil3d-pret')); }
+    surveiller(now);
   }
   var prete = false;
   boucle();

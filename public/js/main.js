@@ -64,11 +64,25 @@ if (boutonMenu && menu) {
   // Scène 3D : seulement si le visiteur l'accepte et que l'appareil s'y prête — sinon simple sélecteur
   var hero = document.getElementById('accueil');
   var reduit = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var test = document.createElement('canvas');
-  var webgl = !!(test.getContext('webgl') || test.getContext('experimental-webgl'));
+  // WebGL avec une vraie carte graphique seulement. En rendu logiciel (pas d'accélération matérielle), la scène
+  // saccade et bloque la page pendant de longues secondes : l'image fixe de la prestation la remplace alors.
+  function webglMateriel() {
+    try {
+      var strict = { failIfMajorPerformanceCaveat: true };
+      var c = document.createElement('canvas');
+      var gl = c.getContext('webgl', strict) || c.getContext('experimental-webgl', strict);
+      if (!gl) return false;
+      var info = gl.getExtension('WEBGL_debug_renderer_info');
+      var moteur = info ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL)) : '';
+      var perte = gl.getExtension('WEBGL_lose_context');
+      if (perte) perte.loseContext();                    // ce contexte ne servait qu'au test
+      return !/swiftshader|llvmpipe|softpipe|software|basic render/i.test(moteur);
+    } catch (e) { return false; }
+  }
+  var webgl = webglMateriel();
   var etroit = window.matchMedia('(max-width: 920px)').matches;
   var cnx = navigator.connection || {};
-  // les protections « appareil faible » ne concernent que les téléphones : sur ordinateur, la 3D s'affiche toujours
+  // les protections « appareil faible » ne concernent que les téléphones : sur ordinateur, la 3D s'affiche dès qu'une carte graphique est utilisable
   var faible = !!cnx.saveData
     || (etroit && navigator.deviceMemory && navigator.deviceMemory < 4)
     || (etroit && navigator.hardwareConcurrency && navigator.hardwareConcurrency < 4)
