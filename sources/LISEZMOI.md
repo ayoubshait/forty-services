@@ -19,6 +19,6 @@ Images d'origine, conservées hors de `public/` pour ne pas être publiées. Les
 
 | Origine | Versions publiées |
 |---|---|
-| `images/illustration/agents-entree-generee.jpg` (1536 × 1024) : image **générée** par ChatGPT le 12 octobre 2026 à partir de la photo des deux agents. Les visages, les costumes et le décor ont été reconstruits par l'outil : ce n'est pas une photo réelle. | `public/images/illustration-agents-720.webp` et `-480.webp`, affichées page Surveillance avec la légende « Image d'illustration ». À ne pas envoyer dans la fiche Google, qui demande des photos réelles. |
+| `images/illustration/agents-entree-generee.jpg` (1536 × 1024) : image **générée** par ChatGPT le 12 octobre 2026 à partir de la photo des deux agents. Les visages, les costumes et le décor ont été reconstruits par l'outil : ce n'est pas une photo réelle. | `public/images/illustration-agents-720.webp` et `-480.webp`, affichées page Surveillance. La mention « Image d'illustration » est dans le texte alternatif ; la légende visible a été retirée le 12 octobre 2026 (choix de présentation). À ne pas envoyer dans la fiche Google, qui demande des photos réelles. |
 
 `fiche-google/` contient les mêmes photos en JPEG, prêtes à être envoyées dans la fiche Google Business Profile.

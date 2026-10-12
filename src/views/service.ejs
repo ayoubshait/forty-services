@@ -64,7 +64,7 @@
       <% page.photos.forEach(function (photo) { %>
       <figure class="svc-photo" style="--rapport: <%= (photo.largeur / photo.hauteur).toFixed(3) %>">
         <img src="<%= photo.src %>" srcset="<%= photo.srcset %>" sizes="<%= photo.sizes %>" alt="<%= photo.alt %>" width="<%= photo.largeur %>" height="<%= photo.hauteur %>" loading="lazy" decoding="async">
-        <figcaption><%= photo.legende %></figcaption>
+        <% if (photo.legende) { %><figcaption><%= photo.legende %></figcaption><% } %>
       </figure>
       <% }); %>
     </div>

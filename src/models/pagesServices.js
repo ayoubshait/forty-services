@@ -9,8 +9,8 @@ module.exports = [
   {
     slug: 'surveillance',
     faqTitre: 'Vos questions sur la surveillance de sites',
-    // Une photo de terrain (original dans sources/images/terrain/) et une image d'illustration générée, signalée comme telle
-    // dans sa légende (voir sources/LISEZMOI.md). Légendes neutres : aucun client ni lieu nommé.
+    // Une photo de terrain (original dans sources/images/terrain/) et une image d'illustration générée (voir sources/LISEZMOI.md).
+    // Pas de légende visible (choix du 12 octobre 2026) : la description est dans `alt`. Une `legende` reste possible, la vue l'affiche si elle existe.
     // Côte à côte sur ordinateur : `sizes` donne la largeur réellement affichée (jamais plus que la taille du fichier).
     photos: [
       {
@@ -18,16 +18,14 @@ module.exports = [
         srcset: '/images/terrain-evenement-480.webp 480w, /images/terrain-evenement-720.webp 720w',
         sizes: '(max-width: 700px) calc(100vw - 36px), (max-width: 1052px) calc(56vw - 40px), 548px',
         largeur: 720, hauteur: 380,
-        alt: "L'équipe Forty Services en costume, alignée devant une scène lors d'un événement",
-        legende: "Notre équipe lors d'un événement"
+        alt: "L'équipe Forty Services en costume, alignée devant une scène lors d'un événement"
       },
       {
         src: '/images/illustration-agents-720.webp',
         srcset: '/images/illustration-agents-480.webp 480w, /images/illustration-agents-720.webp 720w',
         sizes: '(max-width: 700px) calc(100vw - 36px), (max-width: 1052px) calc(44vw - 32px), 434px',
         largeur: 720, hauteur: 480,
-        alt: "Image d'illustration : deux agents en costume à l'entrée d'une salle",
-        legende: "Image d'illustration"
+        alt: "Image d'illustration : deux agents en costume à l'entrée d'une salle"
       }
     ],
     nom: 'Surveillance de sites',
