@@ -9,7 +9,8 @@ module.exports = [
   {
     slug: 'surveillance',
     faqTitre: 'Vos questions sur la surveillance de sites',
-    // Photos de terrain (originaux conservés dans sources/images/terrain/). Légendes neutres : aucun client ni lieu nommé.
+    // Une photo de terrain (original dans sources/images/terrain/) et une image d'illustration générée, signalée comme telle
+    // dans sa légende (voir sources/LISEZMOI.md). Légendes neutres : aucun client ni lieu nommé.
     // Côte à côte sur ordinateur : `sizes` donne la largeur réellement affichée (jamais plus que la taille du fichier).
     photos: [
       {
@@ -21,12 +22,12 @@ module.exports = [
         legende: "Notre équipe lors d'un événement"
       },
       {
-        src: '/images/terrain-entree-720.webp',
-        srcset: '/images/terrain-entree-480.webp 480w, /images/terrain-entree-720.webp 720w',
+        src: '/images/illustration-agents-720.webp',
+        srcset: '/images/illustration-agents-480.webp 480w, /images/illustration-agents-720.webp 720w',
         sizes: '(max-width: 700px) calc(100vw - 36px), (max-width: 1052px) calc(44vw - 32px), 434px',
         largeur: 720, hauteur: 480,
-        alt: "Deux agents Forty Services en costume à l'entrée d'une salle",
-        legende: "Deux de nos agents à l'entrée d'une salle"
+        alt: "Image d'illustration : deux agents en costume à l'entrée d'une salle",
+        legende: "Image d'illustration"
       }
     ],
     nom: 'Surveillance de sites',
